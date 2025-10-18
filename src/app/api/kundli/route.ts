@@ -37,21 +37,6 @@ export async function POST(request: NextRequest) {
 import json
 import sys
 
-# Test if PyJHora is installed
-try:
-    import jhora
-    print("PyJHora import successful")
-except ImportError as e:
-    print(json.dumps({"error": f"PyJHora not installed: {str(e)}", "success": False}))
-    sys.exit(1)
-
-try:
-    import swisseph
-    print("swisseph import successful") 
-except ImportError as e:
-    print(json.dumps({"error": f"swisseph not installed: {str(e)}", "success": False}))
-    sys.exit(1)
-
 def safe_float_convert(value):
     """Safely convert value to float, handling any type"""
     try:
@@ -194,7 +179,7 @@ def calculate_kundli(name, datetime_str, latitude, longitude, location_name="Bir
             
             # Calculate tithi (lunar day)
             try:
-                tithi_info = tithi(jd, place)
+                tithi_info = drik.tithi(jd, place)
                 if tithi_info and len(tithi_info) >= 2:
                     panchang_data["tithi"] = {
                         "name": tithi_info[0],
@@ -214,7 +199,7 @@ def calculate_kundli(name, datetime_str, latitude, longitude, location_name="Bir
             ]
             
             try:
-                nakshatra_info = nakshatra(jd, place)
+                nakshatra_info = drik.nakshatra(jd, place)
                 if nakshatra_info and len(nakshatra_info) >= 2:
                     nakshatra_num = nakshatra_info[1] % 27
                     panchang_data["nakshatra"] = {
@@ -242,7 +227,7 @@ def calculate_kundli(name, datetime_str, latitude, longitude, location_name="Bir
             
             # Calculate yoga
             try:
-                yoga_info = yogam(jd, place)
+                yoga_info = drik.yoga(jd, place)
                 if yoga_info and len(yoga_info) >= 2:
                     panchang_data["yoga"] = {
                         "name": yoga_info[0],
@@ -253,7 +238,7 @@ def calculate_kundli(name, datetime_str, latitude, longitude, location_name="Bir
             
             # Calculate karana (half tithi)
             try:
-                karana_info = karana(jd, place)
+                karana_info = drik.karana(jd, place)
                 if karana_info and len(karana_info) >= 2:
                     panchang_data["karana"] = {
                         "name": karana_info[0],
@@ -264,7 +249,7 @@ def calculate_kundli(name, datetime_str, latitude, longitude, location_name="Bir
             
             # Calculate vara (weekday)
             try:
-                vara_info = vaara(jd)
+                vara_info = drik.vaara(jd)
                 if vara_info:
                     panchang_data["vara"] = {
                         "name": vara_info,
@@ -275,7 +260,7 @@ def calculate_kundli(name, datetime_str, latitude, longitude, location_name="Bir
             
             # Calculate ritu (season)
             try:
-                ritu_info = ritu(jd, place)
+                ritu_info = drik.ritu(jd, place)
                 if ritu_info:
                     panchang_data["ritu"] = ritu_info
             except:
@@ -283,7 +268,7 @@ def calculate_kundli(name, datetime_str, latitude, longitude, location_name="Bir
             
             # Calculate masa (lunar month)
             try:
-                masa_info = lunar_month(jd, place)
+                masa_info = drik.lunar_month(jd, place)
                 if masa_info:
                     panchang_data["masa"] = masa_info
             except:
@@ -493,9 +478,9 @@ def calculate_kundli(name, datetime_str, latitude, longitude, location_name="Bir
         # Generate additional chart data for visualization
         try:
             # Navamsa Chart (D9)
-            navamsa_data = navamsa_chart(chart_data)
+            navamsa_chart = charts.navamsa_chart(chart_data)
             navamsa_positions = {}
-            for i, planet_data in enumerate(navamsa_data):
+            for i, planet_data in enumerate(navamsa_chart):
                 if i < len(main_planet_names):
                     planet_name = main_planet_names[i]
                     if len(planet_data) >= 2 and isinstance(planet_data[1], list) and len(planet_data[1]) >= 2:

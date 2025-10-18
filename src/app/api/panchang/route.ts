@@ -21,15 +21,6 @@ export async function POST(request: NextRequest) {
     const pythonScript = `
 import json
 import sys
-
-# Test if PyJHora is installed
-try:
-    import jhora
-    print("PyJHora import successful")
-except ImportError as e:
-    print(json.dumps({"success": False, "error": f"PyJHora not installed: {str(e)}"}))
-    sys.exit(1)
-
 try:
     from jhora.panchanga import drik
     from jhora.utils import julian_day_number
@@ -51,7 +42,7 @@ try:
     result = {}
     
     try:
-        tithi_info = tithi(jd, place)
+        tithi_info = drik.tithi(jd, place)
         tithi_names = [
             "Pratipad", "Dwitiya", "Tritiya", "Chaturthi", "Panchami", "Shashthi", "Saptami", "Ashtami",
             "Navami", "Dashami", "Ekadashi", "Dwadashi", "Trayodashi", "Chaturdashi", "Purnima",
@@ -105,7 +96,7 @@ try:
         result["tithi"] = {"name": "Unknown", "number": 0, "paksha": "Unknown"}
     
     try:
-        nakshatra_info = nakshatra(jd, place)
+        nakshatra_info = drik.nakshatra(jd, place)
         nakshatra_names = [
             "Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashirsha", "Ardra",
             "Punarvasu", "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "Uttara Phalguni",
@@ -135,7 +126,7 @@ try:
         result["nakshatra"] = {"name": "Unknown", "number": 0}
     
     try:
-        yoga_info = yogam(jd, place)
+        yoga_info = drik.yogam(jd, place)
         yoga_names = [
             "Vishkumbha", "Priti", "Ayushman", "Saubhagya", "Shobhana", "Atiganda", "Sukarma",
             "Dhriti", "Shula", "Ganda", "Vriddhi", "Dhruva", "Vyaghata", "Harshana", "Vajra",
@@ -160,7 +151,7 @@ try:
         result["yoga"] = {"name": "Unknown", "number": 0}
     
     try:
-        karana_info = karana(jd, place)
+        karana_info = drik.karana(jd, place)
         karana_names = [
             "Bava", "Balava", "Kaulava", "Taitila", "Gara", "Vanija", "Vishti",
             "Bava", "Balava", "Kaulava", "Taitila", "Gara", "Vanija", "Vishti",
@@ -210,13 +201,13 @@ try:
         }
     
     try:
-        ritu_info = ritu(jd, place)
+        ritu_info = drik.ritu(jd, place)
         result["ritu"] = ritu_info if ritu_info else "Unknown"
     except:
         result["ritu"] = "Unknown"
     
     try:
-        masa_info = lunar_month(jd, place)
+        masa_info = drik.lunar_month(jd, place)
         result["masa"] = masa_info if masa_info else "Unknown"
     except:
         result["masa"] = "Unknown"
@@ -269,8 +260,8 @@ try:
     
     # Try PyJHora first, then fallback to basic calculation
     try:
-        sunrise_info = sunrise(jd, place)
-        sunset_info = sunset(jd, place)
+        sunrise_info = drik.sunrise(jd, place)
+        sunset_info = drik.sunset(jd, place)
         
         if sunrise_info and isinstance(sunrise_info, (int, float)):
             sunrise_hour = (sunrise_info - int(sunrise_info)) * 24
@@ -299,8 +290,8 @@ try:
         try:
             # Try PyJHora's moonrise and moonset functions first
             try:
-                moonrise_info = moonrise(jd, place)
-                moonset_info = moonset(jd, place)
+                moonrise_info = drik.moonrise(jd, place)
+                moonset_info = drik.moonset(jd, place)
                 
                 # Format PyJHora results - they return [decimal_hour, 'HH:MM:SS', julian_day]
                 moonrise_time = "N/A"
@@ -391,7 +382,7 @@ try:
     # Calculate end times for panchang elements
     try:
         # Tithi end time
-        tithi_end_info = tithi(jd + 1, place)  # Next day to get end time
+        tithi_end_info = drik.tithi(jd + 1, place)  # Next day to get end time
         if tithi_end_info and len(tithi_end_info) >= 3:
             tithi_end_jd = tithi_end_info[2] if tithi_end_info[2] else jd + 0.5
             tithi_end_hour = (tithi_end_jd - int(tithi_end_jd)) * 24
@@ -405,7 +396,7 @@ try:
         
     try:
         # Nakshatra end time
-        nakshatra_end_info = nakshatra(jd + 1, place)
+        nakshatra_end_info = drik.nakshatra(jd + 1, place)
         if nakshatra_end_info and len(nakshatra_end_info) >= 3:
             nakshatra_end_jd = nakshatra_end_info[2] if nakshatra_end_info[2] else jd + 0.5
             nakshatra_end_hour = (nakshatra_end_jd - int(nakshatra_end_jd)) * 24
@@ -419,7 +410,7 @@ try:
         
     try:
         # Yoga end time
-        yoga_end_info = yogam(jd + 1, place)
+        yoga_end_info = drik.yogam(jd + 1, place)
         if yoga_end_info and len(yoga_end_info) >= 3:
             yoga_end_jd = yoga_end_info[2] if yoga_end_info[2] else jd + 0.5
             yoga_end_hour = (yoga_end_jd - int(yoga_end_jd)) * 24
@@ -433,7 +424,7 @@ try:
         
     try:
         # Karana end time
-        karana_end_info = karana(jd + 1, place)
+        karana_end_info = drik.karana(jd + 1, place)
         if karana_end_info and len(karana_end_info) >= 3:
             karana_end_jd = karana_end_info[2] if karana_end_info[2] else jd + 0.5
             karana_end_hour = (karana_end_jd - int(karana_end_jd)) * 24
