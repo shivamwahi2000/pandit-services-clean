@@ -21,8 +21,17 @@ export async function POST(request: NextRequest) {
     const pythonScript = `
 import json
 import sys
+
+# Test if PyJHora is installed
 try:
-    from jhora.panchanga.drik import *
+    import jhora
+    print("PyJHora import successful")
+except ImportError as e:
+    print(json.dumps({"success": False, "error": f"PyJHora not installed: {str(e)}"}))
+    sys.exit(1)
+
+try:
+    from jhora.panchanga import drik
     from jhora.utils import julian_day_number
     
     # Use current IST date/time for panchang calculations
@@ -33,7 +42,7 @@ try:
     hour, minute, second = now.hour, now.minute, now.second
     
     # Create place object
-    place = Place('Current Location', ${coords.latitude}, ${coords.longitude}, 5.5)
+    place = drik.Place('Current Location', ${coords.latitude}, ${coords.longitude}, 5.5)
     
     # Calculate Julian Day
     jd = julian_day_number((year, month, day), (hour, minute, second))

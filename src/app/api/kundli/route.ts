@@ -37,6 +37,21 @@ export async function POST(request: NextRequest) {
 import json
 import sys
 
+# Test if PyJHora is installed
+try:
+    import jhora
+    print("PyJHora import successful")
+except ImportError as e:
+    print(json.dumps({"error": f"PyJHora not installed: {str(e)}", "success": False}))
+    sys.exit(1)
+
+try:
+    import swisseph
+    print("swisseph import successful") 
+except ImportError as e:
+    print(json.dumps({"error": f"swisseph not installed: {str(e)}", "success": False}))
+    sys.exit(1)
+
 def safe_float_convert(value):
     """Safely convert value to float, handling any type"""
     try:
@@ -57,8 +72,8 @@ def calculate_kundli(name, datetime_str, latitude, longitude, location_name="Bir
         warnings.filterwarnings('ignore')  # Suppress all warnings
         
         import swisseph as swe
-        from jhora.horoscope.chart.charts import *
-        from jhora.panchanga.drik import *
+        from jhora.horoscope.chart import charts
+        from jhora.panchanga import drik
         
         # Parse datetime string
         dt_parts = datetime_str.replace('+05:30', '').split('T')
@@ -72,10 +87,10 @@ def calculate_kundli(name, datetime_str, latitude, longitude, location_name="Bir
         jd = swe.julday(year, month, day, hour + minute/60.0)
         
         # Create place object
-        place = Place(location_name, safe_float_convert(latitude), safe_float_convert(longitude), +5.5)
+        place = drik.Place(location_name, safe_float_convert(latitude), safe_float_convert(longitude), +5.5)
         
         # Get planetary positions
-        chart_data = rasi_chart(jd, place)
+        chart_data = charts.rasi_chart(jd, place)
         
         # Initialize result
         result = {
