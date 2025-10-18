@@ -2,13 +2,7 @@ services:
   - type: web
     name: pandit-services-clean
     env: node
-    buildCommand: |
-      # Install system dependencies for Python packages
-      apt-get update && apt-get install -y python3-dev python3-pip
-      # Install Python dependencies
-      pip3 install --user jhora swisseph
-      # Install Node dependencies and build
-      npm install && npm run build
+    buildCommand: npm install && npm run build
     startCommand: npm start
     plan: free
     envVars:
