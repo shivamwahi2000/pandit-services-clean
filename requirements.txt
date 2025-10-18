@@ -1,2 +1,2 @@
-jhora
-swisseph
+PyJHora
+pyswisseph

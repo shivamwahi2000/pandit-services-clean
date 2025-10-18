@@ -4,7 +4,7 @@ services:
     env: node
     buildCommand: |
       echo "Installing Python dependencies..."
-      pip install jhora swisseph
+      pip install PyJHora pyswisseph
       echo "Building Next.js app..."
       npm install && npm run build
     startCommand: npm start
