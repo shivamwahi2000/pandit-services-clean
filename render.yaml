@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: pandit-services-clean
+    env: node
+    buildCommand: |
+      # Install Python dependencies first
+      python3 -m pip install --user -r requirements.txt
+      # Then install Node dependencies and build
+      npm install && npm run build
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PYTHON_VERSION
+        value: 3.9
+    autoDeploy: true
+    repo: https://github.com/shivamwahi2000/pandit-services-clean.git
+    branch: main
