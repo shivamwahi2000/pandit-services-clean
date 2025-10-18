@@ -49,16 +49,6 @@ const TraditionalKundli: React.FC<TraditionalKundliProps> = ({
     Saturn: 'श',     // Shani
     Rahu: 'रा',      // Rahu
     Ketu: 'के',      // Ketu
-    // Alternative names that PyJhora might use
-    'Sun': 'सू',
-    'Moon': 'च',
-    'Mars': 'मं',
-    'Mercury': 'बु',
-    'Jupiter': 'गु',
-    'Venus': 'शु',
-    'Saturn': 'श',
-    'Rahu': 'रा',
-    'Ketu': 'के',
     'Ascendant': 'लग्न',
   };
 

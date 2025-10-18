@@ -71,7 +71,7 @@ const PyJhoraChart: React.FC<PyJhoraChartProps> = ({
   };
 
   /** Render planets as text elements (PyJhora style) */
-  const renderHousePlanets = (house: number, x: number, y: number, textAnchor: string = 'middle') => {
+  const renderHousePlanets = (house: number, x: number, y: number, textAnchor: 'start' | 'middle' | 'end' | 'inherit' = 'middle') => {
     const housePlanets = getPlanetsInHouse(house);
     if (!housePlanets.length) return null;
 
@@ -114,7 +114,7 @@ const PyJhoraChart: React.FC<PyJhoraChartProps> = ({
     const innerRadius = size * 0.2;
 
     // House positions in traditional North Indian style
-    const housePositions = {
+    const housePositions: Record<number, { x: number; y: number; textAnchor: 'start' | 'middle' | 'end' }> = {
       1: { x: center, y: 60, textAnchor: 'middle' },          // Top (Ascendant)
       2: { x: center + 160, y: 100, textAnchor: 'middle' },   // Top-right
       3: { x: center + 190, y: center, textAnchor: 'start' }, // Right

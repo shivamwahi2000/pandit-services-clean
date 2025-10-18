@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppBookingModal from '@/components/WhatsAppBookingModal';
 
-export default function BookRitualPage() {
+function BookRitualContent() {
   const searchParams = useSearchParams();
   const [language, setLanguage] = useState<'en' | 'hi'>('en');
   const [selectedCategory, setSelectedCategory] = useState<string>('home-puja');
@@ -249,5 +249,13 @@ export default function BookRitualPage() {
         language={language}
       />
     </div>
+  );
+}
+
+export default function BookRitualPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">Loading...</div>}>
+      <BookRitualContent />
+    </Suspense>
   );
 }
