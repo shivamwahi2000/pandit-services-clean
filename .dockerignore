@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+.next
+.git
+.gitignore
+README.md
+Dockerfile
+.dockerignore
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.vercel
+*.md
+temp_pyjhora_script.py
+CLEANUP_NOTES.md
+PROJECT_SUMMARY.md

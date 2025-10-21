@@ -7,11 +7,14 @@ import Link from 'next/link';
 interface BhagwatKathaBannerProps {
   className?: string;
   orientation?: 'horizontal' | 'vertical' | 'square';
+  onLearnMore?: (serviceName: string) => void;
+  onBookService?: (serviceName: string) => void;
 }
 
 const BhagwatKathaBanner: React.FC<BhagwatKathaBannerProps> = ({ 
   className = '', 
-  orientation = 'horizontal' 
+  orientation = 'horizontal',
+  onLearnMore
 }) => {
   const getOrientationClasses = () => {
     switch (orientation) {
@@ -77,10 +80,10 @@ const BhagwatKathaBanner: React.FC<BhagwatKathaBannerProps> = ({
             🌺 Authentic Vrindavan Tradition 🌺
           </p>
           <div className="flex flex-col gap-2 mb-3">
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-5 py-2 rounded-full font-bold text-sm shadow-xl">
+            <Link href="/book-ritual?category=katha-vachan&book=bhagwat-katha" className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-5 py-2 rounded-full font-bold text-sm shadow-xl text-center">
               📅 Schedule Katha
-            </button>
-            <Link href="/learn-more#bhagwat-katha" className="bg-white text-orange-600 border border-orange-400 px-4 py-2 rounded-full font-semibold text-xs shadow-lg text-center">
+            </Link>
+            <Link href="/book-ritual?category=katha-vachan&learn=bhagwat-katha" className="bg-white text-orange-600 border border-orange-400 px-4 py-2 rounded-full font-semibold text-xs shadow-lg text-center">
               Learn More
             </Link>
           </div>
@@ -135,14 +138,14 @@ const BhagwatKathaBanner: React.FC<BhagwatKathaBannerProps> = ({
 
           {/* Buttons - Smaller */}
           <div className="flex gap-3 mb-4">
-            <button className="group bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-full font-bold text-base shadow-xl transform hover:scale-105 transition-all duration-300">
+            <Link href="/book-ritual?category=katha-vachan&book=bhagwat-katha" className="group bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-full font-bold text-base shadow-xl transform hover:scale-105 transition-all duration-300 text-center">
               <span className="flex items-center gap-2">
                 📅 Schedule Katha
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </span>
-            </button>
+            </Link>
             
-            <Link href="/learn-more#bhagwat-katha" className="bg-white hover:bg-orange-50 text-orange-600 border-2 border-orange-400 px-5 py-3 rounded-full font-semibold text-base shadow-lg transform hover:scale-105 transition-all duration-300 text-center">
+            <Link href="/book-ritual?category=katha-vachan&learn=bhagwat-katha" className="bg-white hover:bg-orange-50 text-orange-600 border-2 border-orange-400 px-5 py-3 rounded-full font-semibold text-base shadow-lg transform hover:scale-105 transition-all duration-300 text-center">
               Learn More
             </Link>
           </div>

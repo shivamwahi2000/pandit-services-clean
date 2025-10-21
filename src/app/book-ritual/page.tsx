@@ -7,21 +7,66 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppBookingModal from '@/components/WhatsAppBookingModal';
+import LearnMoreModal from '@/components/LearnMoreModal';
 
 function BookRitualContent() {
   const searchParams = useSearchParams();
   const [language, setLanguage] = useState<'en' | 'hi'>('en');
   const [selectedCategory, setSelectedCategory] = useState<string>('home-puja');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<any>(null);
 
-  // Handle category from URL parameter
+  // Handle category, learn, and book parameters from URL
   useEffect(() => {
     const categoryParam = searchParams.get('category');
+    const learnParam = searchParams.get('learn');
+    const bookParam = searchParams.get('book');
+    
     if (categoryParam) {
       setSelectedCategory(categoryParam);
     }
-  }, [searchParams]);
+    
+    if (learnParam) {
+      // Find the service based on the learn parameter
+      const serviceMap = {
+        'bhagwat-katha': 'Bhagwat Katha',
+        'hanumant-katha': 'Hanumant Katha', 
+        'shreemad-bhagwadgeeta': 'Shreemad Bhagwadgeeta',
+        'ramayana-path': 'Ramayana Path',
+        'shiv-puran': 'Shiv Maha Puran Katha',
+        'vishnu-puran-katha': 'Vishnu Puran Katha'
+      };
+      
+      const serviceName = serviceMap[learnParam as keyof typeof serviceMap];
+      if (serviceName) {
+        const service = services[language].find(s => s.name === serviceName);
+        if (service) {
+          handleLearnMore(service);
+        }
+      }
+    }
+    
+    if (bookParam) {
+      // Find the service based on the book parameter and open booking modal
+      const serviceMap = {
+        'bhagwat-katha': 'Bhagwat Katha',
+        'hanumant-katha': 'Hanumant Katha', 
+        'shreemad-bhagwadgeeta': 'Shreemad Bhagwadgeeta',
+        'ramayana-path': 'Ramayana Path',
+        'shiv-puran': 'Shiv Maha Puran Katha',
+        'vishnu-puran-katha': 'Vishnu Puran Katha'
+      };
+      
+      const serviceName = serviceMap[bookParam as keyof typeof serviceMap];
+      if (serviceName) {
+        const service = services[language].find(s => s.name === serviceName);
+        if (service) {
+          handleBookService(service);
+        }
+      }
+    }
+  }, [searchParams, language]);
 
   const content = {
     en: {
@@ -136,6 +181,14 @@ function BookRitualContent() {
     setIsModalOpen(true);
   };
 
+  const handleLearnMore = (service: any) => {
+    setSelectedService({
+      ...service,
+      category: categories[language].find(cat => cat.id === service.category)?.name || service.category
+    });
+    setIsLearnMoreOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -214,7 +267,13 @@ function BookRitualContent() {
                       {service.description}
                     </p>
                     
-                    <div className="flex justify-end">
+                    <div className="flex gap-3 justify-end">
+                      <button
+                        onClick={() => handleLearnMore(service)}
+                        className="bg-white hover:bg-orange-50 text-orange-600 border border-orange-400 px-4 py-3 rounded-full text-sm font-medium hover:scale-105 transition-transform"
+                      >
+                        Learn More
+                      </button>
                       <button
                         onClick={() => handleBookService(service)}
                         className="btn-primary px-6 py-3 rounded-full text-sm font-medium hover:scale-105 transition-transform"
@@ -245,6 +304,14 @@ function BookRitualContent() {
       <WhatsAppBookingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        service={selectedService}
+        language={language}
+      />
+      
+      {/* Learn More Modal */}
+      <LearnMoreModal
+        isOpen={isLearnMoreOpen}
+        onClose={() => setIsLearnMoreOpen(false)}
         service={selectedService}
         language={language}
       />

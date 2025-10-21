@@ -36,6 +36,7 @@ export default function Header() {
       { name: 'Home', href: '/' },
       { name: 'Astrology & Vastu', href: '/astrology-vastu' },
       { name: 'Book a Ritual', href: '/book-ritual', hasDropdown: true },
+      { name: 'Courses', href: '/courses' },
       { name: 'About', href: '/about' },
       { name: 'Contact', href: '/contact' },
     ],
@@ -43,6 +44,7 @@ export default function Header() {
       { name: 'होम', href: '/' },
       { name: 'ज्योतिष और वास्तु', href: '/astrology-vastu' },
       { name: 'अनुष्ठान बुक करें', href: '/book-ritual', hasDropdown: true },
+      { name: 'पाठ्यक्रम', href: '/courses' },
       { name: 'हमारे बारे में', href: '/about' },
       { name: 'संपर्क', href: '/contact' },
     ],
@@ -247,12 +249,6 @@ export default function Header() {
               {language === 'en' ? 'हिं' : 'EN'}
             </button>
 
-            <Link
-              href="/book-ritual"
-              className="btn-primary px-4 py-2 rounded-full text-sm font-medium"
-            >
-              {quickActions[language].bookRitual}
-            </Link>
 
             <a
               href="https://wa.me/919131450961"
@@ -344,13 +340,6 @@ export default function Header() {
                   {language === 'en' ? 'हिं' : 'EN'}
                 </button>
                 
-                <Link
-                  href="/book-ritual"
-                  className="btn-primary px-6 py-2 rounded-full text-sm font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {quickActions[language].bookRitual}
-                </Link>
               </div>
             </div>
           </div>

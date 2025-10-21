@@ -1,0 +1,36 @@
+name: pandit-services-clean
+services:
+- name: web
+  source_dir: /
+  github:
+    repo: shivamwahi2000/pandit-services-clean
+    branch: main
+  run_command: npm start
+  build_command: |
+    echo "=== Installing system dependencies for PyJHora ==="
+    apt-get update && apt-get install -y python3-dev python3-pip build-essential
+    echo "=== Installing Python dependencies ==="
+    python3 -m pip install --upgrade pip setuptools wheel
+    python3 -m pip install -r requirements.txt --no-cache-dir
+    echo "=== Installing Node.js dependencies ==="
+    npm ci --only=production
+    echo "=== Building Next.js application ==="
+    npm run build
+    echo "=== Verifying PyJHora installation ==="
+    python3 -c "import jhora; print('PyJHora installed successfully')"
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  http_port: 3000
+  envs:
+  - key: NODE_ENV
+    value: production
+  - key: PYTHON_VERSION
+    value: "3.9"
+  - key: PYTHONPATH
+    value: /opt/venv/lib/python3.9/site-packages
+  - key: PATH
+    value: /opt/venv/bin:$PATH
+  routes:
+  - path: /
+    preserve_path_prefix: true

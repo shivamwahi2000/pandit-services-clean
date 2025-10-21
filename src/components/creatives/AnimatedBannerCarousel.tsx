@@ -6,44 +6,58 @@ import AkhandRamayanBanner from './AkhandRamayanBanner';
 import ShivPuranBanner from './ShivPuranBanner';
 import BhagwadGeetaBanner from './BhagwadGeetaBanner';
 import HanumanKathaBanner from './HanumanKathaBanner';
+import AstrologicalConsultationBanner from './AstrologicalConsultationBanner';
+import MusicalInstrumentsBanner from './MusicalInstrumentsBanner';
 
 interface AnimatedBannerCarouselProps {
   className?: string;
   autoPlayInterval?: number; // in milliseconds
+  onLearnMore?: (serviceName: string) => void;
 }
 
 const AnimatedBannerCarousel: React.FC<AnimatedBannerCarouselProps> = ({ 
   className = '',
-  autoPlayInterval = 4000 // 4 seconds
+  autoPlayInterval = 6000, // 6 seconds
+  onLearnMore
 }) => {
   const [currentBanner, setCurrentBanner] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const banners = [
     { 
-      component: <BhagwadGeetaBanner orientation="horizontal" />, 
+      component: <AstrologicalConsultationBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
+      name: 'Astrological Consultation',
+      color: 'from-orange-500 to-red-500'
+    },
+    { 
+      component: <BhagwadGeetaBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
       name: 'Shreemad Bhagwadgeeta',
       color: 'from-orange-500 to-red-500'
     },
     { 
-      component: <BhagwatKathaBanner orientation="horizontal" />, 
+      component: <BhagwatKathaBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
       name: 'Bhagwat Katha',
       color: 'from-orange-500 to-red-500'
     },
     { 
-      component: <AkhandRamayanBanner orientation="horizontal" />, 
+      component: <AkhandRamayanBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
       name: 'Akhand Ramayan Path',
       color: 'from-orange-500 to-red-500'
     },
     { 
-      component: <ShivPuranBanner orientation="horizontal" />, 
+      component: <ShivPuranBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
       name: 'Shiv Maha Puran Katha',
       color: 'from-orange-500 to-red-500'
     },
     { 
-      component: <HanumanKathaBanner orientation="horizontal" />, 
+      component: <HanumanKathaBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
       name: 'Hanumant Katha',
       color: 'from-orange-500 to-red-500'
+    },
+    { 
+      component: <MusicalInstrumentsBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
+      name: 'Musical Instruments Course',
+      color: 'from-amber-500 to-yellow-500'
     }
   ];
 

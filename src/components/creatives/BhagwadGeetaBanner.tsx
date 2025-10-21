@@ -7,11 +7,13 @@ import Link from 'next/link';
 interface BhagwadGeetaBannerProps {
   className?: string;
   orientation?: 'horizontal' | 'vertical' | 'square';
+  onLearnMore?: (serviceName: string) => void;
 }
 
 const BhagwadGeetaBanner: React.FC<BhagwadGeetaBannerProps> = ({ 
   className = '', 
-  orientation = 'horizontal' 
+  orientation = 'horizontal',
+  onLearnMore
 }) => {
   const getOrientationClasses = () => {
     switch (orientation) {
@@ -91,7 +93,7 @@ const BhagwadGeetaBanner: React.FC<BhagwadGeetaBannerProps> = ({
             <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-5 py-2 rounded-full font-bold text-sm shadow-xl">
               📚 Start Learning Geeta
             </button>
-            <Link href="/learn-more#bhagwad-geeta" className="bg-white text-orange-600 border border-orange-400 px-4 py-2 rounded-full font-semibold text-xs shadow-lg text-center">
+            <Link href="/book-ritual?category=katha-vachan&learn=shreemad-bhagwadgeeta" className="bg-white text-orange-600 border border-orange-400 px-4 py-2 rounded-full font-semibold text-xs shadow-lg text-center">
               Learn More
             </Link>
           </div>
@@ -161,7 +163,7 @@ const BhagwadGeetaBanner: React.FC<BhagwadGeetaBannerProps> = ({
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
             </button>
             
-            <Link href="/learn-more#bhagwad-geeta" className="bg-white hover:bg-orange-50 text-orange-600 border-2 border-orange-400 px-5 py-3 rounded-full font-semibold text-base shadow-lg transform hover:scale-105 transition-all duration-300 text-center">
+            <Link href="/book-ritual?category=katha-vachan&learn=shreemad-bhagwadgeeta" className="bg-white hover:bg-orange-50 text-orange-600 border-2 border-orange-400 px-5 py-3 rounded-full font-semibold text-base shadow-lg transform hover:scale-105 transition-all duration-300 text-center">
               Learn More
             </Link>
           </div>
