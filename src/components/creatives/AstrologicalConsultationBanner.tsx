@@ -16,11 +16,11 @@ const AstrologicalConsultationBanner: React.FC<AstrologicalConsultationBannerPro
   const getOrientationClasses = () => {
     switch (orientation) {
       case 'vertical':
-        return 'flex-col h-[600px] w-[400px] md:h-[600px] md:w-[400px]';
+        return 'flex-col h-[700px] w-[500px] md:h-[750px] md:w-[550px]';
       case 'square':
-        return 'flex-col h-[500px] w-[500px] md:h-[500px] md:w-[500px]';
-      default:
-        return 'min-h-[450px] md:h-[350px] w-full max-w-[1100px] mx-auto';
+        return 'flex-col h-[600px] w-[600px] md:h-[650px] md:w-[650px]';
+      default: // horizontal
+        return 'min-h-[500px] md:h-[400px] w-full max-w-[1300px] mx-auto';
     }
   };
 
@@ -30,7 +30,7 @@ const AstrologicalConsultationBanner: React.FC<AstrologicalConsultationBannerPro
         
         <div className="absolute inset-0 opacity-15">
           <Image
-            src="/banners/astrology-consultation.jpg"
+            src="/banners/astrological-consultatiion-background.jpg"
             alt="Background"
             fill
             className="object-cover"
@@ -61,7 +61,7 @@ const AstrologicalConsultationBanner: React.FC<AstrologicalConsultationBannerPro
         <div className="md:hidden flex flex-col items-center justify-center h-full p-4 text-center">
           <div className="relative w-20 h-20 rounded-full shadow-xl overflow-hidden mb-3">
             <Image
-              src="/banners/astrology-consultation.jpg"
+              src="/banners/astrological-consultation.jpg"
               alt="Astrology Consultation"
               fill
               className="object-cover"
@@ -79,12 +79,9 @@ const AstrologicalConsultationBanner: React.FC<AstrologicalConsultationBannerPro
           <p className="text-xs text-orange-500 font-medium mb-3">
             🌟 Personalized Reading • Life Insights • Future Guidance 🌟
           </p>
-          <div className="flex flex-col gap-2 mb-3">
-            <Link href="/consultation-form" className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-5 py-2 rounded-full font-bold text-sm shadow-xl text-center">
+          <div className="flex justify-center mb-3">
+            <Link href="/astrology-vastu#consultation-form" className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-xl text-center">
               🔮 Fill Form & Book
-            </Link>
-            <Link href="/learn-more#astrology" className="bg-white text-orange-600 border border-orange-400 px-4 py-2 rounded-full font-semibold text-xs shadow-lg text-center">
-              Learn More
             </Link>
           </div>
           <div className="text-orange-500 text-xs font-medium">
@@ -102,7 +99,7 @@ const AstrologicalConsultationBanner: React.FC<AstrologicalConsultationBannerPro
             <div className="relative">
               <div className="relative w-60 h-60 rounded-lg shadow-xl overflow-hidden">
                 <Image
-                  src="/banners/astrology-consultation.jpg"
+                  src="/banners/astrological-consultation.jpg"
                   alt="Astrology Consultation"
                   fill
                   className="object-cover"
@@ -139,17 +136,13 @@ const AstrologicalConsultationBanner: React.FC<AstrologicalConsultationBannerPro
 
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <div className="flex gap-3 mb-4">
-                  <Link href="/consultation-form" className="group bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-full font-bold text-base shadow-xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden">
+                <div className="flex justify-center mb-4">
+                  <Link href="/astrology-vastu#consultation-form" className="group bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-full font-bold text-base shadow-xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden">
                     <span className="flex items-center gap-2 relative z-10">
                       🔮 Fill Form & Book
                       <span className="group-hover:translate-x-1 transition-transform">→</span>
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                  </Link>
-                  
-                  <Link href="/learn-more#astrology" className="bg-white hover:bg-orange-50 text-orange-600 border-2 border-orange-400 px-5 py-3 rounded-full font-semibold text-base shadow-lg transform hover:scale-105 transition-all duration-300 text-center">
-                    Learn More
                   </Link>
                 </div>
               </div>

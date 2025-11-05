@@ -37,6 +37,7 @@ export default function Header() {
       { name: 'Astrology & Vastu', href: '/astrology-vastu' },
       { name: 'Book a Ritual', href: '/book-ritual', hasDropdown: true },
       { name: 'Courses', href: '/courses' },
+      { name: 'Seva', href: '/seva' },
       { name: 'About', href: '/about' },
       { name: 'Contact', href: '/contact' },
     ],
@@ -45,6 +46,7 @@ export default function Header() {
       { name: 'ज्योतिष और वास्तु', href: '/astrology-vastu' },
       { name: 'अनुष्ठान बुक करें', href: '/book-ritual', hasDropdown: true },
       { name: 'पाठ्यक्रम', href: '/courses' },
+      { name: 'सेवा', href: '/seva' },
       { name: 'हमारे बारे में', href: '/about' },
       { name: 'संपर्क', href: '/contact' },
     ],
@@ -251,7 +253,7 @@ export default function Header() {
 
 
             <a
-              href="https://wa.me/919131450961"
+              href="https://wa.me/919340337323"
               target="_blank"
               rel="noopener noreferrer"
               className="text-success hover:text-success/80 transition-colors"
@@ -263,7 +265,7 @@ export default function Header() {
             </a>
 
             <a
-              href="https://www.instagram.com/pujya.hariom.ji/"
+              href="https://www.instagram.com/kesarinakshatra/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-pink-500 hover:text-pink-600 transition-colors"
@@ -275,7 +277,7 @@ export default function Header() {
             </a>
 
             <a
-              href="tel:+919131450961"
+              href="tel:+919340337323"
               className="text-primary hover:text-primary-hover transition-colors"
               title={quickActions[language].call}
             >

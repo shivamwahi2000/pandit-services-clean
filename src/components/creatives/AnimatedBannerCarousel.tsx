@@ -36,7 +36,7 @@ const AnimatedBannerCarousel: React.FC<AnimatedBannerCarouselProps> = ({
     },
     { 
       component: <BhagwatKathaBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
-      name: 'Bhagwat Katha',
+      name: 'Shreemad Bhagwat Katha',
       color: 'from-orange-500 to-red-500'
     },
     { 
@@ -46,12 +46,12 @@ const AnimatedBannerCarousel: React.FC<AnimatedBannerCarouselProps> = ({
     },
     { 
       component: <ShivPuranBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
-      name: 'Shiv Maha Puran Katha',
+      name: 'Shree Shiv Maha Puran Katha',
       color: 'from-orange-500 to-red-500'
     },
     { 
       component: <HanumanKathaBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
-      name: 'Hanumant Katha',
+      name: 'Shree Hanumant Katha',
       color: 'from-orange-500 to-red-500'
     },
     { 

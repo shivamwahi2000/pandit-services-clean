@@ -10,35 +10,35 @@ export default function FeaturedRituals() {
   const rituals = {
     en: [
       {
-        name: 'Bhagwat Katha',
+        name: 'Shreemad Bhagwat Katha',
         image: '/rituals/bhagwat-katha.jpg',
         description: 'Sacred narration of Lord Krishna\'s divine stories'
       },
       {
-        name: 'Hanumant Katha',
+        name: 'Shree Hanumant Katha',
         image: '/rituals/hanumant-katha.jpg', 
         description: 'Divine tales of Lord Hanuman\'s devotion and strength'
       },
       {
         name: 'Shree Durga Path',
-        image: '/rituals/durga-path.jpg',
+        image: '/rituals/dugra-path.jpg',
         description: 'Sacred recitation of Goddess Durga\'s divine verses'
       }
     ],
     hi: [
       {
-        name: 'भागवत कथा',
+        name: 'श्रीमद् भागवत कथा',
         image: '/rituals/bhagwat-katha.jpg',
         description: 'भगवान कृष्ण की दिव्य कथाओं का पवित्र वर्णन'
       },
       {
-        name: 'हनुमत कथा', 
+        name: 'श्री हनुमत कथा', 
         image: '/rituals/hanumant-katha.jpg',
         description: 'भगवान हनुमान की भक्ति और शक्ति की दिव्य कथाएं'
       },
       {
         name: 'श्री दुर्गा पाठ',
-        image: '/rituals/durga-path.jpg', 
+        image: '/rituals/dugra-path.jpg', 
         description: 'देवी दुर्गा के दिव्य श्लोकों का पवित्र पाठ'
       }
     ]
@@ -48,7 +48,7 @@ export default function FeaturedRituals() {
     en: {
       heading: 'Sacred Rituals We Offer',
       subheading: 'Experience divine blessings through authentic Vedic ceremonies',
-      seeMore: 'See All Vedic & Astrological Services',
+      seeMore: 'See All Vedic Services',
       book: 'Book Now'
     },
     hi: {
@@ -93,23 +93,13 @@ export default function FeaturedRituals() {
             >
               <div className="flex flex-col md:flex-row items-center gap-6">
                 {/* Image */}
-                <div className="w-full md:w-48 h-32 relative rounded-xl overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex-shrink-0">
-                  {/* Placeholder for ritual image */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-3xl mb-2">🕉️</div>
-                      <div className="text-xs text-text-secondary">
-                        Image placeholder
-                      </div>
-                    </div>
-                  </div>
-                  {/* Uncomment when images are added */}
-                  {/* <Image
+                <div className="w-full md:w-48 h-48 relative rounded-xl overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex-shrink-0">
+                  <Image
                     src={ritual.image}
                     alt={ritual.name}
                     fill
                     className="object-cover"
-                  /> */}
+                  />
                 </div>
 
                 {/* Content */}

@@ -1,0 +1,14 @@
+# robots.txt for Kesari Nakshatra
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://kesarinakshatra.com/sitemap.xml
+
+# Crawl-delay for common bots
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 1

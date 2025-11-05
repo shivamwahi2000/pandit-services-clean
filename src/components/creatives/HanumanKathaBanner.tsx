@@ -18,11 +18,11 @@ const HanumanKathaBanner: React.FC<HanumanKathaBannerProps> = ({
   const getOrientationClasses = () => {
     switch (orientation) {
       case 'vertical':
-        return 'flex-col h-[600px] w-[400px] md:h-[600px] md:w-[400px]';
+        return 'flex-col h-[700px] w-[500px] md:h-[750px] md:w-[550px]';
       case 'square':
-        return 'flex-col h-[500px] w-[500px] md:h-[500px] md:w-[500px]';
+        return 'flex-col h-[600px] w-[600px] md:h-[650px] md:w-[650px]';
       default: // horizontal
-        return 'min-h-[450px] md:h-[350px] w-full max-w-[1100px] mx-auto';
+        return 'min-h-[500px] md:h-[400px] w-full max-w-[1300px] mx-auto';
     }
   };
 
@@ -72,7 +72,7 @@ const HanumanKathaBanner: React.FC<HanumanKathaBannerProps> = ({
             />
           </div>
           <h1 className="text-lg font-bold bg-gradient-to-r from-orange-700 via-red-600 to-orange-800 bg-clip-text text-transparent mb-1">
-            Hanumant Katha
+            Shree Hanumant Katha
           </h1>
           <p className="text-sm text-orange-700 font-medium mb-2">
             Divine Stories of Bajrang Bali
@@ -126,7 +126,7 @@ const HanumanKathaBanner: React.FC<HanumanKathaBannerProps> = ({
           {/* Main headline - Enhanced size for prominence */}
           <h1 className="mb-4">
             <span className="block text-4xl lg:text-5xl font-bold bg-gradient-to-r from-orange-700 via-red-600 to-orange-800 bg-clip-text text-transparent leading-tight">
-              Hanumant Katha
+              Shree Hanumant Katha
             </span>
             <span className="block text-lg lg:text-xl text-orange-700 font-semibold mt-1">
               Divine Stories of Bajrang Bali

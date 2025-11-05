@@ -106,7 +106,7 @@ ${formData.specialRequirements}` : ''}
     }
 
     const message = generateWhatsAppMessage();
-    const whatsappNumber = '+919131450961'; // Hari Om ji's WhatsApp number
+    const whatsappNumber = '+919340337323'; // WhatsApp number
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
     
     window.open(whatsappUrl, '_blank');

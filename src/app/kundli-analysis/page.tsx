@@ -620,7 +620,7 @@ export default function KundliAnalysisPage() {
                   Book Consultation
                 </a>
                 <a 
-                  href={`https://wa.me/919131450961?text=Hello Acharya Hari Om Shastri,%0A%0AI have generated my Kundli with the following details:%0A%0AName: ${result.name || form.name}%0ADate of Birth: ${form.dateOfBirth}%0ATime of Birth: ${form.timeOfBirth}%0APlace of Birth: ${location?.name}, ${location?.state}%0A%0AI would like detailed analysis of my birth chart including planetary positions, yoga analysis, career guidance, and remedial measures.%0A%0APlease let me know your availability for consultation.%0A%0AThank you!`}
+                  href={`https://wa.me/919340337323?text=Hello Acharya Hari Om Shastri,%0A%0AI have generated my Kundli with the following details:%0A%0AName: ${result.name || form.name}%0ADate of Birth: ${form.dateOfBirth}%0ATime of Birth: ${form.timeOfBirth}%0APlace of Birth: ${location?.name}, ${location?.state}%0A%0AI would like detailed analysis of my birth chart including planetary positions, yoga analysis, career guidance, and remedial measures.%0A%0APlease let me know your availability for consultation.%0A%0AThank you!`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-success hover:bg-success/90 text-white px-6 py-3 rounded-lg font-medium transition-colors"

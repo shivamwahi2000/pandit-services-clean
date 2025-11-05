@@ -32,10 +32,10 @@ export default function AboutPage() {
                   Meet Our Founder
                 </h2>
                 <h3 className="text-2xl md:text-3xl font-semibold text-accent mb-4">
-                  Pt. Hari Om Shastri
+                  Pt. Hariom Shastri
                 </h3>
                 <p className="text-lg text-text-secondary mb-6 leading-relaxed">
-                  Acharya Hari Om Shastri, the visionary founder of Kesari Nakshatra, brings decades of deep spiritual wisdom and Vedic knowledge to every ritual and ceremony. Based in Madhya Pradesh, the heart of India's spiritual heritage, Pandit ji has dedicated his life to preserving and sharing the sacred traditions of our ancestors.
+                  Acharya Hariom Shastri, the visionary founder of Kesari Nakshatra, brings decades of deep spiritual wisdom and Vedic knowledge to every ritual and ceremony. Based in Madhya Pradesh, the heart of India's spiritual heritage, Pandit ji has dedicated his life to preserving and sharing the sacred traditions of our ancestors.
                 </p>
                 
                 <div className="space-y-4 mb-8">
@@ -68,7 +68,7 @@ export default function AboutPage() {
                   <blockquote className="text-lg italic text-text-primary">
                     "Every ritual is a bridge between the devotee and the divine. My mission is to ensure that this sacred connection remains pure, authentic, and accessible to all who seek spiritual fulfillment."
                   </blockquote>
-                  <cite className="block mt-4 text-primary font-semibold">- Acharya Hari Om Shastri</cite>
+                  <cite className="block mt-4 text-primary font-semibold">- Acharya Hariom Shastri</cite>
                 </div>
               </div>
               
@@ -77,7 +77,7 @@ export default function AboutPage() {
                   <div className="w-80 h-80 md:w-96 md:h-96 rounded-full border-4 border-primary/20 overflow-hidden glow-border bg-gradient-to-br from-primary/10 to-accent/10">
                     <Image
                       src="/founder/pt-hari-om-shastri.jpg"
-                      alt="Acharya Hari Om Shastri - Founder of Kesari Nakshatra"
+                      alt="Acharya Hariom Shastri - Founder of Kesari Nakshatra"
                       width={384}
                       height={384}
                       className="w-full h-full object-cover"
@@ -89,7 +89,7 @@ export default function AboutPage() {
                           <div class="w-full h-full flex items-center justify-center text-center space-y-4">
                             <div>
                               <div class="text-8xl">🕉️</div>
-                              <div class="text-primary font-semibold text-lg">Acharya Hari Om Shastri</div>
+                              <div class="text-primary font-semibold text-lg">Acharya Hariom Shastri</div>
                               <div class="text-text-secondary">Founder & Chief Pandit</div>
                               <div class="text-xs text-text-secondary mt-2">Add image: /public/founder/pt-hari-om-shastri.jpg</div>
                             </div>

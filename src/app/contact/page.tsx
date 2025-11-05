@@ -234,8 +234,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-text-primary mb-1">Phone</h3>
-                      <a href="tel:+919131450961" className="text-text-secondary hover:text-primary transition-colors">
-                        +91 91314 50961
+                      <a href="tel:+919340337323" className="text-text-secondary hover:text-primary transition-colors">
+                        +91 93403 37323
                       </a>
                       <p className="text-sm text-text-secondary mt-1">Available 7 AM - 9 PM</p>
                     </div>
@@ -249,13 +249,13 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-text-primary mb-1">WhatsApp</h3>
-                      <a 
-                        href="https://wa.me/919131450961" 
-                        target="_blank" 
+                      <a
+                        href="https://wa.me/919340337323"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="text-text-secondary hover:text-success transition-colors"
                       >
-                        +91 91314 50961
+                        +91 93403 37323
                       </a>
                       <p className="text-sm text-text-secondary mt-1">Quick responses via WhatsApp</p>
                     </div>
@@ -284,13 +284,13 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-text-primary mb-1">Instagram</h3>
-                      <a 
-                        href="https://www.instagram.com/pujya.hariom.ji/" 
-                        target="_blank" 
+                      <a
+                        href="https://www.instagram.com/kesarinakshatra/"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="text-text-secondary hover:text-pink-500 transition-colors"
                       >
-                        @pujya.hariom.ji
+                        @kesarinakshatra
                       </a>
                       <p className="text-sm text-text-secondary mt-1">Follow for spiritual updates</p>
                     </div>
@@ -327,16 +327,16 @@ export default function ContactPage() {
                   </a>
                   
                   <a
-                    href="https://wa.me/919131450961?text=Hello, I would like to inquire about your services."
+                    href="https://wa.me/919340337323?text=Hello, I would like to inquire about your services."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full bg-success hover:bg-success/90 text-white py-3 px-4 rounded-lg text-center font-medium transition-colors"
                   >
                     WhatsApp Us Now
                   </a>
-                  
+
                   <a
-                    href="tel:+919131450961"
+                    href="tel:+919340337323"
                     className="block w-full border border-primary text-primary hover:bg-primary hover:text-white py-3 px-4 rounded-lg text-center font-medium transition-colors"
                   >
                     Call Directly

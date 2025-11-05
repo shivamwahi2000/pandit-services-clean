@@ -16,11 +16,11 @@ const ShivPuranBanner: React.FC<ShivPuranBannerProps> = ({
   const getOrientationClasses = () => {
     switch (orientation) {
       case 'vertical':
-        return 'flex-col h-[600px] w-[400px] md:h-[600px] md:w-[400px]';
+        return 'flex-col h-[700px] w-[500px] md:h-[750px] md:w-[550px]';
       case 'square':
-        return 'flex-col h-[500px] w-[500px] md:h-[500px] md:w-[500px]';
+        return 'flex-col h-[600px] w-[600px] md:h-[650px] md:w-[650px]';
       default: // horizontal
-        return 'min-h-[450px] md:h-[350px] w-full max-w-[1100px] mx-auto';
+        return 'min-h-[500px] md:h-[400px] w-full max-w-[1300px] mx-auto';
     }
   };
 

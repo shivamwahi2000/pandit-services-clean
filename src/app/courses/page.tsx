@@ -5,10 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import WhatsAppEnrollmentModal from '@/components/WhatsAppEnrollmentModal';
 
 export default function CoursesPage() {
   const [language, setLanguage] = useState<'en' | 'hi'>('en');
   const [selectedCategory, setSelectedCategory] = useState<string>('philosophy');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState<any>(null);
 
   const content = {
     en: {
@@ -44,8 +47,8 @@ export default function CoursesPage() {
         id: 1,
         title: 'Bhagavad Gita Study Course',
         category: 'philosophy',
-        duration: '12 weeks',
-        level: 'Beginner to Advanced',
+        duration: '10 days',
+        level: 'All age groups',
         price: '₹8,999',
         mode: 'Online & Offline',
         description: 'A comprehensive study of the Bhagavad Gita with detailed explanations of each chapter and verse, exploring the profound philosophical teachings.',
@@ -57,8 +60,8 @@ export default function CoursesPage() {
         id: 2,
         title: 'Sanskrit Language Course',
         category: 'sanskrit',
-        duration: '16 weeks',
-        level: 'Beginner to Intermediate',
+        duration: '30 days',
+        level: 'All age groups',
         price: '₹12,999',
         mode: 'Online & Offline',
         description: 'Master the sacred Sanskrit language including Devanagari script, grammar, and reading of religious texts and mantras.',
@@ -70,8 +73,8 @@ export default function CoursesPage() {
         id: 3,
         title: 'Musical Instruments Course',
         category: 'music',
-        duration: '12-24 weeks',
-        level: 'Beginner to Advanced',
+        duration: '10 days',
+        level: 'All age groups',
         price: '₹6,999',
         mode: 'Online & Offline',
         description: 'Learn traditional Indian musical instruments including harmonium, tabla, and other devotional instruments for spiritual practice.',
@@ -85,8 +88,8 @@ export default function CoursesPage() {
         id: 1,
         title: 'भगवद्गीता अध्ययन पाठ्यक्रम',
         category: 'philosophy',
-        duration: '12 सप्ताह',
-        level: 'प्रारंभिक से उन्नत',
+        duration: '10 दिन',
+        level: 'सभी आयु समूह',
         price: '₹8,999',
         mode: 'ऑनलाइन और ऑफलाइन',
         description: 'प्रत्येक अध्याय और श्लोक की विस्तृत व्याख्या के साथ भगवद्गीता का व्यापक अध्ययन और गहन दार्शनिक शिक्षाओं की खोज।',
@@ -98,8 +101,8 @@ export default function CoursesPage() {
         id: 2,
         title: 'संस्कृत भाषा पाठ्यक्रम',
         category: 'sanskrit',
-        duration: '16 सप्ताह',
-        level: 'प्रारंभिक से मध्यम',
+        duration: '30 दिन',
+        level: 'सभी आयु समूह',
         price: '₹12,999',
         mode: 'ऑनलाइन और ऑफलाइन',
         description: 'देवनागरी लिपि, व्याकरण और धार्मिक ग्रंथों तथा मंत्रों के पठन सहित पवित्र संस्कृत भाषा में निपुणता प्राप्त करें।',
@@ -111,8 +114,8 @@ export default function CoursesPage() {
         id: 3,
         title: 'संगीत वाद्य यंत्र पाठ्यक्रम',
         category: 'music',
-        duration: '12-24 सप्ताह',
-        level: 'प्रारंभिक से उन्नत',
+        duration: '10 दिन',
+        level: 'सभी आयु समूह',
         price: '₹6,999',
         mode: 'ऑनलाइन और ऑफलाइन',
         description: 'आध्यात्मिक अभ्यास के लिए हारमोनियम, तबला और अन्य भक्ति वाद्य यंत्रों सहित पारंपरिक भारतीय संगीत वाद्य यंत्र सीखें।',
@@ -247,7 +250,13 @@ export default function CoursesPage() {
                       </ul>
                     </div>
                     
-                    <button className="w-full btn-primary py-3 rounded-full font-medium hover:scale-105 transition-transform">
+                    <button 
+                      onClick={() => {
+                        setSelectedCourse(course);
+                        setIsModalOpen(true);
+                      }}
+                      className="w-full btn-primary py-3 rounded-full font-medium hover:scale-105 transition-transform"
+                    >
                       {content[language].enroll}
                     </button>
                   </div>
@@ -266,6 +275,13 @@ export default function CoursesPage() {
           </div>
         </section>
       </main>
+      
+      <WhatsAppEnrollmentModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        course={selectedCourse}
+        language={language}
+      />
       
       <Footer />
     </div>

@@ -11,7 +11,6 @@ export default function FeaturedPujas() {
       {
         title: 'Grih Pravesh Puja',
         description: 'Sacred home entry ceremony for peace and prosperity',
-        price: '₹3,500 onwards',
         duration: '2-3 hours',
         rating: 4.9,
         reviews: 156
@@ -19,7 +18,6 @@ export default function FeaturedPujas() {
       {
         title: 'Satyanarayan Puja',
         description: 'Divine blessings and gratitude ceremony',
-        price: '₹2,500 onwards',
         duration: '1-2 hours',
         rating: 4.8,
         reviews: 243
@@ -27,7 +25,6 @@ export default function FeaturedPujas() {
       {
         title: 'Havan Ceremony',
         description: 'Purifying fire ritual for spiritual cleansing',
-        price: '₹4,000 onwards',
         duration: '2-4 hours',
         rating: 4.9,
         reviews: 189
@@ -37,7 +34,6 @@ export default function FeaturedPujas() {
       {
         title: 'गृह प्रवेश पूजा',
         description: 'शांति और समृद्धि के लिए पवित्र गृह प्रवेश संस्कार',
-        price: '₹3,500 से शुरू',
         duration: '2-3 घंटे',
         rating: 4.9,
         reviews: 156
@@ -45,7 +41,6 @@ export default function FeaturedPujas() {
       {
         title: 'सत्यनारायण पूजा',
         description: 'दिव्य आशीर्वाद और कृतज्ञता संस्कार',
-        price: '₹2,500 से शुरू',
         duration: '1-2 घंटे',
         rating: 4.8,
         reviews: 243
@@ -53,7 +48,6 @@ export default function FeaturedPujas() {
       {
         title: 'हवन संस्कार',
         description: 'आध्यात्मिक शुद्धिकरण के लिए पवित्रीकरण अग्नि अनुष्ठान',
-        price: '₹4,000 से शुरू',
         duration: '2-4 घंटे',
         rating: 4.9,
         reviews: 189
@@ -100,13 +94,10 @@ export default function FeaturedPujas() {
                   {puja.description}
                 </p>
                 
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-semibold text-primary">
-                    {puja.price}
-                  </span>
+                <div className="flex justify-center">
                   <Link
                     href="/book-puja"
-                    className="btn-primary px-4 py-2 rounded-full text-sm font-medium"
+                    className="btn-primary px-6 py-2 rounded-full text-sm font-medium"
                   >
                     {language === 'en' ? 'Book Now' : 'बुक करें'}
                   </Link>

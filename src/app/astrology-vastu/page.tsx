@@ -369,7 +369,7 @@ export default function AstrologyVastuPage() {
                 </a>
                 
                 <a
-                  href="https://wa.me/919131450961?text=Hello, I would like to know about astrology and vastu services."
+                  href="https://wa.me/919340337323?text=Hello, I would like to know about astrology and vastu services."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border border-primary text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-primary hover:text-white transition-colors"
@@ -462,7 +462,7 @@ export default function AstrologyVastuPage() {
                               Book This Service
                             </a>
                             <a
-                              href={`https://wa.me/919131450961?text=Hello, I would like to book ${service.title} consultation.`}
+                              href={`https://wa.me/919340337323?text=Hello, I would like to book ${service.title} consultation.`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="block w-full bg-success hover:bg-success/90 text-white py-2 px-4 rounded-lg text-center text-sm font-medium transition-colors"
@@ -533,7 +533,7 @@ export default function AstrologyVastuPage() {
                               Book This Service
                             </a>
                             <a
-                              href={`https://wa.me/919131450961?text=Hello, I would like to book ${service.title} consultation.`}
+                              href={`https://wa.me/919340337323?text=Hello, I would like to book ${service.title} consultation.`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="block w-full bg-success hover:bg-success/90 text-white py-2 px-4 rounded-lg text-center text-sm font-medium transition-colors"
@@ -1329,22 +1329,13 @@ export default function AstrologyVastuPage() {
                   />
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex justify-center">
                   <button
                     type="submit"
-                    className="flex-1 btn-primary py-3 px-6 rounded-lg font-medium text-lg"
+                    className="btn-primary py-3 px-8 rounded-lg font-medium text-lg"
                   >
                     Book Consultation
                   </button>
-                  
-                  <a
-                    href="https://wa.me/919131450961?text=Hello, I would like to book a consultation for astrology/vastu services."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-success hover:bg-success/90 text-white py-3 px-6 rounded-lg text-center font-medium text-lg transition-colors"
-                  >
-                    WhatsApp to Book
-                  </a>
                 </div>
 
                 <p className="text-sm text-text-secondary text-center">

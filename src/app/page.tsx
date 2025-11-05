@@ -5,7 +5,6 @@ import Hero from "@/components/Hero";
 import FeaturedRituals from "@/components/FeaturedRituals";
 import HowItWorks from "@/components/HowItWorks";
 import TrustSignals from "@/components/TrustSignals";
-import FeaturedPujas from "@/components/FeaturedPujas";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import AnimatedBannerCarousel from "@/components/creatives/AnimatedBannerCarousel";
@@ -27,7 +26,6 @@ export default function Home() {
         <FeaturedRituals />
         <HowItWorks />
         <TrustSignals />
-        <FeaturedPujas />
         <FAQ />
       </main>
       <Footer />

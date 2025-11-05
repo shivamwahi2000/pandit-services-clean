@@ -87,6 +87,7 @@ function BookRitualContent() {
     en: [
       { id: 'home-puja', name: 'Puja at Home', icon: '🏠' },
       { id: 'katha-vachan', name: 'Katha Vachan', icon: '📖' },
+      { id: 'jaap-service', name: 'Jaap Service', icon: '📿' },
       { id: 'temple-services', name: 'Temple Services', icon: '🛕' },
       { id: 'life-events', name: 'Life Events', icon: '🎊' },
       { id: 'online-services', name: 'Online Services', icon: '💻' }
@@ -94,6 +95,7 @@ function BookRitualContent() {
     hi: [
       { id: 'home-puja', name: 'घर की पूजा', icon: '🏠' },
       { id: 'katha-vachan', name: 'कथा वाचन', icon: '📖' },
+      { id: 'jaap-service', name: 'जप सेवा', icon: '📿' },
       { id: 'temple-services', name: 'मंदिर सेवाएं', icon: '🛕' },
       { id: 'life-events', name: 'जीवन संस्कार', icon: '🎊' },
       { id: 'online-services', name: 'ऑनलाइन सेवाएं', icon: '💻' }
@@ -115,6 +117,10 @@ function BookRitualContent() {
       { name: 'Shree Durga Path', category: 'katha-vachan', duration: '1 day', description: 'Goddess Durga divine recitation' },
       { name: 'Ramayana Path', category: 'katha-vachan', duration: '5 days', description: 'Epic tale of Lord Rama' },
       { name: 'Vishnu Puran Katha', category: 'katha-vachan', duration: '4 days', description: 'Lord Vishnu sacred stories' },
+      
+      // Jaap Service
+      { name: 'Mahamrityunjay Jaap', category: 'jaap-service', duration: '1-2 hours', description: 'Powerful healing and protection mantra chanting' },
+      { name: 'Navgraha Jaap', category: 'jaap-service', duration: '2-3 hours', description: 'Nine planetary deities mantra recitation' },
       
       // Temple Services
       { name: 'Temple Abhishek', category: 'temple-services', duration: '1 hour', description: 'Sacred bathing ceremony at temple' },
@@ -149,6 +155,10 @@ function BookRitualContent() {
       { name: 'श्री दुर्गा पाठ', category: 'katha-vachan', duration: '1 दिन', description: 'देवी दुर्गा का दिव्य पाठ' },
       { name: 'रामायण पाठ', category: 'katha-vachan', duration: '5 दिन', description: 'भगवान राम की महाकथा' },
       { name: 'विष्णु पुराण कथा', category: 'katha-vachan', duration: '4 दिन', description: 'भगवान विष्णु की पवित्र कथाएं' },
+      
+      // जप सेवा
+      { name: 'महामृत्युंजय जप', category: 'jaap-service', duration: '1-2 घंटे', description: 'शक्तिशाली उपचार और सुरक्षा मंत्र जप' },
+      { name: 'नवग्रह जप', category: 'jaap-service', duration: '2-3 घंटे', description: 'नौ ग्रहों के देवताओं का मंत्र जप' },
       
       // मंदिर सेवाएं  
       { name: 'मंदिर अभिषेक', category: 'temple-services', duration: '1 घंटा', description: 'मंदिर में पवित्र स्नान संस्कार' },
