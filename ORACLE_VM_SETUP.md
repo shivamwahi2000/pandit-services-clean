@@ -2,21 +2,26 @@
 
 ## Prerequisites for Building on Oracle Linux
 
-To successfully build this application on Oracle Linux/RHEL, you need to install Python development headers and a C compiler.
+To successfully build this application on Oracle Linux/RHEL, you need to install Python development headers, a C compiler, and Node.js.
 
 ### Install Required System Packages
 
 Run these commands as root or with sudo:
 
 ```bash
-# Install Python development headers
-sudo yum install python3-devel
+# Install Python development headers and GCC
+sudo yum install python3-devel gcc python3-pip git
 
-# Install GCC compiler
-sudo yum install gcc
+# Install Node.js (version 18 or higher recommended)
+# Using NodeSource repository:
+curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
+sudo yum install nodejs
 
-# Install other build essentials (optional but recommended)
-sudo yum install python3-pip
+# Verify installations
+node --version
+npm --version
+python3 --version
+gcc --version
 ```
 
 ### Verify Installation
@@ -34,10 +39,17 @@ This should output something like:
 
 ## Build Process
 
-After installing the prerequisites, you can run:
+After installing the prerequisites:
 
 ```bash
+# Install Node.js dependencies
+npm install
+
+# Build the application
 npm run build
+
+# Start the production server
+npm start
 ```
 
 ## What Gets Installed
@@ -51,22 +63,46 @@ The build process will install:
 
 ## Troubleshooting
 
+### `next: command not found`
+
+This means Node.js is not installed or not in your PATH. Install Node.js as shown above.
+
 ### If pyswisseph fails to compile:
 
-The most common issue is missing Python development headers. Make sure you've installed `python3-devel` as shown above.
+The most common issue is missing Python development headers. Install with:
+```bash
+sudo yum install python3-devel gcc
+```
+
+The build will continue even if pyswisseph fails - it's only needed for advanced astrology features.
 
 ### If PyJHora installation fails:
 
-The script will continue without PyJHora, but astrology features may not work. This is typically due to:
+The script will continue without PyJHora. This is typically due to:
 - Network connectivity issues
 - GitHub repository access problems
 - Git not being installed
 
-Install git if needed:
+### Permission denied errors:
+
+If you get permission errors, you may need to change ownership of the project directory:
 ```bash
-sudo yum install git
+sudo chown -R $USER:$USER /path/to/pandit-services-clean
 ```
 
 ## Current Python Version
 
 The Oracle VM is running Python 3.6. All dependencies have been selected for compatibility with Python 3.6.
+
+## Quick Setup Script
+
+Run this all-in-one setup command on your Oracle VM:
+
+```bash
+# Install all prerequisites
+sudo yum install -y python3-devel gcc python3-pip git && \
+curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash - && \
+sudo yum install -y nodejs && \
+npm install && \
+npm run build
+```
