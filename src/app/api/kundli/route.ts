@@ -540,8 +540,9 @@ if __name__ == "__main__":
 
     console.log('Executing PyJHora script...');
 
-    // Execute Python script
-    const pythonProcess = spawn('python3', [
+    // Execute Python script (use PYTHON_CMD env var or default to python3)
+    const pythonCmd = process.env.PYTHON_CMD || 'python3';
+    const pythonProcess = spawn(pythonCmd, [
       scriptPath,
       name,
       datetime,

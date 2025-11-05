@@ -442,8 +442,9 @@ except Exception as e:
     print(json.dumps({"success": False, "error": str(e)}))
 `;
 
-    // Execute Python script
-    const python = spawn('python3', ['-c', pythonScript]);
+    // Execute Python script (use PYTHON_CMD env var or default to python3)
+    const pythonCmd = process.env.PYTHON_CMD || 'python3';
+    const python = spawn(pythonCmd, ['-c', pythonScript]);
     
     let output = '';
     let errorOutput = '';
