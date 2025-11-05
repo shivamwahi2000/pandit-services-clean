@@ -7,11 +7,13 @@ import Link from 'next/link';
 interface AkhandRamayanBannerProps {
   className?: string;
   orientation?: 'horizontal' | 'vertical' | 'square';
+  onLearnMore?: (serviceName: string) => void;
 }
 
-const AkhandRamayanBanner: React.FC<AkhandRamayanBannerProps> = ({ 
-  className = '', 
-  orientation = 'horizontal' 
+const AkhandRamayanBanner: React.FC<AkhandRamayanBannerProps> = ({
+  className = '',
+  orientation = 'horizontal',
+  onLearnMore
 }) => {
   const getOrientationClasses = () => {
     switch (orientation) {

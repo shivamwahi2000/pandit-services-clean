@@ -7,11 +7,13 @@ import Link from 'next/link';
 interface ShivPuranBannerProps {
   className?: string;
   orientation?: 'horizontal' | 'vertical' | 'square';
+  onLearnMore?: (serviceName: string) => void;
 }
 
-const ShivPuranBanner: React.FC<ShivPuranBannerProps> = ({ 
-  className = '', 
-  orientation = 'horizontal' 
+const ShivPuranBanner: React.FC<ShivPuranBannerProps> = ({
+  className = '',
+  orientation = 'horizontal',
+  onLearnMore
 }) => {
   const getOrientationClasses = () => {
     switch (orientation) {
