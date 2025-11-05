@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "pip3 install -r requirements.txt && next build --turbopack",
+    "build": "./install-pyjhora.sh && next build --turbopack",
     "start": "next start",
     "lint": "eslint"
   },
