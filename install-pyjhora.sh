@@ -10,10 +10,10 @@ fi
 
 echo "Installing PyJHora dependencies..."
 # Try installing pyswisseph, but don't fail the build if it fails
-pip3 install --user pyswisseph==2.10.3.2 python-dateutil==2.8.2 numpy==1.19.5 pytz==2021.3 || {
+pip3 install --user pyswisseph==2.10.3.2 python-dateutil numpy pytz || {
   echo "WARNING: Failed to install some dependencies (possibly pyswisseph)"
   echo "Installing remaining dependencies..."
-  pip3 install --user python-dateutil==2.8.2 numpy==1.19.5 pytz==2021.3
+  pip3 install --user python-dateutil numpy pytz
 }
 
 echo "Installing PyJHora from GitHub..."

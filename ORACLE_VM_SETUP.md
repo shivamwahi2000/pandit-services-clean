@@ -90,19 +90,70 @@ If you get permission errors, you may need to change ownership of the project di
 sudo chown -R $USER:$USER /path/to/pandit-services-clean
 ```
 
-## Current Python Version
+## Recommended: Upgrade Python to 3.9+
 
-The Oracle VM is running Python 3.6. All dependencies have been selected for compatibility with Python 3.6.
+Python 3.6 is EOL (end of life) and causes many compatibility issues. **Strongly recommended** to upgrade to Python 3.9 or higher.
+
+### Install Python 3.9 on Oracle Linux 8+:
+
+```bash
+# Install Python 3.9
+sudo yum install -y python39 python39-devel python39-pip
+
+# Set Python 3.9 as default (optional)
+sudo alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
+sudo alternatives --install /usr/bin/pip3 pip3 /usr/bin/pip3.9 1
+
+# Verify
+python3 --version  # Should show Python 3.9.x
+```
+
+### Install Python 3.9 on Oracle Linux 7:
+
+```bash
+# Enable Software Collections
+sudo yum install -y centos-release-scl
+
+# Install Python 3.9
+sudo yum install -y rh-python39 rh-python39-python-devel
+
+# Enable Python 3.9
+scl enable rh-python39 bash
+
+# Or add to .bashrc for permanent:
+echo 'source scl_source enable rh-python39' >> ~/.bashrc
+```
+
+**Benefits of upgrading:**
+- PySwisseph compiles more reliably
+- Modern numpy versions with better performance
+- Better package compatibility overall
+- Security updates and bug fixes
 
 ## Quick Setup Script
 
-Run this all-in-one setup command on your Oracle VM:
+### For Oracle Linux 8+ (Recommended - with Python 3.9):
 
 ```bash
-# Install all prerequisites
+# Install Python 3.9 and all prerequisites
+sudo yum install -y python39 python39-devel python39-pip gcc git && \
+sudo alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1 && \
+sudo alternatives --install /usr/bin/pip3 pip3 /usr/bin/pip3.9 1 && \
+curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash - && \
+sudo yum install -y nodejs && \
+cd ~/pandit-services-clean && \
+npm install && \
+npm run build
+```
+
+### For Oracle Linux with Python 3.6 (Legacy):
+
+```bash
+# Install all prerequisites (will have more issues)
 sudo yum install -y python3-devel gcc python3-pip git && \
 curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash - && \
 sudo yum install -y nodejs && \
+cd ~/pandit-services-clean && \
 npm install && \
 npm run build
 ```
