@@ -7,11 +7,13 @@ import Link from 'next/link';
 interface AstrologicalConsultationBannerProps {
   className?: string;
   orientation?: 'horizontal' | 'vertical' | 'square';
+  onLearnMore?: (serviceName: string) => void;
 }
 
-const AstrologicalConsultationBanner: React.FC<AstrologicalConsultationBannerProps> = ({ 
-  className = '', 
-  orientation = 'horizontal' 
+const AstrologicalConsultationBanner: React.FC<AstrologicalConsultationBannerProps> = ({
+  className = '',
+  orientation = 'horizontal',
+  onLearnMore
 }) => {
   const getOrientationClasses = () => {
     switch (orientation) {
