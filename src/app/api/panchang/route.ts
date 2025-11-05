@@ -444,7 +444,9 @@ except Exception as e:
 
     // Execute Python script (use PYTHON_CMD env var or default to python3)
     const pythonCmd = process.env.PYTHON_CMD || 'python3';
-    const python = spawn(pythonCmd, ['-c', pythonScript]);
+    const python = spawn(pythonCmd, ['-c', pythonScript], {
+      env: { ...process.env, PYTHONPATH: process.env.PYTHONPATH || '' }
+    });
     
     let output = '';
     let errorOutput = '';

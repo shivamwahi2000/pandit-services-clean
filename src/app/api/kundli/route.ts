@@ -549,7 +549,9 @@ if __name__ == "__main__":
       latitude.toString(),
       longitude.toString(),
       `${latitude}, ${longitude}`
-    ]);
+    ], {
+      env: { ...process.env, PYTHONPATH: process.env.PYTHONPATH || '' }
+    });
 
     let pythonOutput = '';
     let pythonError = '';
