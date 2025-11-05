@@ -1,16 +1,16 @@
-# Core build tools
+# Core build tools (Python 3.6 compatible)
 setuptools>=40.0.0
-wheel>=0.38.0
+wheel>=0.37.0,<0.38.0
 
 # PyJHora and Swiss Ephemeris for Vedic calculations
 PyJHora==4.5.5
 pyswisseph==2.10.3.2
 
-# Supporting libraries
+# Supporting libraries (Python 3.6 compatible versions)
 geocoder==1.38.1
 python-dateutil==2.8.2
-numpy==1.24.3
+numpy==1.19.5
 
 # Additional dependencies that PyJHora might need
 pytz>=2022.1
-scipy>=1.9.0
+scipy==1.5.4
