@@ -47,7 +47,7 @@ export default function LearnMoreModal({ isOpen, onClose, service, language }: L
   if (!isOpen || !service) return null;
 
   // Detailed content for each service
-  const serviceDetails: Record<string, { en: { title: string; subtitle: string; description: string; image: string } }> = {
+  const serviceDetails: Record<string, { en?: { title: string; subtitle: string; description: string; image: string }; hi?: { title: string; subtitle: string; description: string; image: string } }> = {
     // Katha Vachan Services
     'bhagwat katha': {
       en: {
