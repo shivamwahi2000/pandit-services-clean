@@ -1,6 +1,12 @@
 #!/bin/bash
 # Install PyJHora from GitHub repository
 
+# Check if PyJHora is already installed
+if python3 -c "import jhora" &> /dev/null; then
+  echo "PyJHora is already installed, skipping installation."
+  exit 0
+fi
+
 echo "Checking Python development headers..."
 if ! python3-config --includes &> /dev/null; then
   echo "WARNING: Python development headers not found."
