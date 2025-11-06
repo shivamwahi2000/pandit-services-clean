@@ -8,8 +8,10 @@ import LocationPicker from '@/components/LocationPicker';
 import ClockTimePicker from '@/components/ClockTimePicker';
 import { Location, DEFAULT_LOCATION } from '@/utils/locations';
 import { ServiceSchema } from '@/components/StructuredData';
+import PanchangCalendarModal from '@/components/PanchangCalendarModal';
 
 export default function AstrologyVastuPage() {
+  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const serviceSchemaData = [
     {
       name: "Vedic Astrology Consultation",
@@ -768,9 +770,20 @@ export default function AstrologyVastuPage() {
                         <p className="text-red-600 text-xs text-center">{panchangData.error}</p>
                       </div>
                     )}
+
+                    {/* View Full Month Calendar Button */}
+                    <button
+                      onClick={() => setIsCalendarModalOpen(true)}
+                      className="w-full mt-4 bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      View Full Month Calendar
+                    </button>
                   </div>
                 </div>
-                
+
                 {/* End Times */}
                 <div className="border-t border-line pt-4 space-y-2">
                   <h4 className="text-sm font-semibold text-text-primary mb-2">End Times</h4>
@@ -1462,8 +1475,14 @@ export default function AstrologyVastuPage() {
 
         </div>
       </main>
-      
+
       <Footer />
+
+      {/* Panchang Calendar Modal */}
+      <PanchangCalendarModal
+        isOpen={isCalendarModalOpen}
+        onClose={() => setIsCalendarModalOpen(false)}
+      />
     </div>
   );
 }
