@@ -64,7 +64,7 @@ const HanumanKathaBanner: React.FC<HanumanKathaBannerProps> = ({
         <div className="md:hidden flex flex-col items-center justify-center h-full p-4 text-center">
           <div className="relative w-28 h-28 rounded-lg shadow-xl overflow-hidden mb-3">
             <Image
-              src="/banners/Hanumant-Katha.jpg"
+              src="/banners/Hanumant-katha.jpg"
               alt="Hanuman Pandit"
               fill
               className="object-cover"
@@ -106,7 +106,7 @@ const HanumanKathaBanner: React.FC<HanumanKathaBannerProps> = ({
             <div className="relative">
               <div className="relative w-60 h-60 rounded-lg shadow-xl overflow-hidden">
                 <Image
-                  src="/banners/Hanumant-Katha.jpg"
+                  src="/banners/Hanumant-katha.jpg"
                   alt="Hanuman Pandit"
                   fill
                   className="object-cover"
