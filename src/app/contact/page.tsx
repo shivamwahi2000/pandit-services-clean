@@ -3,8 +3,36 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { FAQSchema } from '@/components/StructuredData';
 
 export default function ContactPage() {
+  const faqData = [
+    {
+      question: "How far in advance should I book?",
+      answer: "We recommend booking at least 7-10 days in advance, especially for major ceremonies. For auspicious dates during festivals, book 2-3 weeks ahead."
+    },
+    {
+      question: "Do you provide all puja materials?",
+      answer: "Yes, we provide all necessary puja items, including flowers, fruits, sweets, and ceremonial materials. You can also request a detailed list if you prefer to arrange some items yourself."
+    },
+    {
+      question: "Can you perform online pujas?",
+      answer: "Absolutely! We offer virtual puja services where you can participate via video call. This is perfect for those who cannot physically attend or are located far away."
+    },
+    {
+      question: "What areas do you serve?",
+      answer: "While we're based in Madhya Pradesh, we serve clients across India. For distant locations, we can arrange local qualified pandits from our network or conduct online ceremonies."
+    },
+    {
+      question: "How are the ritual timings decided?",
+      answer: "All ritual timings are calculated based on Vedic astrology, considering the most auspicious muhurat for your specific ceremony and location. We provide detailed timing information upon booking."
+    },
+    {
+      question: "What if I need to reschedule?",
+      answer: "We understand that plans can change. Please contact us at least 48 hours before the scheduled time for rescheduling. We'll help find the next auspicious time for your ceremony."
+    }
+  ];
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -60,6 +88,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen sacred-bg page-load">
+      <FAQSchema faqs={faqData} />
       <Header />
       
       <main className="pt-8 pb-16">

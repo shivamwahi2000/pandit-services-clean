@@ -6,8 +6,36 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppEnrollmentModal from '@/components/WhatsAppEnrollmentModal';
+import { CourseSchema } from '@/components/StructuredData';
 
 export default function CoursesPage() {
+  const courseSchemaData = [
+    {
+      name: "Bhagavad Gita Study Course",
+      description: "A comprehensive study of the Bhagavad Gita with detailed explanations of each chapter and verse, exploring the profound philosophical teachings.",
+      duration: "P10D",
+      mode: "online and offline",
+      provider: "Kesari Nakshatra",
+      url: "https://kesarinakshatra.com/courses"
+    },
+    {
+      name: "Sanskrit Language Course",
+      description: "Master the sacred Sanskrit language including Devanagari script, grammar, and reading of religious texts and mantras.",
+      duration: "P30D",
+      mode: "online and offline",
+      provider: "Kesari Nakshatra",
+      url: "https://kesarinakshatra.com/courses"
+    },
+    {
+      name: "Musical Instruments Course",
+      description: "Learn traditional Indian musical instruments including harmonium, tabla, and other devotional instruments for spiritual practice.",
+      duration: "P10D",
+      mode: "online and offline",
+      provider: "Kesari Nakshatra",
+      url: "https://kesarinakshatra.com/courses"
+    }
+  ];
+
   const [language, setLanguage] = useState<'en' | 'hi'>('en');
   const [selectedCategory, setSelectedCategory] = useState<string>('philosophy');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -130,6 +158,7 @@ export default function CoursesPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <CourseSchema courses={courseSchemaData} />
       <Header />
       
       <main className="pt-8">

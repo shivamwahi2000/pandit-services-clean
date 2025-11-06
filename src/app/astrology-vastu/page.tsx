@@ -7,8 +7,48 @@ import usePanchang from '@/hooks/usePanchang';
 import LocationPicker from '@/components/LocationPicker';
 import ClockTimePicker from '@/components/ClockTimePicker';
 import { Location, DEFAULT_LOCATION } from '@/utils/locations';
+import { ServiceSchema } from '@/components/StructuredData';
 
 export default function AstrologyVastuPage() {
+  const serviceSchemaData = [
+    {
+      name: "Vedic Astrology Consultation",
+      description: "Comprehensive kundli analysis, planetary positions, doshas, yogas, and personalized predictions for career, marriage, health, and life guidance.",
+      serviceType: "Astrology Consultation",
+      price: "2999"
+    },
+    {
+      name: "Marriage Compatibility Analysis",
+      description: "Detailed horoscope matching for marriage, Ashtakoot compatibility, Mangal Dosha analysis, and relationship guidance.",
+      serviceType: "Astrology Consultation",
+      price: "1999"
+    },
+    {
+      name: "Career Guidance Astrology",
+      description: "Career path analysis based on planetary positions, best career options, business timing, and professional success guidance.",
+      serviceType: "Astrology Consultation",
+      price: "2499"
+    },
+    {
+      name: "Vastu Consultation for Home",
+      description: "Complete Vastu analysis for residential properties, room placement, entrance direction, and remedies for Vastu doshas.",
+      serviceType: "Vastu Consultation",
+      price: "4999"
+    },
+    {
+      name: "Vastu for Business & Office",
+      description: "Professional Vastu consultation for commercial properties, office layout, cash counter placement, and business prosperity.",
+      serviceType: "Vastu Consultation",
+      price: "7999"
+    },
+    {
+      name: "Online Kundli Analysis",
+      description: "Detailed birth chart analysis with planetary positions, yogas, doshas, dasha predictions, and remedies through video consultation.",
+      serviceType: "Online Astrology Service",
+      price: "1999"
+    }
+  ];
+
   const [activeTab, setActiveTab] = useState<'astrology' | 'vastu'>('astrology');
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const { panchangData, refreshPanchang } = usePanchang(true); // Enable auto-fetch on this page
@@ -345,6 +385,7 @@ export default function AstrologyVastuPage() {
 
   return (
     <div className="min-h-screen sacred-bg page-load">
+      <ServiceSchema services={serviceSchemaData} />
       <Header />
       
       <main className="pt-8 pb-16">
