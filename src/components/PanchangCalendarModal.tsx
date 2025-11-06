@@ -8,6 +8,7 @@ interface PanchangDay {
   nakshatra: string;
   isToday: boolean;
   isAuspicious: boolean;
+  moonPhase: string;
 }
 
 interface PanchangCalendarModalProps {
@@ -30,6 +31,19 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
 
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+  // Calculate moon phase based on date in lunar cycle
+  const getMoonPhase = (tithiNumber: number): string => {
+    if (tithiNumber === 1) return '🌑'; // New Moon (Amavasya)
+    if (tithiNumber <= 7) return '🌒'; // Waxing Crescent
+    if (tithiNumber === 8) return '🌓'; // First Quarter
+    if (tithiNumber <= 14) return '🌔'; // Waxing Gibbous
+    if (tithiNumber === 15) return '🌕'; // Full Moon (Purnima)
+    if (tithiNumber <= 22) return '🌖'; // Waning Gibbous
+    if (tithiNumber === 23) return '🌗'; // Last Quarter
+    if (tithiNumber <= 29) return '🌘'; // Waning Crescent
+    return '🌑'; // New Moon
+  };
+
   // Tithi names for reference
   const tithiNames = [
     'Pratipada', 'Dwitiya', 'Tritiya', 'Chaturthi', 'Panchami',
@@ -49,7 +63,13 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
   useEffect(() => {
     if (isOpen) {
       generateCalendar();
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden';
     }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, [isOpen, selectedMonth, selectedYear]);
 
   const generateCalendar = async () => {
@@ -72,7 +92,8 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
         tithi: '',
         nakshatra: '',
         isToday: false,
-        isAuspicious: false
+        isAuspicious: false,
+        moonPhase: ''
       });
     }
 
@@ -94,12 +115,17 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
       // Mark auspicious days (Ekadashi, Purnima, Amavasya)
       const isAuspicious = tithiName === 'Ekadashi' || tithiName === 'Purnima' || tithiName === 'Amavasya';
 
+      // Calculate tithi number for moon phase (1-30)
+      const fullTithiNumber = paksha === 'Shukla' ? tithiIndex + 1 : tithiIndex + 16;
+      const moonPhase = getMoonPhase(fullTithiNumber);
+
       days.push({
         date,
         tithi: `${paksha} ${tithiName}`,
         nakshatra,
         isToday,
-        isAuspicious
+        isAuspicious,
+        moonPhase
       });
     }
 
@@ -131,11 +157,19 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+    console.log('Modal is closed');
+    return null;
+  }
+
+  console.log('Modal is rendering!');
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-      <div className="bg-surface rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-line">
+    <div
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100000] flex items-center justify-center p-4 animate-fadeIn"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 100000 }}
+    >
+      <div className="bg-surface rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-line" style={{ backgroundColor: 'white' }}>
         {/* Header */}
         <div className="sticky top-0 bg-gradient-to-r from-primary to-accent p-6 flex justify-between items-center z-10">
           <div>
@@ -233,7 +267,10 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
                   >
                     {day.date > 0 && (
                       <div className="flex flex-col h-full">
-                        <div className="font-bold text-lg text-primary mb-1">{day.date}</div>
+                        <div className="flex justify-between items-start mb-1">
+                          <div className="font-bold text-lg text-primary">{day.date}</div>
+                          <div className="text-lg">{day.moonPhase}</div>
+                        </div>
                         <div className="text-xs text-text-secondary line-clamp-2 flex-1">
                           {day.tithi}
                         </div>
@@ -249,9 +286,12 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
               {/* Selected Day Details */}
               {selectedDay && selectedDay.date > 0 && (
                 <div className="mt-6 p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg border border-primary/20">
-                  <h4 className="font-bold text-primary mb-3">
-                    {monthNames[selectedMonth]} {selectedDay.date}, {selectedYear}
-                  </h4>
+                  <div className="flex justify-between items-center mb-3">
+                    <h4 className="font-bold text-primary">
+                      {monthNames[selectedMonth]} {selectedDay.date}, {selectedYear}
+                    </h4>
+                    <div className="text-3xl">{selectedDay.moonPhase}</div>
+                  </div>
                   <div className="grid md:grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-text-secondary">Tithi:</span>
