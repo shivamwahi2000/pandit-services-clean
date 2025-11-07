@@ -41,8 +41,6 @@ export default function ContactPage() {
     message: '',
     ritualType: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -54,24 +52,39 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-        ritualType: ''
-      });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000);
-    }, 1000);
+
+    // Generate WhatsApp message
+    const whatsappMessage = `🙏 *New Contact Query from Website*
+
+*Contact Details:*
+• Name: ${formData.name}
+• Phone: ${formData.phone}
+• Email: ${formData.email}
+
+*Ritual Type:* ${formData.ritualType || 'Not specified'}
+*Subject:* ${formData.subject}
+
+*Message:*
+${formData.message}
+
+----
+Query from Kesari Nakshatra website`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/919340337323?text=${encodedMessage}`;
+
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
+
+    // Clear form
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: '',
+      ritualType: ''
+    });
   };
 
   const ritualTypes = [
@@ -113,14 +126,6 @@ export default function ContactPage() {
               <h2 className="text-2xl md:text-3xl font-bold heading-en text-primary mb-6">
                 Send us a Message
               </h2>
-              
-              {submitStatus === 'success' && (
-                <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-lg">
-                  <p className="text-success font-medium">
-                    🙏 Thank you! Your message has been sent successfully. We'll get back to you soon.
-                  </p>
-                </div>
-              )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
@@ -225,22 +230,13 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full btn-primary py-3 px-6 rounded-lg font-medium text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-lg font-medium text-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>Sending...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Send Message</span>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                    </>
-                  )}
+                  <span>📱</span>
+                  <span>Send Your Query</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  </svg>
                 </button>
               </form>
             </div>
