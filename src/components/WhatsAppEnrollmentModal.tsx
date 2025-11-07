@@ -116,7 +116,7 @@ Please confirm enrollment and share further details.`;
     }
 
     const message = generateWhatsAppMessage();
-    const whatsappUrl = `https://wa.me/+919999999999?text=${message}`;
+    const whatsappUrl = `https://wa.me/919340337323?text=${message}`;
     window.open(whatsappUrl, '_blank');
     onClose();
   };

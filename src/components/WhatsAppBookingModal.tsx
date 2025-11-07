@@ -190,7 +190,7 @@ ${formData.specialRequirements}` : ''}
                 value={formData.phone}
                 onChange={handleInputChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                placeholder="+91 98765 43210"
+                placeholder="+91 93403 37323"
               />
             </div>
 
