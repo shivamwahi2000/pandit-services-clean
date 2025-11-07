@@ -205,7 +205,7 @@ ${formData.specialRequirements}` : ''}
                 value={formData.email}
                 onChange={handleInputChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                placeholder="your.email@example.com"
+                placeholder="kesarinakshatra@yahoo.com"
               />
             </div>
 

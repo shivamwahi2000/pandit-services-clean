@@ -174,7 +174,7 @@ Query from Kesari Nakshatra website`;
                     value={formData.email}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
-                    placeholder="your.email@example.com"
+                    placeholder="kesarinakshatra@yahoo.com"
                   />
                 </div>
 
@@ -294,8 +294,8 @@ Query from Kesari Nakshatra website`;
                     </div>
                     <div>
                       <h3 className="font-semibold text-text-primary mb-1">Email</h3>
-                      <a href="mailto:contact@kesarinakshatra.com" className="text-text-secondary hover:text-primary transition-colors">
-                        contact@kesarinakshatra.com
+                      <a href="mailto:kesarinakshatra@yahoo.com" className="text-text-secondary hover:text-primary transition-colors">
+                        kesarinakshatra@yahoo.com
                       </a>
                       <p className="text-sm text-text-secondary mt-1">For detailed inquiries</p>
                     </div>
