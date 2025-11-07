@@ -805,11 +805,7 @@ export default function AstrologyVastuPage() {
                     {panchangData.isLoading ? 'Calculating...' : 'Refresh Data'}
                   </button>
                   <button
-                    onClick={() => {
-                      console.log('Button clicked!');
-                      setIsCalendarModalOpen(true);
-                      console.log('Modal state set to true');
-                    }}
+                    onClick={() => setIsCalendarModalOpen(true)}
                     className="flex-1 btn-primary py-3 px-4 rounded-lg text-sm font-medium"
                   >
                     View Detailed Panchang

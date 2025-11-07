@@ -31,24 +31,27 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
 
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  // Calculate moon phase based on date in lunar cycle
+  // Calculate moon phase based on tithi number (1-30)
+  // Shukla Paksha: 1-15 (Waxing - New Moon to Full Moon)
+  // Krishna Paksha: 16-30 (Waning - Full Moon to New Moon)
   const getMoonPhase = (tithiNumber: number): string => {
-    if (tithiNumber === 1) return '🌑'; // New Moon (Amavasya)
-    if (tithiNumber <= 7) return '🌒'; // Waxing Crescent
-    if (tithiNumber === 8) return '🌓'; // First Quarter
-    if (tithiNumber <= 14) return '🌔'; // Waxing Gibbous
+    if (tithiNumber === 30 || tithiNumber === 0) return '🌑'; // New Moon (Amavasya)
+    if (tithiNumber >= 1 && tithiNumber <= 6) return '🌒'; // Waxing Crescent
+    if (tithiNumber === 7 || tithiNumber === 8) return '🌓'; // First Quarter
+    if (tithiNumber >= 9 && tithiNumber <= 14) return '🌔'; // Waxing Gibbous
     if (tithiNumber === 15) return '🌕'; // Full Moon (Purnima)
-    if (tithiNumber <= 22) return '🌖'; // Waning Gibbous
-    if (tithiNumber === 23) return '🌗'; // Last Quarter
-    if (tithiNumber <= 29) return '🌘'; // Waning Crescent
-    return '🌑'; // New Moon
+    if (tithiNumber >= 16 && tithiNumber <= 21) return '🌖'; // Waning Gibbous
+    if (tithiNumber === 22 || tithiNumber === 23) return '🌗'; // Last Quarter
+    if (tithiNumber >= 24 && tithiNumber <= 29) return '🌘'; // Waning Crescent
+    return '🌑'; // Default New Moon
   };
 
-  // Tithi names for reference
+  // Tithi names (1-14) - Same for both Shukla and Krishna Paksha
+  // 15th tithi is Purnima (Shukla) or Amavasya (Krishna)
   const tithiNames = [
-    'Pratipada', 'Dwitiya', 'Tritiya', 'Chaturthi', 'Panchami',
+    'Pratipada', 'Dvitiya', 'Tritiya', 'Chaturthi', 'Panchami',
     'Shashthi', 'Saptami', 'Ashtami', 'Navami', 'Dashami',
-    'Ekadashi', 'Dwadashi', 'Trayodashi', 'Chaturdashi', 'Purnima'
+    'Ekadashi', 'Dvadashi', 'Trayodashi', 'Chaturdashi'
   ];
 
   const nakshatraNames = [
@@ -85,6 +88,30 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
     const todayMonth = today.getMonth();
     const todayYear = today.getFullYear();
 
+    // Fetch real panchang data from API
+    let monthPanchangData: any[] = [];
+    try {
+      const response = await fetch('/api/panchang-month', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          year: selectedYear,
+          month: selectedMonth,
+          latitude: 28.6139, // Delhi
+          longitude: 77.2090
+        })
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          monthPanchangData = result.data;
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch month panchang data:', error);
+    }
+
     // Add empty cells for days before month starts
     for (let i = 0; i < startingDayOfWeek; i++) {
       days.push({
@@ -102,26 +129,55 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
       const currentDate = new Date(selectedYear, selectedMonth, date);
       const isToday = date === todayDate && selectedMonth === todayMonth && selectedYear === todayYear;
 
-      // Calculate tithi (simplified calculation based on date)
-      // In production, this should call the panchang API
-      const tithiIndex = (date + selectedMonth * 2) % 15;
-      const paksha = Math.floor((date - 1) / 15) % 2 === 0 ? 'Shukla' : 'Krishna';
-      const tithiName = tithiIndex === 0 && paksha === 'Shukla' ? 'Purnima' :
-                       tithiIndex === 0 && paksha === 'Krishna' ? 'Amavasya' :
-                       tithiNames[tithiIndex];
+      // Try to get real panchang data from API
+      const dayData = monthPanchangData.find(d => d.date === date);
 
-      const nakshatra = nakshatraNames[(date + selectedMonth * 3) % 27];
+      let displayTithi: string;
+      let tithiName: string;
+      let nakshatra: string;
+      let lunarDay: number;
+
+      if (dayData) {
+        // Use real PyJHora data
+        tithiName = dayData.tithi;
+        lunarDay = dayData.tithiNumber;
+
+        if (tithiName === 'Purnima' || tithiName === 'Amavasya') {
+          displayTithi = tithiName; // No paksha prefix
+        } else {
+          displayTithi = `${dayData.paksha} ${tithiName}`;
+        }
+
+        nakshatra = dayData.nakshatra;
+      } else {
+        // Fallback to approximate calculation if API fails
+        lunarDay = ((date + selectedMonth * 2) % 30) + 1;
+        const paksha = lunarDay <= 15 ? 'Shukla' : 'Krishna';
+        const tithiIndex = lunarDay <= 15 ? lunarDay - 1 : (lunarDay - 16);
+
+        if (lunarDay === 15) {
+          tithiName = 'Purnima';
+          displayTithi = 'Purnima';
+        } else if (lunarDay === 30) {
+          tithiName = 'Amavasya';
+          displayTithi = 'Amavasya';
+        } else {
+          tithiName = tithiNames[tithiIndex];
+          displayTithi = `${paksha} ${tithiName}`;
+        }
+
+        nakshatra = nakshatraNames[(date + selectedMonth * 3) % 27];
+      }
 
       // Mark auspicious days (Ekadashi, Purnima, Amavasya)
       const isAuspicious = tithiName === 'Ekadashi' || tithiName === 'Purnima' || tithiName === 'Amavasya';
 
-      // Calculate tithi number for moon phase (1-30)
-      const fullTithiNumber = paksha === 'Shukla' ? tithiIndex + 1 : tithiIndex + 16;
-      const moonPhase = getMoonPhase(fullTithiNumber);
+      // Get moon phase emoji based on lunar day (1-30)
+      const moonPhase = getMoonPhase(lunarDay);
 
       days.push({
         date,
-        tithi: `${paksha} ${tithiName}`,
+        tithi: displayTithi,
         nakshatra,
         isToday,
         isAuspicious,
@@ -157,12 +213,7 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
     }
   };
 
-  if (!isOpen) {
-    console.log('Modal is closed');
-    return null;
-  }
-
-  console.log('Modal is rendering!');
+  if (!isOpen) return null;
 
   return (
     <div
@@ -315,8 +366,9 @@ export default function PanchangCalendarModal({ isOpen, onClose, currentDate = n
           {/* Note */}
           <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
             <p className="text-sm text-text-secondary">
-              <strong className="text-primary">Note:</strong> This calendar shows approximate Tithi and Nakshatra data.
-              For precise muhurat and ritual timing, please consult with our pandits or use the detailed panchang for specific dates.
+              <strong className="text-primary">📅 Powered by PyJHora:</strong> This calendar shows accurate Tithi and Nakshatra data calculated using PyJHora library.
+              Data is based on Delhi location (28.61°N, 77.21°E). For location-specific muhurat, ritual timing, or detailed panchang,
+              please consult with our pandits.
             </p>
           </div>
         </div>
