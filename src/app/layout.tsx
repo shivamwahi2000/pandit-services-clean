@@ -16,26 +16,31 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://kesarinakshatra.com'),
   title: {
-    default: "Kesari Nakshatra - Sacred Rituals, Divine Blessings | Authentic Hindu Pujas",
+    default: "Kesari Nakshatra - Book Pandit for Puja | Hindu Rituals & Vedic Astrology Services",
     template: "%s | Kesari Nakshatra"
   },
-  description: "Book authentic Hindu pujas and ceremonies with experienced pandits across India. Traditional rituals for grih pravesh, satyanarayan puja, havan, marriages, kundli analysis, and more. Expert Vedic astrology consultations available.",
+  description: "Book experienced pandits for authentic Hindu pujas and ceremonies across India. Grih Pravesh, Satyanarayan Puja, Havan, Marriage Rituals, Kundli Analysis, Vastu Consultation. Contact: +91 93403 37323 | Email: kesarinakshatra@yahoo.com",
   keywords: [
-    "Hindu puja booking",
-    "pandit services",
-    "grih pravesh puja",
-    "satyanarayan puja",
-    "marriage ceremony",
-    "havan yajna",
-    "kundli analysis",
-    "Vedic astrology",
-    "vastu consultation",
-    "online puja",
-    "bhagwat katha",
-    "hanuman katha",
-    "spiritual services India",
-    "authentic Hindu rituals",
-    "pandit ji booking"
+    "book pandit online",
+    "pandit booking India",
+    "Hindu puja services",
+    "grih pravesh puja Madhya Pradesh",
+    "satyanarayan puja pandit",
+    "marriage ceremony pandit",
+    "havan yajna services",
+    "kundli analysis astrologer",
+    "Vedic astrology consultation",
+    "vastu shastra expert",
+    "online puja booking",
+    "bhagwat katha pandits",
+    "hanuman katha services",
+    "pandit services near me",
+    "authentic Hindu rituals India",
+    "pandit ji booking online",
+    "puja at home service",
+    "Kesari Nakshatra",
+    "religious ceremonies India",
+    "spiritual guidance Vedic"
   ],
   authors: [{ name: "Kesari Nakshatra", url: "https://kesarinakshatra.com" }],
   creator: "Kesari Nakshatra",
@@ -66,21 +71,21 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: 'https://kesarinakshatra.com',
     siteName: 'Kesari Nakshatra',
-    title: 'Kesari Nakshatra - Sacred Rituals, Divine Blessings',
-    description: 'Book authentic Hindu pujas and ceremonies with experienced pandits across India. Traditional rituals, Vedic astrology, and spiritual guidance.',
+    title: 'Book Pandit for Puja | Kesari Nakshatra - Hindu Rituals & Vedic Astrology',
+    description: 'Book experienced pandits for authentic Hindu pujas across India. Grih Pravesh, Satyanarayan Puja, Havan, Marriage, Kundli Analysis, Vastu. Call +91 93403 37323',
     images: [
       {
         url: '/logo.png',
         width: 1200,
         height: 630,
-        alt: 'Kesari Nakshatra - Sacred Hindu Rituals',
+        alt: 'Kesari Nakshatra - Book Pandit for Hindu Rituals and Pujas',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kesari Nakshatra - Sacred Rituals, Divine Blessings',
-    description: 'Book authentic Hindu pujas and ceremonies with experienced pandits across India.',
+    title: 'Book Pandit for Puja | Kesari Nakshatra - Hindu Rituals',
+    description: 'Book experienced pandits for authentic Hindu pujas and ceremonies across India. Call +91 93403 37323',
     images: ['/logo.png'],
   },
   robots: {
@@ -124,17 +129,20 @@ export default function RootLayout({
               "name": "Kesari Nakshatra",
               "url": "https://kesarinakshatra.com",
               "logo": "https://kesarinakshatra.com/logo.png",
-              "description": "Authentic Hindu puja services and Vedic astrology consultations across India",
+              "description": "Book experienced pandits for authentic Hindu pujas and ceremonies across India. Vedic astrology and spiritual guidance services.",
               "address": {
                 "@type": "PostalAddress",
                 "addressCountry": "IN",
-                "addressRegion": "Madhya Pradesh"
+                "addressRegion": "Madhya Pradesh",
+                "addressLocality": "India"
               },
               "contactPoint": {
                 "@type": "ContactPoint",
                 "telephone": "+91-93403-37323",
+                "email": "kesarinakshatra@yahoo.com",
                 "contactType": "customer service",
-                "availableLanguage": ["English", "Hindi"]
+                "availableLanguage": ["English", "Hindi"],
+                "areaServed": "IN"
               },
               "sameAs": [
                 "https://www.instagram.com/kesarinakshatra/"
@@ -191,6 +199,55 @@ export default function RootLayout({
                     }
                   }
                 ]
+              }
+            })
+          }}
+        />
+        {/* Local Business Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Kesari Nakshatra",
+              "image": "https://kesarinakshatra.com/logo.png",
+              "@id": "https://kesarinakshatra.com",
+              "url": "https://kesarinakshatra.com",
+              "telephone": "+91-93403-37323",
+              "email": "kesarinakshatra@yahoo.com",
+              "priceRange": "₹₹",
+              "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "Madhya Pradesh",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 23.2599,
+                "longitude": 77.4126
+              },
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ],
+                "opens": "06:00",
+                "closes": "21:00"
+              },
+              "sameAs": [
+                "https://www.instagram.com/kesarinakshatra/"
+              ],
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "150"
               }
             })
           }}
