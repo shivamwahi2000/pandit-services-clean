@@ -177,7 +177,7 @@ export default function AstrologyVastuPage() {
         'Yoga formations identification',
         'Remedial measures for afflictions'
       ],
-      price: '₹2,100',
+      price: '₹1,100',
       duration: '60-90 minutes'
     },
     {
@@ -192,7 +192,7 @@ export default function AstrologyVastuPage() {
         'Post-marriage life predictions',
         'Remedies for doshas'
       ],
-      price: '₹1,500',
+      price: '₹500',
       duration: '45-60 minutes'
     },
     {
@@ -207,7 +207,7 @@ export default function AstrologyVastuPage() {
         'Partnership compatibility',
         'Success remedies'
       ],
-      price: '₹1,800',
+      price: '₹500',
       duration: '60 minutes'
     },
     {
@@ -222,7 +222,7 @@ export default function AstrologyVastuPage() {
         'Challenges and remedies',
         'Important dates and festivals'
       ],
-      price: '₹2,500',
+      price: '₹1,100',
       duration: '90 minutes'
     },
     {
@@ -237,7 +237,7 @@ export default function AstrologyVastuPage() {
         'Charity & donation guidance',
         'Puja & Havan recommendations'
       ],
-      price: '₹1,200',
+      price: '₹500',
       duration: '30-45 minutes'
     },
     {
@@ -252,7 +252,7 @@ export default function AstrologyVastuPage() {
         'Lifestyle recommendations',
         'Preventive guidance'
       ],
-      price: '₹1,600',
+      price: '₹500',
       duration: '45-60 minutes'
     }
   ];
@@ -270,7 +270,7 @@ export default function AstrologyVastuPage() {
         'Room-wise recommendations',
         'Entrance positioning advice'
       ],
-      price: '₹3,000',
+      price: '₹1,100',
       duration: '2-3 hours'
     },
     {
@@ -285,7 +285,7 @@ export default function AstrologyVastuPage() {
         'Warehouse planning',
         'Business growth remedies'
       ],
-      price: '₹4,500',
+      price: '₹1,500',
       duration: '3-4 hours'
     },
     {
@@ -300,7 +300,7 @@ export default function AstrologyVastuPage() {
         'Plant & tree suggestions',
         'Water feature positioning'
       ],
-      price: '₹2,000',
+      price: '₹1,100',
       duration: '90 minutes'
     },
     {
@@ -315,7 +315,7 @@ export default function AstrologyVastuPage() {
         'Griha Pravesh muhurat',
         'Interior design compliance'
       ],
-      price: '₹5,000',
+      price: '₹2,100',
       duration: '4-5 hours'
     },
     {
@@ -330,7 +330,7 @@ export default function AstrologyVastuPage() {
         'Future prospects evaluation',
         'Investment timing guidance'
       ],
-      price: '₹2,500',
+      price: '₹1,100',
       duration: '2 hours'
     },
     {
@@ -345,7 +345,7 @@ export default function AstrologyVastuPage() {
         'Cost-effective solutions',
         'Follow-up consultation'
       ],
-      price: '₹6,000',
+      price: '₹2,100',
       duration: '4-6 hours'
     }
   ];
