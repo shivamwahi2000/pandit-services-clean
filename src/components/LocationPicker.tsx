@@ -143,7 +143,7 @@ export default function LocationPicker({ value, onChange, placeholder = "Enter P
           }
         }}
         placeholder={placeholder}
-        className="w-full px-3 py-2 border border-line rounded-lg text-sm bg-background focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+        className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
         autoComplete="off"
       />
       

@@ -1417,8 +1417,8 @@ export default function AstrologyVastuPage() {
                         setConsultationLocation(location);
                         setConsultationPlaceOfBirth(location ? `${location.name}, ${location.state}` : '');
                       }}
-                      placeholder="Enter PIN code or district name"
-                      className="w-full"
+                      placeholder="Enter PIN or city"
+                      className=""
                     />
                   </div>
                 </div>
