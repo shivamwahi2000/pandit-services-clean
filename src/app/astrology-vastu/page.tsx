@@ -72,6 +72,57 @@ export default function AstrologyVastuPage() {
   // Consultation form location state
   const [consultationLocation, setConsultationLocation] = useState<Location | null>(null);
 
+  // Consultation form state
+  const [consultationForm, setConsultationForm] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    serviceType: '',
+    consultationMode: '',
+    dateOfBirth: '',
+    timeOfBirth: '',
+    preferredDateTime: '',
+    requirements: ''
+  });
+
+  // Handle consultation form submission
+  const handleConsultationSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Build WhatsApp message
+    let message = `🙏 Namaste Pandit Ji,\n\nI would like to book a consultation.\n\n`;
+    message += `*Personal Details:*\n`;
+    message += `Name: ${consultationForm.fullName}\n`;
+    message += `Phone: ${consultationForm.phone}\n`;
+    message += `Email: ${consultationForm.email}\n\n`;
+
+    message += `*Service Details:*\n`;
+    message += `Service: ${consultationForm.serviceType}\n`;
+    message += `Mode: ${consultationForm.consultationMode}\n\n`;
+
+    if (consultationForm.dateOfBirth || consultationForm.timeOfBirth || consultationLocation) {
+      message += `*Birth Details:*\n`;
+      if (consultationForm.dateOfBirth) message += `Date of Birth: ${consultationForm.dateOfBirth}\n`;
+      if (consultationForm.timeOfBirth) message += `Time of Birth: ${consultationForm.timeOfBirth}\n`;
+      if (consultationLocation) message += `Place of Birth: ${consultationLocation.name}, ${consultationLocation.state}\n`;
+      message += `\n`;
+    }
+
+    if (consultationForm.preferredDateTime) {
+      message += `*Preferred Date & Time:*\n${new Date(consultationForm.preferredDateTime).toLocaleString('en-IN')}\n\n`;
+    }
+
+    if (consultationForm.requirements) {
+      message += `*Requirements:*\n${consultationForm.requirements}\n\n`;
+    }
+
+    message += `Looking forward to your guidance.\n\nDhanyavaad 🙏`;
+
+    // Encode and redirect to WhatsApp
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/919340337323?text=${encodedMessage}`, '_blank');
+  };
+
   // Convert PyJhora data to traditional chart format
   const convertToTraditionalFormat = (kundliData: any) => {
     if (!kundliData?.data?.planets) return [];
@@ -1235,7 +1286,7 @@ export default function AstrologyVastuPage() {
                 </p>
               </div>
 
-              <form className="max-w-2xl mx-auto space-y-6">
+              <form onSubmit={handleConsultationSubmit} className="max-w-2xl mx-auto space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-text-primary mb-2">
@@ -1244,11 +1295,13 @@ export default function AstrologyVastuPage() {
                     <input
                       type="text"
                       required
+                      value={consultationForm.fullName}
+                      onChange={(e) => setConsultationForm({...consultationForm, fullName: e.target.value})}
                       className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
                       placeholder="Your full name"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-text-primary mb-2">
                       Phone Number *
@@ -1256,6 +1309,8 @@ export default function AstrologyVastuPage() {
                     <input
                       type="tel"
                       required
+                      value={consultationForm.phone}
+                      onChange={(e) => setConsultationForm({...consultationForm, phone: e.target.value})}
                       className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
                       placeholder="+91 93403 37323"
                     />
@@ -1269,6 +1324,8 @@ export default function AstrologyVastuPage() {
                   <input
                     type="email"
                     required
+                    value={consultationForm.email}
+                    onChange={(e) => setConsultationForm({...consultationForm, email: e.target.value})}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
                     placeholder="kesarinakshatra@yahoo.com"
                   />
@@ -1281,41 +1338,45 @@ export default function AstrologyVastuPage() {
                     </label>
                     <select
                       required
+                      value={consultationForm.serviceType}
+                      onChange={(e) => setConsultationForm({...consultationForm, serviceType: e.target.value})}
                       className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
                     >
                       <option value="">Select Service</option>
                       <optgroup label="Astrology Services">
-                        <option value="kundli-analysis">Kundli & Birth Chart Analysis</option>
-                        <option value="marriage-compatibility">Marriage Compatibility</option>
-                        <option value="career-guidance">Career & Business Guidance</option>
-                        <option value="annual-predictions">Annual Predictions</option>
-                        <option value="remedial-solutions">Remedial Solutions</option>
-                        <option value="health-astrology">Health Astrology</option>
+                        <option value="Kundli & Birth Chart Analysis (₹1,100)">Kundli & Birth Chart Analysis (₹1,100)</option>
+                        <option value="Marriage Compatibility (₹500)">Marriage Compatibility (₹500)</option>
+                        <option value="Career & Business Guidance (₹500)">Career & Business Guidance (₹500)</option>
+                        <option value="Annual Predictions (₹1,100)">Annual Predictions (₹1,100)</option>
+                        <option value="Remedial Solutions (₹500)">Remedial Solutions (₹500)</option>
+                        <option value="Health Astrology (₹500)">Health Astrology (₹500)</option>
                       </optgroup>
                       <optgroup label="Vastu Services">
-                        <option value="residential-vastu">Residential Vastu</option>
-                        <option value="commercial-vastu">Commercial Vastu</option>
-                        <option value="vastu-remedies">Vastu Dosh Nivaran</option>
-                        <option value="construction-vastu">Construction Vastu</option>
-                        <option value="plot-selection">Plot Selection</option>
-                        <option value="vastu-audit">Complete Vastu Audit</option>
+                        <option value="Residential Vastu (₹1,100)">Residential Vastu (₹1,100)</option>
+                        <option value="Commercial Vastu (₹1,500)">Commercial Vastu (₹1,500)</option>
+                        <option value="Vastu Dosh Nivaran (₹1,100)">Vastu Dosh Nivaran (₹1,100)</option>
+                        <option value="Construction Vastu (₹2,100)">Construction Vastu (₹2,100)</option>
+                        <option value="Plot Selection (₹1,100)">Plot Selection (₹1,100)</option>
+                        <option value="Complete Vastu Audit (₹2,100)">Complete Vastu Audit (₹2,100)</option>
                       </optgroup>
                     </select>
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-text-primary mb-2">
                       Consultation Mode *
                     </label>
                     <select
                       required
+                      value={consultationForm.consultationMode}
+                      onChange={(e) => setConsultationForm({...consultationForm, consultationMode: e.target.value})}
                       className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
                     >
                       <option value="">Select Mode</option>
-                      <option value="in-person">In-Person Visit</option>
-                      <option value="video-call">Video Consultation</option>
-                      <option value="phone-call">Phone Consultation</option>
-                      <option value="written-report">Written Report</option>
+                      <option value="In-Person Visit">In-Person Visit</option>
+                      <option value="Video Consultation">Video Consultation</option>
+                      <option value="Phone Consultation">Phone Consultation</option>
+                      <option value="Written Report">Written Report</option>
                     </select>
                   </div>
                 </div>
@@ -1327,20 +1388,24 @@ export default function AstrologyVastuPage() {
                     </label>
                     <input
                       type="date"
+                      value={consultationForm.dateOfBirth}
+                      onChange={(e) => setConsultationForm({...consultationForm, dateOfBirth: e.target.value})}
                       className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-text-primary mb-2">
                       Time of Birth
                     </label>
                     <input
                       type="time"
+                      value={consultationForm.timeOfBirth}
+                      onChange={(e) => setConsultationForm({...consultationForm, timeOfBirth: e.target.value})}
                       className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-text-primary mb-2">
                       Place of Birth
@@ -1360,6 +1425,8 @@ export default function AstrologyVastuPage() {
                   </label>
                   <input
                     type="datetime-local"
+                    value={consultationForm.preferredDateTime}
+                    onChange={(e) => setConsultationForm({...consultationForm, preferredDateTime: e.target.value})}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
                   />
                 </div>
@@ -1370,6 +1437,8 @@ export default function AstrologyVastuPage() {
                   </label>
                   <textarea
                     rows={4}
+                    value={consultationForm.requirements}
+                    onChange={(e) => setConsultationForm({...consultationForm, requirements: e.target.value})}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background resize-vertical"
                     placeholder="Please describe your specific questions, concerns, or requirements for the consultation..."
                   />
@@ -1380,7 +1449,7 @@ export default function AstrologyVastuPage() {
                     type="submit"
                     className="btn-primary py-3 px-8 rounded-lg font-medium text-lg"
                   >
-                    Book Consultation
+                    Send WhatsApp Message
                   </button>
                 </div>
 
