@@ -71,6 +71,7 @@ export default function AstrologyVastuPage() {
 
   // Consultation form location state
   const [consultationLocation, setConsultationLocation] = useState<Location | null>(null);
+  const [consultationPlaceOfBirth, setConsultationPlaceOfBirth] = useState('');
 
   // Consultation form state
   const [consultationForm, setConsultationForm] = useState({
@@ -1411,8 +1412,11 @@ export default function AstrologyVastuPage() {
                       Place of Birth
                     </label>
                     <LocationPicker
-                      value={consultationLocation ? `${consultationLocation.name}, ${consultationLocation.state}` : ''}
-                      onChange={setConsultationLocation}
+                      value={consultationPlaceOfBirth}
+                      onChange={(location) => {
+                        setConsultationLocation(location);
+                        setConsultationPlaceOfBirth(location ? `${location.name}, ${location.state}` : '');
+                      }}
                       placeholder="Enter PIN code or district name"
                       className="w-full"
                     />
