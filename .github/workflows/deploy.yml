@@ -1,0 +1,76 @@
+name: Deploy to Oracle Cloud
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allow manual deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+
+      - name: Deploy to Oracle Cloud
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          ssh -i ~/.ssh/id_rsa $SSH_USER@$SSH_HOST << 'ENDSSH'
+            set -e
+
+            echo "🚀 Starting deployment process..."
+
+            # Navigate to project directory
+            cd ~/pandit-services-clean || { echo "❌ Project directory not found"; exit 1; }
+
+            # Pull latest changes from GitHub
+            echo "📥 Pulling latest changes from GitHub..."
+            git pull origin main || { echo "❌ Git pull failed"; exit 1; }
+
+            # Install dependencies (in case new packages were added)
+            echo "📦 Installing dependencies..."
+            npm install || { echo "❌ npm install failed"; exit 1; }
+
+            # Build the Next.js application
+            echo "🔨 Building Next.js application..."
+            npm run build || { echo "❌ Build failed"; exit 1; }
+
+            # Restart PM2 process
+            echo "🔄 Restarting PM2 process..."
+            if pm2 list | grep -q "pandit-services"; then
+              echo "   Found existing PM2 process, restarting..."
+              pm2 restart pandit-services || { echo "❌ PM2 restart failed"; exit 1; }
+            else
+              echo "   No existing PM2 process found, starting new one..."
+              pm2 start npm --name "pandit-services" -- start || { echo "❌ PM2 start failed"; exit 1; }
+            fi
+
+            # Save PM2 configuration
+            pm2 save
+
+            echo "✅ Deployment completed successfully!"
+            echo "🌐 App is running on port 3000"
+            echo ""
+            echo "📊 PM2 Status:"
+            pm2 status pandit-services
+          ENDSSH
+
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f ~/.ssh/id_rsa
