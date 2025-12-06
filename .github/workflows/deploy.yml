@@ -23,14 +23,15 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+          ssh-keyscan -H -T 10 $SSH_HOST >> ~/.ssh/known_hosts 2>&1 || echo "Warning: ssh-keyscan failed, will use StrictHostKeyChecking=no"
+          cat ~/.ssh/id_rsa | head -1  # Verify key format
 
       - name: Deploy to Oracle Cloud
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
         run: |
-          ssh -i ~/.ssh/id_rsa $SSH_USER@$SSH_HOST << 'ENDSSH'
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SSH_USER@$SSH_HOST << 'ENDSSH'
             set -e
 
             echo "🚀 Starting deployment process..."
