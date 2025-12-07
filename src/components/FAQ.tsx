@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function FAQ() {
-  const [language, setLanguage] = useState<'en' | 'hi'>('en');
+  const { language } = useLanguage();
   const [openItem, setOpenItem] = useState<number | null>(null);
 
   const faqs = {

@@ -3,23 +3,34 @@
 import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import LanguageToggle from '@/components/LanguageToggle';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { aboutContent } from '@/utils/aboutContent';
 
 export default function AboutPage() {
+  const { language } = useLanguage();
+  const content = aboutContent[language];
+
   return (
     <div className="min-h-screen sacred-bg page-load">
       <Header />
-      
+      <LanguageToggle />
+
       <main className="pt-8 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Hero Section */}
           <section className="text-center mb-16">
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold heading-en text-primary mb-6">
-                About Kesari Nakshatra
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 ${
+                language === 'hi' ? 'heading-hi' : 'heading-en'
+              }`}>
+                {content.heroTitle}
               </h1>
-              <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
-                Preserving Sacred Traditions Through Authentic Vedic Practices
+              <p className={`text-xl md:text-2xl text-text-secondary leading-relaxed ${
+                language === 'hi' ? 'body-hi' : ''
+              }`}>
+                {content.heroSubtitle}
               </p>
             </div>
           </section>
@@ -28,47 +39,69 @@ export default function AboutPage() {
           <section className="mb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <h2 className="text-3xl md:text-4xl font-bold heading-en text-primary mb-6">
-                  Meet Our Founder
+                <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-6 ${
+                  language === 'hi' ? 'heading-hi' : 'heading-en'
+                }`}>
+                  {content.founderHeading}
                 </h2>
-                <h3 className="text-2xl md:text-3xl font-semibold text-accent mb-4">
-                  Pt. Hariom Shastri
+                <h3 className={`text-2xl md:text-3xl font-semibold text-accent mb-4 ${
+                  language === 'hi' ? 'heading-hi' : ''
+                }`}>
+                  {content.founderName}
                 </h3>
-                <p className="text-lg text-text-secondary mb-6 leading-relaxed">
-                  Acharya Hariom Shastri, the visionary founder of Kesari Nakshatra, brings decades of deep spiritual wisdom and Vedic knowledge to every ritual and ceremony. Based in Madhya Pradesh, the heart of India's spiritual heritage, Pandit ji has dedicated his life to preserving and sharing the sacred traditions of our ancestors.
+                <p className={`text-lg text-text-secondary mb-6 leading-relaxed ${
+                  language === 'hi' ? 'body-hi' : ''
+                }`}>
+                  {content.founderBio}
                 </p>
-                
+
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
                     <div>
-                      <h4 className="font-semibold text-text-primary">Educational Excellence</h4>
-                      <p className="text-text-secondary">M.A. in Sanskrit from Sampurnanand Sanskrit Vishwavidyalaya, Varanasi with the prestigious title of Acharya</p>
+                      <h4 className={`font-semibold text-text-primary ${
+                        language === 'hi' ? 'heading-hi' : ''
+                      }`}>{content.academicExcellence}</h4>
+                      <p className={`text-text-secondary ${
+                        language === 'hi' ? 'body-hi' : ''
+                      }`}>{content.academicDesc}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
                     <div>
-                      <h4 className="font-semibold text-text-primary">Lifelong Devotion</h4>
-                      <p className="text-text-secondary">Actively participating in Vedic Anushtans since the tender age of 10</p>
+                      <h4 className={`font-semibold text-text-primary ${
+                        language === 'hi' ? 'heading-hi' : ''
+                      }`}>{content.lifetimeDevotion}</h4>
+                      <p className={`text-text-secondary ${
+                        language === 'hi' ? 'body-hi' : ''
+                      }`}>{content.lifetimeDesc}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
                     <div>
-                      <h4 className="font-semibold text-text-primary">Regional Heritage</h4>
-                      <p className="text-text-secondary">Based in Madhya Pradesh, the spiritual heartland of India</p>
+                      <h4 className={`font-semibold text-text-primary ${
+                        language === 'hi' ? 'heading-hi' : ''
+                      }`}>{content.regionalHeritage}</h4>
+                      <p className={`text-text-secondary ${
+                        language === 'hi' ? 'body-hi' : ''
+                      }`}>{content.regionalDesc}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="bg-surface border border-line rounded-lg p-6 glow-border">
-                  <blockquote className="text-lg italic text-text-primary">
-                    "Every ritual is a bridge between the devotee and the divine. My mission is to ensure that this sacred connection remains pure, authentic, and accessible to all who seek spiritual fulfillment."
+                  <blockquote className={`text-lg italic text-text-primary ${
+                    language === 'hi' ? 'body-hi' : ''
+                  }`}>
+                    {content.founderQuote}
                   </blockquote>
-                  <cite className="block mt-4 text-primary font-semibold">- Acharya Hariom Shastri</cite>
+                  <cite className={`block mt-4 text-primary font-semibold ${
+                    language === 'hi' ? 'heading-hi' : ''
+                  }`}>{content.founderQuoteAuthor}</cite>
                 </div>
               </div>
               
@@ -112,32 +145,46 @@ export default function AboutPage() {
           {/* Journey Section */}
           <section className="mb-20">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold heading-en text-primary mb-8">
-                A Journey of Spiritual Excellence
+              <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-8 ${
+                language === 'hi' ? 'heading-hi' : 'heading-en'
+              }`}>
+                {content.journeyHeading}
               </h2>
-              
+
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="bg-elevations rounded-lg p-6 border border-line">
                   <div className="text-4xl mb-4">🌟</div>
-                  <h3 className="font-semibold text-text-primary mb-2">Childhood Prodigy</h3>
-                  <p className="text-text-secondary text-sm">
-                    Began participating in Vedic ceremonies at age 10, showing exceptional aptitude for Sanskrit and ritual practices
+                  <h3 className={`font-semibold text-text-primary mb-2 ${
+                    language === 'hi' ? 'heading-hi' : ''
+                  }`}>{content.childhoodProdigy}</h3>
+                  <p className={`text-text-secondary text-sm ${
+                    language === 'hi' ? 'body-hi' : ''
+                  }`}>
+                    {content.childhoodDesc}
                   </p>
                 </div>
-                
+
                 <div className="bg-elevations rounded-lg p-6 border border-line">
                   <div className="text-4xl mb-4">📚</div>
-                  <h3 className="font-semibold text-text-primary mb-2">Academic Achievement</h3>
-                  <p className="text-text-secondary text-sm">
-                    Earned M.A. in Sanskrit from the prestigious Sampurnanand Sanskrit Vishwavidyalaya, Varanasi and achieved the esteemed title of Acharya
+                  <h3 className={`font-semibold text-text-primary mb-2 ${
+                    language === 'hi' ? 'heading-hi' : ''
+                  }`}>{content.academicAchievement}</h3>
+                  <p className={`text-text-secondary text-sm ${
+                    language === 'hi' ? 'body-hi' : ''
+                  }`}>
+                    {content.academicAchievementDesc}
                   </p>
                 </div>
-                
+
                 <div className="bg-elevations rounded-lg p-6 border border-line">
                   <div className="text-4xl mb-4">🏛️</div>
-                  <h3 className="font-semibold text-text-primary mb-2">Kesari Nakshatra</h3>
-                  <p className="text-text-secondary text-sm">
-                    Founded this platform to make authentic Vedic rituals accessible to devotees across the nation
+                  <h3 className={`font-semibold text-text-primary mb-2 ${
+                    language === 'hi' ? 'heading-hi' : ''
+                  }`}>{content.kesariNakshatraFoundation}</h3>
+                  <p className={`text-text-secondary text-sm ${
+                    language === 'hi' ? 'body-hi' : ''
+                  }`}>
+                    {content.foundationDesc}
                   </p>
                 </div>
               </div>
@@ -148,13 +195,17 @@ export default function AboutPage() {
           <section className="mb-20">
             <div className="grid lg:grid-cols-2 gap-12">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold heading-en text-primary mb-6">
-                  Our Mission
+                <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-6 ${
+                  language === 'hi' ? 'heading-hi' : 'heading-en'
+                }`}>
+                  {content.missionHeading}
                 </h2>
-                <p className="text-lg text-text-secondary mb-6 leading-relaxed">
-                  At Kesari Nakshatra, we are committed to preserving the sanctity and authenticity of Vedic traditions while making them accessible to modern devotees. Our mission is to bridge the gap between ancient wisdom and contemporary life.
+                <p className={`text-lg text-text-secondary mb-6 leading-relaxed ${
+                  language === 'hi' ? 'body-hi' : ''
+                }`}>
+                  {content.missionText}
                 </p>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-success rounded-full flex items-center justify-center">
@@ -162,48 +213,68 @@ export default function AboutPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-text-primary">Authentic Vedic rituals performed by qualified pandits</span>
+                    <span className={`text-text-primary ${
+                      language === 'hi' ? 'body-hi' : ''
+                    }`}>{content.mission1}</span>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-success rounded-full flex items-center justify-center">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-text-primary">Convenient online booking and consultation services</span>
+                    <span className={`text-text-primary ${
+                      language === 'hi' ? 'body-hi' : ''
+                    }`}>{content.mission2}</span>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-success rounded-full flex items-center justify-center">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-text-primary">Educational resources about Hindu traditions and festivals</span>
+                    <span className={`text-text-primary ${
+                      language === 'hi' ? 'body-hi' : ''
+                    }`}>{content.mission3}</span>
                   </div>
                 </div>
               </div>
-              
+
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold heading-en text-primary mb-6">
-                  Our Values
+                <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-6 ${
+                  language === 'hi' ? 'heading-hi' : 'heading-en'
+                }`}>
+                  {content.valuesHeading}
                 </h2>
-                
+
                 <div className="space-y-6">
                   <div className="bg-surface rounded-lg p-6 border border-line">
-                    <h3 className="font-semibold text-primary mb-2">🙏 Authenticity</h3>
-                    <p className="text-text-secondary">Every ritual follows traditional Vedic scriptures and methodologies</p>
+                    <h3 className={`font-semibold text-primary mb-2 ${
+                      language === 'hi' ? 'heading-hi' : ''
+                    }`}>{content.authenticity}</h3>
+                    <p className={`text-text-secondary ${
+                      language === 'hi' ? 'body-hi' : ''
+                    }`}>{content.authenticityDesc}</p>
                   </div>
-                  
+
                   <div className="bg-surface rounded-lg p-6 border border-line">
-                    <h3 className="font-semibold text-primary mb-2">📿 Devotion</h3>
-                    <p className="text-text-secondary">We approach each ceremony with the utmost reverence and spiritual dedication</p>
+                    <h3 className={`font-semibold text-primary mb-2 ${
+                      language === 'hi' ? 'heading-hi' : ''
+                    }`}>{content.devotion}</h3>
+                    <p className={`text-text-secondary ${
+                      language === 'hi' ? 'body-hi' : ''
+                    }`}>{content.devotionDesc}</p>
                   </div>
-                  
+
                   <div className="bg-surface rounded-lg p-6 border border-line">
-                    <h3 className="font-semibold text-primary mb-2">🤝 Accessibility</h3>
-                    <p className="text-text-secondary">Making sacred traditions available to all devotees, regardless of location</p>
+                    <h3 className={`font-semibold text-primary mb-2 ${
+                      language === 'hi' ? 'heading-hi' : ''
+                    }`}>{content.accessibility}</h3>
+                    <p className={`text-text-secondary ${
+                      language === 'hi' ? 'body-hi' : ''
+                    }`}>{content.accessibilityDesc}</p>
                   </div>
                 </div>
               </div>
@@ -212,26 +283,34 @@ export default function AboutPage() {
 
           {/* Call to Action */}
           <section className="text-center bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-12 border border-line">
-            <h2 className="text-3xl md:text-4xl font-bold heading-en text-primary mb-4">
-              Begin Your Spiritual Journey
+            <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4 ${
+              language === 'hi' ? 'heading-hi' : 'heading-en'
+            }`}>
+              {content.ctaHeading}
             </h2>
-            <p className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
-              Connect with our experienced pandits and bring the divine blessings of authentic Vedic rituals into your life.
+            <p className={`text-lg text-text-secondary mb-8 max-w-2xl mx-auto ${
+              language === 'hi' ? 'body-hi' : ''
+            }`}>
+              {content.ctaText}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
                 href="/book-ritual"
-                className="btn-primary px-8 py-3 rounded-full text-lg font-medium inline-block"
+                className={`btn-primary px-8 py-3 rounded-full text-lg font-medium inline-block ${
+                  language === 'hi' ? 'heading-hi' : ''
+                }`}
               >
-                Book a Ritual
+                {content.ctaBookRitual}
               </a>
-              
+
               <a
                 href="/contact"
-                className="border border-primary text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-primary hover:text-white transition-colors"
+                className={`border border-primary text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-primary hover:text-white transition-colors ${
+                  language === 'hi' ? 'heading-hi' : ''
+                }`}
               >
-                Contact Us
+                {content.ctaContact}
               </a>
             </div>
           </section>

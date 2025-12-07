@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function FeaturedRituals() {
-  const [language, setLanguage] = useState<'en' | 'hi'>('en');
+  const { language } = useLanguage();
 
   const rituals = {
     en: [
@@ -64,14 +64,6 @@ export default function FeaturedRituals() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <button
-            onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}
-            className="inline-flex items-center px-3 py-1 rounded-full text-xs border border-line hover:bg-surface transition-colors mb-4"
-          >
-            <span className="mr-2">🌐</span>
-            {language === 'en' ? 'हिन्दी में देखें' : 'View in English'}
-          </button>
-          
           <h2 className={`text-3xl md:text-4xl font-bold mb-4 text-primary ${
             language === 'hi' ? 'heading-hi' : 'heading-en'
           }`}>

@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Footer() {
-  const [language, setLanguage] = useState<'en' | 'hi'>('en');
+  const { language } = useLanguage();
 
   const content = {
     en: {

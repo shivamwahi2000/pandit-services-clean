@@ -1,15 +1,16 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Header() {
   const router = useRouter();
+  const { language, toggleLanguage } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState<'en' | 'hi'>('en');
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
   const menuItemRef = useRef<HTMLDivElement>(null);
@@ -178,6 +179,11 @@ export default function Header() {
     },
   };
 
+  const tagline = {
+    en: 'Sacred Rituals, Divine Blessings',
+    hi: 'पवित्र अनुष्ठान, दिव्य आशीर्वाद'
+  };
+
   return (
     <header className="sticky top-0 z-[99999] bg-background/90 backdrop-blur-md border-b border-line">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -195,8 +201,8 @@ export default function Header() {
               <span className="text-xl md:text-2xl font-bold heading-en text-primary">
                 Kesari Nakshatra
               </span>
-              <span className="text-sm md:text-base text-text-secondary">
-                Sacred Rituals, Divine Blessings
+              <span className={`text-sm md:text-base text-text-secondary ${language === 'hi' ? 'body-hi' : ''}`}>
+                {tagline[language]}
               </span>
             </div>
           </Link>
@@ -245,7 +251,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-4">
             {/* Language Toggle */}
             <button
-              onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}
+              onClick={toggleLanguage}
               className="text-sm px-2 py-1 rounded border border-line hover:bg-surface transition-colors"
             >
               {language === 'en' ? 'हिं' : 'EN'}
@@ -336,12 +342,12 @@ export default function Header() {
               
               <div className="flex items-center space-x-4 pt-4 border-t border-line">
                 <button
-                  onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}
+                  onClick={toggleLanguage}
                   className="text-sm px-3 py-2 rounded border border-line hover:bg-surface transition-colors"
                 >
                   {language === 'en' ? 'हिं' : 'EN'}
                 </button>
-                
+
               </div>
             </div>
           </div>

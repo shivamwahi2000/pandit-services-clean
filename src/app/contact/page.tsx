@@ -3,33 +3,39 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import LanguageToggle from '@/components/LanguageToggle';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { contactContent } from '@/utils/contactContent';
 import { FAQSchema } from '@/components/StructuredData';
 
 export default function ContactPage() {
+  const { language } = useLanguage();
+  const content = contactContent[language];
+
   const faqData = [
     {
-      question: "How far in advance should I book?",
-      answer: "We recommend booking at least 7-10 days in advance, especially for major ceremonies. For auspicious dates during festivals, book 2-3 weeks ahead."
+      question: content.faq1Q,
+      answer: content.faq1A
     },
     {
-      question: "Do you provide all puja materials?",
-      answer: "Yes, we provide all necessary puja items, including flowers, fruits, sweets, and ceremonial materials. You can also request a detailed list if you prefer to arrange some items yourself."
+      question: content.faq2Q,
+      answer: content.faq2A
     },
     {
-      question: "Can you perform online pujas?",
-      answer: "Absolutely! We offer virtual puja services where you can participate via video call. This is perfect for those who cannot physically attend or are located far away."
+      question: content.faq3Q,
+      answer: content.faq3A
     },
     {
-      question: "What areas do you serve?",
-      answer: "While we're based in Madhya Pradesh, we serve clients across India. For distant locations, we can arrange local qualified pandits from our network or conduct online ceremonies."
+      question: content.faq4Q,
+      answer: content.faq4A
     },
     {
-      question: "How are the ritual timings decided?",
-      answer: "All ritual timings are calculated based on Vedic astrology, considering the most auspicious muhurat for your specific ceremony and location. We provide detailed timing information upon booking."
+      question: content.faq5Q,
+      answer: content.faq5A
     },
     {
-      question: "What if I need to reschedule?",
-      answer: "We understand that plans can change. Please contact us at least 48 hours before the scheduled time for rescheduling. We'll help find the next auspicious time for your ceremony."
+      question: content.faq6Q,
+      answer: content.faq6A
     }
   ];
 
@@ -87,34 +93,27 @@ Query from Kesari Nakshatra website`;
     });
   };
 
-  const ritualTypes = [
-    'Grih Pravesh Puja',
-    'Satyanarayan Puja',
-    'Ganesh Puja',
-    'Marriage Ceremony',
-    'Havan/Yajna',
-    'Bhagwat Katha',
-    'Astrological Consultation',
-    'Vastu Consultation',
-    'Other'
-  ];
-
   return (
     <div className="min-h-screen sacred-bg page-load">
       <FAQSchema faqs={faqData} />
       <Header />
-      
+      <LanguageToggle />
+
       <main className="pt-8 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Hero Section */}
           <section className="text-center mb-16">
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold heading-en text-primary mb-6">
-                Contact Us
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 ${
+                language === 'hi' ? 'heading-hi' : 'heading-en'
+              }`}>
+                {content.heroTitle}
               </h1>
-              <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
-                Connect with us for authentic Vedic rituals and spiritual guidance
+              <p className={`text-xl md:text-2xl text-text-secondary leading-relaxed ${
+                language === 'hi' ? 'body-hi' : ''
+              }`}>
+                {content.heroSubtitle}
               </p>
             </div>
           </section>
@@ -123,15 +122,19 @@ Query from Kesari Nakshatra website`;
             
             {/* Contact Form */}
             <div className="bg-surface rounded-2xl p-8 border border-line glow-border">
-              <h2 className="text-2xl md:text-3xl font-bold heading-en text-primary mb-6">
-                Send us a Message
+              <h2 className={`text-2xl md:text-3xl font-bold text-primary mb-6 ${
+                language === 'hi' ? 'heading-hi' : 'heading-en'
+              }`}>
+                {content.formHeading}
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-2">
-                      Full Name *
+                    <label htmlFor="name" className={`block text-sm font-medium text-text-primary mb-2 ${
+                      language === 'hi' ? 'body-hi' : ''
+                    }`}>
+                      {content.nameLabel} *
                     </label>
                     <input
                       type="text"
@@ -141,13 +144,15 @@ Query from Kesari Nakshatra website`;
                       value={formData.name}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
-                      placeholder="Your full name"
+                      placeholder={content.namePlaceholder}
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-text-primary mb-2">
-                      Phone Number *
+                    <label htmlFor="phone" className={`block text-sm font-medium text-text-primary mb-2 ${
+                      language === 'hi' ? 'body-hi' : ''
+                    }`}>
+                      {content.phoneLabel} *
                     </label>
                     <input
                       type="tel"
@@ -157,14 +162,16 @@ Query from Kesari Nakshatra website`;
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
-                      placeholder="+91 93403 37323"
+                      placeholder={content.phonePlaceholder}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-2">
-                    Email Address *
+                  <label htmlFor="email" className={`block text-sm font-medium text-text-primary mb-2 ${
+                    language === 'hi' ? 'body-hi' : ''
+                  }`}>
+                    {content.emailLabel} *
                   </label>
                   <input
                     type="email"
@@ -174,13 +181,15 @@ Query from Kesari Nakshatra website`;
                     value={formData.email}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
-                    placeholder="kesarinakshatra@yahoo.com"
+                    placeholder={content.emailPlaceholder}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="ritualType" className="block text-sm font-medium text-text-primary mb-2">
-                    Type of Service
+                  <label htmlFor="ritualType" className={`block text-sm font-medium text-text-primary mb-2 ${
+                    language === 'hi' ? 'body-hi' : ''
+                  }`}>
+                    {content.serviceTypeLabel}
                   </label>
                   <select
                     id="ritualType"
@@ -189,16 +198,18 @@ Query from Kesari Nakshatra website`;
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
                   >
-                    <option value="">Select a service</option>
-                    {ritualTypes.map((type) => (
+                    <option value="">{content.selectService}</option>
+                    {content.ritualTypes.map((type) => (
                       <option key={type} value={type}>{type}</option>
                     ))}
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-text-primary mb-2">
-                    Subject *
+                  <label htmlFor="subject" className={`block text-sm font-medium text-text-primary mb-2 ${
+                    language === 'hi' ? 'body-hi' : ''
+                  }`}>
+                    {content.subjectLabel} *
                   </label>
                   <input
                     type="text"
@@ -208,13 +219,15 @@ Query from Kesari Nakshatra website`;
                     value={formData.subject}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
-                    placeholder="Brief subject of your inquiry"
+                    placeholder={content.subjectPlaceholder}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">
-                    Message *
+                  <label htmlFor="message" className={`block text-sm font-medium text-text-primary mb-2 ${
+                    language === 'hi' ? 'body-hi' : ''
+                  }`}>
+                    {content.messageLabel} *
                   </label>
                   <textarea
                     id="message"
@@ -224,16 +237,18 @@ Query from Kesari Nakshatra website`;
                     value={formData.message}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background resize-vertical"
-                    placeholder="Please describe your requirements, preferred dates, location, and any specific details..."
+                    placeholder={content.messagePlaceholder}
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-lg font-medium text-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
+                  className={`w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-lg font-medium text-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 flex items-center justify-center space-x-2 ${
+                    language === 'hi' ? 'heading-hi' : ''
+                  }`}
                 >
                   <span>📱</span>
-                  <span>Send Your Query</span>
+                  <span>{content.submitButton}</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
@@ -247,7 +262,7 @@ Query from Kesari Nakshatra website`;
               {/* Quick Contact */}
               <div className="bg-elevations rounded-2xl p-8 border border-line">
                 <h2 className="text-2xl md:text-3xl font-bold heading-en text-primary mb-6">
-                  Get in Touch
+                  संपर्क में रहें
                 </h2>
                 
                 <div className="space-y-6">
@@ -258,11 +273,11 @@ Query from Kesari Nakshatra website`;
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-text-primary mb-1">Phone</h3>
+                      <h3 className="font-semibold text-text-primary mb-1">फोन</h3>
                       <a href="tel:+919340337323" className="text-text-secondary hover:text-primary transition-colors">
                         +91 93403 37323
                       </a>
-                      <p className="text-sm text-text-secondary mt-1">Available 7 AM - 9 PM</p>
+                      <p className="text-sm text-text-secondary mt-1">सुबह 7 बजे - रात 9 बजे तक उपलब्ध</p>
                     </div>
                   </div>
 
@@ -282,7 +297,7 @@ Query from Kesari Nakshatra website`;
                       >
                         +91 93403 37323
                       </a>
-                      <p className="text-sm text-text-secondary mt-1">Quick responses via WhatsApp</p>
+                      <p className="text-sm text-text-secondary mt-1">WhatsApp पर त्वरित प्रतिक्रिया</p>
                     </div>
                   </div>
 
@@ -293,11 +308,11 @@ Query from Kesari Nakshatra website`;
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-text-primary mb-1">Email</h3>
+                      <h3 className="font-semibold text-text-primary mb-1">ईमेल</h3>
                       <a href="mailto:kesarinakshatra@yahoo.com" className="text-text-secondary hover:text-primary transition-colors">
                         kesarinakshatra@yahoo.com
                       </a>
-                      <p className="text-sm text-text-secondary mt-1">For detailed inquiries</p>
+                      <p className="text-sm text-text-secondary mt-1">विस्तृत पूछताछ के लिए</p>
                     </div>
                   </div>
 
@@ -317,7 +332,7 @@ Query from Kesari Nakshatra website`;
                       >
                         @kesarinakshatra
                       </a>
-                      <p className="text-sm text-text-secondary mt-1">Follow for spiritual updates</p>
+                      <p className="text-sm text-text-secondary mt-1">आध्यात्मिक अपडेट के लिए फॉलो करें</p>
                     </div>
                   </div>
 
@@ -329,9 +344,9 @@ Query from Kesari Nakshatra website`;
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-text-primary mb-1">Location</h3>
-                      <p className="text-text-secondary">Madhya Pradesh, India</p>
-                      <p className="text-sm text-text-secondary mt-1">We serve across India</p>
+                      <h3 className="font-semibold text-text-primary mb-1">स्थान</h3>
+                      <p className="text-text-secondary">मध्य प्रदेश, भारत</p>
+                      <p className="text-sm text-text-secondary mt-1">हम पूरे भारत में सेवा प्रदान करते हैं</p>
                     </div>
                   </div>
                 </div>
@@ -340,7 +355,7 @@ Query from Kesari Nakshatra website`;
               {/* Quick Actions */}
               <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 border border-line">
                 <h3 className="text-xl font-bold heading-en text-primary mb-4">
-                  Quick Actions
+                  त्वरित कार्रवाई
                 </h3>
                 
                 <div className="space-y-3">
@@ -348,23 +363,23 @@ Query from Kesari Nakshatra website`;
                     href="/book-ritual"
                     className="block w-full btn-primary py-3 px-4 rounded-lg text-center font-medium"
                   >
-                    Book a Ritual Online
+                    ऑनलाइन अनुष्ठान बुक करें
                   </a>
-                  
+
                   <a
                     href="https://wa.me/919340337323?text=Hello, I would like to inquire about your services."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full bg-success hover:bg-success/90 text-white py-3 px-4 rounded-lg text-center font-medium transition-colors"
                   >
-                    WhatsApp Us Now
+                    WhatsApp पर संपर्क करें
                   </a>
 
                   <a
                     href="tel:+919340337323"
                     className="block w-full border border-primary text-primary hover:bg-primary hover:text-white py-3 px-4 rounded-lg text-center font-medium transition-colors"
                   >
-                    Call Directly
+                    सीधे कॉल करें
                   </a>
                 </div>
               </div>
@@ -372,25 +387,25 @@ Query from Kesari Nakshatra website`;
               {/* Business Hours */}
               <div className="bg-surface rounded-2xl p-8 border border-line">
                 <h3 className="text-xl font-bold heading-en text-primary mb-4">
-                  Business Hours
+                  कार्य समय
                 </h3>
                 
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-text-primary">Monday - Friday</span>
-                    <span className="text-text-secondary">7:00 AM - 9:00 PM</span>
+                    <span className="text-text-primary">सोमवार - शुक्रवार</span>
+                    <span className="text-text-secondary">सुबह 7:00 - रात 9:00</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-text-primary">Saturday</span>
-                    <span className="text-text-secondary">7:00 AM - 8:00 PM</span>
+                    <span className="text-text-primary">शनिवार</span>
+                    <span className="text-text-secondary">सुबह 7:00 - रात 8:00</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-text-primary">Sunday</span>
-                    <span className="text-text-secondary">8:00 AM - 7:00 PM</span>
+                    <span className="text-text-primary">रविवार</span>
+                    <span className="text-text-secondary">सुबह 8:00 - शाम 7:00</span>
                   </div>
                   <div className="pt-3 border-t border-line">
                     <p className="text-sm text-text-secondary">
-                      🙏 <strong>Special festivals:</strong> Extended hours during major Hindu festivals
+                      🙏 <strong>विशेष त्यौहारों पर:</strong> प्रमुख हिंदू त्योहारों के दौरान विस्तारित समय
                     </p>
                   </div>
                 </div>
@@ -401,52 +416,52 @@ Query from Kesari Nakshatra website`;
           {/* FAQ Section */}
           <section className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-8 md:p-12 border border-line">
             <h2 className="text-3xl md:text-4xl font-bold heading-en text-primary mb-8 text-center">
-              Frequently Asked Questions
+              अक्सर पूछे जाने वाले प्रश्न
             </h2>
             
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-semibold text-text-primary mb-2">How far in advance should I book?</h3>
+                  <h3 className="font-semibold text-text-primary mb-2">मुझे कितने दिन पहले बुक करना चाहिए?</h3>
                   <p className="text-text-secondary text-sm">
-                    We recommend booking at least 7-10 days in advance, especially for major ceremonies. For auspicious dates during festivals, book 2-3 weeks ahead.
+                    हम विशेष रूप से प्रमुख संस्कारों के लिए कम से कम 7-10 दिन पहले बुकिंग की सलाह देते हैं। त्योहारों के दौरान शुभ तिथियों के लिए 2-3 सप्ताह पहले बुक करें।
                   </p>
                 </div>
-                
+
                 <div>
-                  <h3 className="font-semibold text-text-primary mb-2">Do you provide all puja materials?</h3>
+                  <h3 className="font-semibold text-text-primary mb-2">क्या आप सभी पूजा सामग्री प्रदान करते हैं?</h3>
                   <p className="text-text-secondary text-sm">
-                    Yes, we provide all necessary puja items, including flowers, fruits, sweets, and ceremonial materials. You can also request a detailed list if you prefer to arrange some items yourself.
+                    हां, हम फूल, फल, मिठाई और अनुष्ठान सामग्री सहित सभी आवश्यक पूजा सामग्री प्रदान करते हैं। यदि आप कुछ सामग्री स्वयं व्यवस्थित करना पसंद करते हैं तो विस्तृत सूची भी मांग सकते हैं।
                   </p>
                 </div>
-                
+
                 <div>
-                  <h3 className="font-semibold text-text-primary mb-2">Can you perform online pujas?</h3>
+                  <h3 className="font-semibold text-text-primary mb-2">क्या आप ऑनलाइन पूजा कर सकते हैं?</h3>
                   <p className="text-text-secondary text-sm">
-                    Absolutely! We offer virtual puja services where you can participate via video call. This is perfect for those who cannot physically attend or are located far away.
+                    बिल्कुल! हम वर्चुअल पूजा सेवाएं प्रदान करते हैं जहां आप वीडियो कॉल के माध्यम से भाग ले सकते हैं। यह उन लोगों के लिए आदर्श है जो शारीरिक रूप से उपस्थित नहीं हो सकते या दूर स्थित हैं।
                   </p>
                 </div>
               </div>
-              
+
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-semibold text-text-primary mb-2">What areas do you serve?</h3>
+                  <h3 className="font-semibold text-text-primary mb-2">आप किन क्षेत्रों में सेवा प्रदान करते हैं?</h3>
                   <p className="text-text-secondary text-sm">
-                    While we're based in Madhya Pradesh, we serve clients across India. For distant locations, we can arrange local qualified pandits from our network or conduct online ceremonies.
+                    हालांकि हम मध्य प्रदेश में स्थित हैं, हम पूरे भारत में ग्राहकों को सेवा प्रदान करते हैं। दूर के स्थानों के लिए, हम अपने नेटवर्क से स्थानीय योग्य पंडितों की व्यवस्था कर सकते हैं या ऑनलाइन संस्कार आयोजित कर सकते हैं।
                   </p>
                 </div>
-                
+
                 <div>
-                  <h3 className="font-semibold text-text-primary mb-2">How are the ritual timings decided?</h3>
+                  <h3 className="font-semibold text-text-primary mb-2">अनुष्ठान का समय कैसे तय होता है?</h3>
                   <p className="text-text-secondary text-sm">
-                    All ritual timings are calculated based on Vedic astrology, considering the most auspicious muhurat for your specific ceremony and location. We provide detailed timing information upon booking.
+                    सभी अनुष्ठान समय वैदिक ज्योतिष के आधार पर गणना किए जाते हैं, आपके विशिष्ट संस्कार और स्थान के लिए सबसे शुभ मुहूर्त पर विचार करते हुए। हम बुकिंग पर विस्तृत समय जानकारी प्रदान करते हैं।
                   </p>
                 </div>
-                
+
                 <div>
-                  <h3 className="font-semibold text-text-primary mb-2">What if I need to reschedule?</h3>
+                  <h3 className="font-semibold text-text-primary mb-2">यदि मुझे समय बदलना हो तो क्या करूं?</h3>
                   <p className="text-text-secondary text-sm">
-                    We understand that plans can change. Please contact us at least 48 hours before the scheduled time for rescheduling. We'll help find the next auspicious time for your ceremony.
+                    हम समझते हैं कि योजनाएं बदल सकती हैं। कृपया समय परिवर्तन के लिए निर्धारित समय से कम से कम 48 घंटे पहले हमसे संपर्क करें। हम आपके संस्कार के लिए अगला शुभ समय खोजने में मदद करेंगे।
                   </p>
                 </div>
               </div>

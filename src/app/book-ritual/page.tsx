@@ -6,12 +6,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import LanguageToggle from '@/components/LanguageToggle';
+import { useLanguage } from '@/contexts/LanguageContext';
 import WhatsAppBookingModal from '@/components/WhatsAppBookingModal';
 import LearnMoreModal from '@/components/LearnMoreModal';
 
 function BookRitualContent() {
+  const { language } = useLanguage();
   const searchParams = useSearchParams();
-  const [language, setLanguage] = useState<'en' | 'hi'>('en');
   const [selectedCategory, setSelectedCategory] = useState<string>('home-puja');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false);
@@ -202,19 +204,12 @@ function BookRitualContent() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+      <LanguageToggle />
+
       <main className="pt-8">
         {/* Hero Section */}
         <section className="py-12 bg-elevations">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <button
-              onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}
-              className="inline-flex items-center px-3 py-1 rounded-full text-xs border border-line hover:bg-surface transition-colors mb-6"
-            >
-              <span className="mr-2">🌐</span>
-              {language === 'en' ? 'हिन्दी में देखें' : 'View in English'}
-            </button>
-            
             <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-primary ${
               language === 'hi' ? 'heading-hi' : 'heading-en'
             }`}>
@@ -280,13 +275,13 @@ function BookRitualContent() {
                     <div className="flex gap-3 justify-end">
                       <button
                         onClick={() => handleLearnMore(service)}
-                        className="bg-white hover:bg-orange-50 text-orange-600 border border-orange-400 px-4 py-3 rounded-full text-sm font-medium hover:scale-105 transition-transform"
+                        className={`bg-white hover:bg-orange-50 text-orange-600 border border-orange-400 px-4 py-3 rounded-full text-sm font-medium hover:scale-105 transition-transform ${language === 'hi' ? 'body-hi' : ''}`}
                       >
-                        Learn More
+                        {language === 'en' ? 'Learn More' : 'और जानें'}
                       </button>
                       <button
                         onClick={() => handleBookService(service)}
-                        className="btn-primary px-6 py-3 rounded-full text-sm font-medium hover:scale-105 transition-transform"
+                        className={`btn-primary px-6 py-3 rounded-full text-sm font-medium hover:scale-105 transition-transform ${language === 'hi' ? 'body-hi' : ''}`}
                       >
                         {content[language].book}
                       </button>
@@ -331,7 +326,7 @@ function BookRitualContent() {
 
 export default function BookRitualPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">लोड हो रहा है...</div>}>
       <BookRitualContent />
     </Suspense>
   );

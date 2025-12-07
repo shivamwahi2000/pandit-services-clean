@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import LanguageToggle from '@/components/LanguageToggle';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function SevaPage() {
-  const [language, setLanguage] = useState<'en' | 'hi'>('en');
+  const { language } = useLanguage();
 
   const content = {
     en: {
@@ -79,6 +80,7 @@ export default function SevaPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50">
       <Header />
+      <LanguageToggle />
 
       <main className="relative">
         {/* Content Section */}
@@ -91,18 +93,6 @@ export default function SevaPage() {
           </div>
 
           <div className="max-w-7xl mx-auto relative z-10">
-            {/* Language Toggle */}
-            <div className="flex justify-center mb-8">
-              <button
-                onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}
-                className="group relative inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-md border border-white/50 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              >
-                <span className="text-lg">🌐</span>
-                <span className="text-sm font-medium text-gray-700">
-                  {language === 'en' ? 'हिन्दी' : 'English'}
-                </span>
-              </button>
-            </div>
 
             {/* Coming Soon Badge */}
             <div className="flex justify-center mb-8 animate-fade-in">

@@ -5,10 +5,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import LanguageToggle from '@/components/LanguageToggle';
+import { useLanguage } from '@/contexts/LanguageContext';
 import WhatsAppEnrollmentModal from '@/components/WhatsAppEnrollmentModal';
 import { CourseSchema } from '@/components/StructuredData';
 
 export default function CoursesPage() {
+  const { language } = useLanguage();
+
   const courseSchemaData = [
     {
       name: "Bhagavad Gita Study Course",
@@ -36,7 +40,6 @@ export default function CoursesPage() {
     }
   ];
 
-  const [language, setLanguage] = useState<'en' | 'hi'>('en');
   const [selectedCategory, setSelectedCategory] = useState<string>('philosophy');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<any>(null);
@@ -160,19 +163,12 @@ export default function CoursesPage() {
     <div className="min-h-screen bg-background">
       <CourseSchema courses={courseSchemaData} />
       <Header />
-      
+      <LanguageToggle />
+
       <main className="pt-8">
         {/* Hero Section */}
         <section className="py-12 bg-elevations">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <button
-              onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}
-              className="inline-flex items-center px-3 py-1 rounded-full text-xs border border-line hover:bg-surface transition-colors mb-6"
-            >
-              <span className="mr-2">🌐</span>
-              {language === 'en' ? 'हिन्दी में देखें' : 'View in English'}
-            </button>
-            
             <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-primary ${
               language === 'hi' ? 'heading-hi' : 'heading-en'
             }`}>
@@ -268,8 +264,10 @@ export default function CoursesPage() {
                     
                     {/* Features */}
                     <div className="mb-4">
-                      <h4 className="font-semibold text-primary mb-2 text-sm">Course Features:</h4>
-                      <ul className="text-xs text-text-secondary space-y-1">
+                      <h4 className={`font-semibold text-primary mb-2 text-sm ${language === 'hi' ? 'body-hi' : ''}`}>
+                        {language === 'en' ? 'Course Features:' : 'पाठ्यक्रम विशेषताएं:'}
+                      </h4>
+                      <ul className={`text-xs text-text-secondary space-y-1 ${language === 'hi' ? 'body-hi' : ''}`}>
                         {course.features.map((feature, index) => (
                           <li key={index} className="flex items-center gap-2">
                             <span className="text-accent">✓</span>

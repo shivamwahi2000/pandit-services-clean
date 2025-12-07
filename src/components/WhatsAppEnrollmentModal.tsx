@@ -79,8 +79,34 @@ export default function WhatsAppEnrollmentModal({ isOpen, onClose, course, langu
 
   const generateWhatsAppMessage = () => {
     if (!course) return '';
-    
-    const message = `Hi! I want to enroll in ${course.title}
+
+    const message = language === 'hi'
+      ? `नमस्ते! मैं ${course.title} में नामांकन करना चाहता हूं
+
+📚 पाठ्यक्रम विवरण:
+- अवधि: ${course.duration}
+- स्तर: ${course.level}
+- मूल्य: ${course.price}
+- माध्यम: ${course.mode}
+- प्रशिक्षक: ${course.instructor}
+
+👤 छात्र विवरण:
+- नाम: ${formData.name}
+- फोन: ${formData.phone}
+- ईमेल: ${formData.email || 'प्रदान नहीं किया गया'}
+- पता: ${formData.address}
+- पिन कोड: ${formData.pincode}
+
+📅 प्राथमिकताएं:
+- पसंदीदा शुरुआत दिनांक: ${formData.preferredStartDate}
+- पसंदीदा माध्यम: ${formData.preferredMode}
+- पूर्व अनुभव: ${formData.experience || 'कोई नहीं'}
+
+📝 विशेष आवश्यकताएं:
+${formData.specialRequirements || 'कोई नहीं'}
+
+कृपया नामांकन की पुष्टि करें और आगे का विवरण साझा करें।`
+      : `Hi! I want to enroll in ${course.title}
 
 📚 Course Details:
 - Duration: ${course.duration}
@@ -253,10 +279,10 @@ Please confirm enrollment and share further details.`;
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                <option value="">Select Mode</option>
-                <option value="Online">Online</option>
-                <option value="Offline">Offline</option>
-                <option value="Both">Both</option>
+                <option value="">{language === 'hi' ? 'माध्यम चुनें' : 'Select Mode'}</option>
+                <option value={language === 'hi' ? 'ऑनलाइन' : 'Online'}>{language === 'hi' ? 'ऑनलाइन' : 'Online'}</option>
+                <option value={language === 'hi' ? 'ऑफलाइन' : 'Offline'}>{language === 'hi' ? 'ऑफलाइन' : 'Offline'}</option>
+                <option value={language === 'hi' ? 'दोनों' : 'Both'}>{language === 'hi' ? 'दोनों' : 'Both'}</option>
               </select>
             </div>
 

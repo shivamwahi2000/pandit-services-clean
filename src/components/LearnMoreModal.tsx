@@ -666,10 +666,38 @@ This important ceremony involves offering food, water, and prayers to departed a
     return serviceName.toLowerCase().replace(/\s+/g, ' ');
   };
 
-  const details = serviceDetails[getServiceKey(service.name)]?.[language] || {
-    title: service.name,
-    subtitle: service.description,
-    description: `This is a traditional Vedic ritual with deep spiritual significance. 
+  const details = serviceDetails[getServiceKey(service.name)]?.[language] || (
+    language === 'hi'
+      ? {
+          title: service.name,
+          subtitle: service.description,
+          description: `यह गहरे आध्यात्मिक महत्व वाला एक पारंपरिक वैदिक अनुष्ठान है।
+
+    **इस सेवा के बारे में:**
+    ${service.description}
+
+    **अवधि:** ${service.duration}
+    **श्रेणी:** ${service.category}
+
+    **लाभ:**
+    • आध्यात्मिक आशीर्वाद और दिव्य कृपा
+    • जीवन में शांति और सद्भाव
+    • इच्छाओं की पूर्ति
+    • नकारात्मक प्रभावों से सुरक्षा
+    • मानसिक और आध्यात्मिक शुद्धि
+
+    **क्या अपेक्षा करें:**
+    • प्रामाणिक वैदिक प्रक्रियाएं
+    • अनुभवी और योग्य पंडित
+    • सभी आवश्यक सामग्री प्रदान की जाती है
+    • पारंपरिक अनुष्ठान और समारोह
+    • दिव्य आशीर्वाद और प्रसादम`,
+          image: '/rituals/default-ritual.jpg'
+        }
+      : {
+          title: service.name,
+          subtitle: service.description,
+          description: `This is a traditional Vedic ritual with deep spiritual significance.
 
     **About this Service:**
     ${service.description}
@@ -690,8 +718,9 @@ This important ceremony involves offering food, water, and prayers to departed a
     • All necessary materials provided
     • Traditional rituals and ceremonies
     • Divine blessings and prasadam`,
-    image: '/rituals/default-ritual.jpg'
-  };
+          image: '/rituals/default-ritual.jpg'
+        }
+  );
 
   return (
     <div 

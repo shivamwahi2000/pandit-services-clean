@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function HowItWorks() {
-  const [language, setLanguage] = useState<'en' | 'hi'>('en');
+  const { language } = useLanguage();
 
   const steps = {
     en: [

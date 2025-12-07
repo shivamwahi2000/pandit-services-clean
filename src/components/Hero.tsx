@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Hero() {
-  const [language, setLanguage] = useState<'en' | 'hi'>('en');
+  const { language } = useLanguage();
 
   const content = {
     en: {
@@ -58,15 +58,6 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Hero Content */}
           <div className="text-center lg:text-left space-y-8">
-            {/* Language Toggle */}
-            <button
-              onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}
-              className="inline-flex items-center px-3 py-1 rounded-full text-xs border border-line hover:bg-surface transition-colors"
-            >
-              <span className="mr-2">🌐</span>
-              {language === 'en' ? 'हिन्दी में पढ़ें' : 'Read in English'}
-            </button>
-
             {/* Headline */}
             <div className="space-y-4">
               <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight ${
