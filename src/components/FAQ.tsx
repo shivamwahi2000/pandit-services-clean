@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 
 export default function FAQ() {
-  const { language } = useLanguage();
+  const locale = useLocale();
   const [openItem, setOpenItem] = useState<number | null>(null);
 
   const faqs = {
@@ -51,14 +51,14 @@ export default function FAQ() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
-            language === 'hi' ? 'heading-hi' : 'heading-en'
+            locale === 'hi' ? 'heading-hi' : 'heading-en'
           }`}>
-            {language === 'en' ? 'Frequently Asked Questions' : 'अक्सर पूछे जाने वाले प्रश्न'}
+            {locale === 'en' ? 'Frequently Asked Questions' : 'अक्सर पूछे जाने वाले प्रश्न'}
           </h2>
         </div>
 
         <div className="space-y-4">
-          {faqs[language].map((faq, index) => (
+          {faqs[locale as keyof typeof faqs].map((faq, index) => (
             <div
               key={index}
               className="bg-surface rounded-xl border border-line overflow-hidden"
@@ -68,7 +68,7 @@ export default function FAQ() {
                 className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-surface/80 transition-colors"
               >
                 <span className={`font-semibold ${
-                  language === 'hi' ? 'heading-hi' : 'heading-en'
+                  locale === 'hi' ? 'heading-hi' : 'heading-en'
                 }`}>
                   {faq.question}
                 </span>
@@ -80,7 +80,7 @@ export default function FAQ() {
               {openItem === index && (
                 <div className="px-6 pb-4">
                   <p className={`text-text-secondary ${
-                    language === 'hi' ? 'body-hi' : ''
+                    locale === 'hi' ? 'body-hi' : ''
                   }`}>
                     {faq.answer}
                   </p>

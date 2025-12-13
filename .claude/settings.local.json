@@ -1,7 +1,22 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(npm install:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm run dev:*)",
+      "Bash(wc:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Bash(npm run build:*)",
+      "Bash(grep:*)",
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "Bash(npm start)",
+      "Bash(PORT=3002 npm start:*)",
+      "WebSearch",
+      "WebFetch(domain:next-intl.dev)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []

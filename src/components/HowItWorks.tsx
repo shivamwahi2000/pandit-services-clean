@@ -1,9 +1,9 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 
 export default function HowItWorks() {
-  const { language } = useLanguage();
+  const locale = useLocale();
 
   const steps = {
     en: [
@@ -53,25 +53,25 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
-            language === 'hi' ? 'heading-hi' : 'heading-en'
+            locale === 'hi' ? 'heading-hi' : 'heading-en'
           }`}>
-            {language === 'en' ? 'How It Works' : 'यह कैसे काम करता है'}
+            {locale === 'en' ? 'How It Works' : 'यह कैसे काम करता है'}
           </h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {steps[language].map((step, index) => (
+          {steps[locale as keyof typeof steps].map((step, index) => (
             <div key={index} className="text-center space-y-4">
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto text-2xl">
                 {step.icon}
               </div>
               <h3 className={`text-xl font-semibold ${
-                language === 'hi' ? 'heading-hi' : 'heading-en'
+                locale === 'hi' ? 'heading-hi' : 'heading-en'
               }`}>
                 {step.title}
               </h3>
               <p className={`text-text-secondary ${
-                language === 'hi' ? 'body-hi' : ''
+                locale === 'hi' ? 'body-hi' : ''
               }`}>
                 {step.description}
               </p>

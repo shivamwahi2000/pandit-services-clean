@@ -1,11 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Link } from '@/i18n/routing';
+import { useLocale } from 'next-intl';
 
 export default function FeaturedRituals() {
-  const { language } = useLanguage();
+  const locale = useLocale();
 
   const rituals = {
     en: [
@@ -65,20 +65,20 @@ export default function FeaturedRituals() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className={`text-3xl md:text-4xl font-bold mb-4 text-primary ${
-            language === 'hi' ? 'heading-hi' : 'heading-en'
+            locale === 'hi' ? 'heading-hi' : 'heading-en'
           }`}>
-            {content[language].heading}
+            {content[locale as keyof typeof content].heading}
           </h2>
           <p className={`text-lg text-text-secondary max-w-2xl mx-auto ${
-            language === 'hi' ? 'body-hi' : ''
+            locale === 'hi' ? 'body-hi' : ''
           }`}>
-            {content[language].subheading}
+            {content[locale as keyof typeof content].subheading}
           </p>
         </div>
 
         {/* Rituals List */}
         <div className="space-y-8 mb-12">
-          {rituals[language].map((ritual, index) => (
+          {rituals[locale as keyof typeof rituals].map((ritual, index) => (
             <div
               key={index}
               className="bg-surface rounded-2xl p-6 hover:shadow-lg transition-all duration-300 border border-line/50"
@@ -97,12 +97,12 @@ export default function FeaturedRituals() {
                 {/* Content */}
                 <div className="flex-1 text-center md:text-left">
                   <h3 className={`text-2xl md:text-3xl font-bold mb-3 text-primary ${
-                    language === 'hi' ? 'heading-hi' : 'heading-en'
+                    locale === 'hi' ? 'heading-hi' : 'heading-en'
                   }`}>
                     {ritual.name}
                   </h3>
                   <p className={`text-text-secondary mb-4 ${
-                    language === 'hi' ? 'body-hi' : ''
+                    locale === 'hi' ? 'body-hi' : ''
                   }`}>
                     {ritual.description}
                   </p>
@@ -110,7 +110,7 @@ export default function FeaturedRituals() {
                     href="/book-ritual"
                     className="inline-flex items-center px-6 py-3 btn-primary rounded-full font-semibold hover:scale-105 transition-transform"
                   >
-                    {content[language].book}
+                    {content[locale as keyof typeof content].book}
                     <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                     </svg>
@@ -127,7 +127,7 @@ export default function FeaturedRituals() {
             href="/book-ritual"
             className="inline-flex items-center px-8 py-4 bg-gradient-secondary text-white rounded-full font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
           >
-            {content[language].seeMore}
+            {content[locale as keyof typeof content].seeMore}
             <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

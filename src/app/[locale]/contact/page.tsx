@@ -3,40 +3,50 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import LanguageToggle from '@/components/LanguageToggle';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { contactContent } from '@/utils/contactContent';
+import { useLocale, useTranslations } from 'next-intl';
 import { FAQSchema } from '@/components/StructuredData';
 
 export default function ContactPage() {
-  const { language } = useLanguage();
-  const content = contactContent[language];
+  const locale = useLocale();
+  const t = useTranslations('contact');
 
   const faqData = [
     {
-      question: content.faq1Q,
-      answer: content.faq1A
+      question: t('faq1Q'),
+      answer: t('faq1A')
     },
     {
-      question: content.faq2Q,
-      answer: content.faq2A
+      question: t('faq2Q'),
+      answer: t('faq2A')
     },
     {
-      question: content.faq3Q,
-      answer: content.faq3A
+      question: t('faq3Q'),
+      answer: t('faq3A')
     },
     {
-      question: content.faq4Q,
-      answer: content.faq4A
+      question: t('faq4Q'),
+      answer: t('faq4A')
     },
     {
-      question: content.faq5Q,
-      answer: content.faq5A
+      question: t('faq5Q'),
+      answer: t('faq5A')
     },
     {
-      question: content.faq6Q,
-      answer: content.faq6A
+      question: t('faq6Q'),
+      answer: t('faq6A')
     }
+  ];
+
+  const ritualTypes = [
+    t('ritualTypes.grihPravesh'),
+    t('ritualTypes.satyanarayan'),
+    t('ritualTypes.ganesh'),
+    t('ritualTypes.marriage'),
+    t('ritualTypes.havan'),
+    t('ritualTypes.bhagwat'),
+    t('ritualTypes.astrology'),
+    t('ritualTypes.vastu'),
+    t('ritualTypes.other')
   ];
 
   const [formData, setFormData] = useState({
@@ -97,7 +107,6 @@ Query from Kesari Nakshatra website`;
     <div className="min-h-screen sacred-bg page-load">
       <FAQSchema faqs={faqData} />
       <Header />
-      <LanguageToggle />
 
       <main className="pt-8 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,14 +115,14 @@ Query from Kesari Nakshatra website`;
           <section className="text-center mb-16">
             <div className="max-w-4xl mx-auto">
               <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 ${
-                language === 'hi' ? 'heading-hi' : 'heading-en'
+                locale === 'hi' ? 'heading-hi' : 'heading-en'
               }`}>
-                {content.heroTitle}
+                {t('heroTitle')}
               </h1>
               <p className={`text-xl md:text-2xl text-text-secondary leading-relaxed ${
-                language === 'hi' ? 'body-hi' : ''
+                locale === 'hi' ? 'body-hi' : ''
               }`}>
-                {content.heroSubtitle}
+                {t('heroSubtitle')}
               </p>
             </div>
           </section>
@@ -123,18 +132,18 @@ Query from Kesari Nakshatra website`;
             {/* Contact Form */}
             <div className="bg-surface rounded-2xl p-8 border border-line glow-border">
               <h2 className={`text-2xl md:text-3xl font-bold text-primary mb-6 ${
-                language === 'hi' ? 'heading-hi' : 'heading-en'
+                locale === 'hi' ? 'heading-hi' : 'heading-en'
               }`}>
-                {content.formHeading}
+                {t('formHeading')}
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className={`block text-sm font-medium text-text-primary mb-2 ${
-                      language === 'hi' ? 'body-hi' : ''
+                      locale === 'hi' ? 'body-hi' : ''
                     }`}>
-                      {content.nameLabel} *
+                      {t('nameLabel')} *
                     </label>
                     <input
                       type="text"
@@ -144,15 +153,15 @@ Query from Kesari Nakshatra website`;
                       value={formData.name}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
-                      placeholder={content.namePlaceholder}
+                      placeholder={t('namePlaceholder')}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="phone" className={`block text-sm font-medium text-text-primary mb-2 ${
-                      language === 'hi' ? 'body-hi' : ''
+                      locale === 'hi' ? 'body-hi' : ''
                     }`}>
-                      {content.phoneLabel} *
+                      {t('phoneLabel')} *
                     </label>
                     <input
                       type="tel"
@@ -162,16 +171,16 @@ Query from Kesari Nakshatra website`;
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
-                      placeholder={content.phonePlaceholder}
+                      placeholder={t('phonePlaceholder')}
                     />
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="email" className={`block text-sm font-medium text-text-primary mb-2 ${
-                    language === 'hi' ? 'body-hi' : ''
+                    locale === 'hi' ? 'body-hi' : ''
                   }`}>
-                    {content.emailLabel} *
+                    {t('emailLabel')} *
                   </label>
                   <input
                     type="email"
@@ -181,15 +190,15 @@ Query from Kesari Nakshatra website`;
                     value={formData.email}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
-                    placeholder={content.emailPlaceholder}
+                    placeholder={t('emailPlaceholder')}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="ritualType" className={`block text-sm font-medium text-text-primary mb-2 ${
-                    language === 'hi' ? 'body-hi' : ''
+                    locale === 'hi' ? 'body-hi' : ''
                   }`}>
-                    {content.serviceTypeLabel}
+                    {t('serviceTypeLabel')}
                   </label>
                   <select
                     id="ritualType"
@@ -198,8 +207,8 @@ Query from Kesari Nakshatra website`;
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
                   >
-                    <option value="">{content.selectService}</option>
-                    {content.ritualTypes.map((type) => (
+                    <option value="">{t('selectService')}</option>
+                    {ritualTypes.map((type) => (
                       <option key={type} value={type}>{type}</option>
                     ))}
                   </select>
@@ -207,9 +216,9 @@ Query from Kesari Nakshatra website`;
 
                 <div>
                   <label htmlFor="subject" className={`block text-sm font-medium text-text-primary mb-2 ${
-                    language === 'hi' ? 'body-hi' : ''
+                    locale === 'hi' ? 'body-hi' : ''
                   }`}>
-                    {content.subjectLabel} *
+                    {t('subjectLabel')} *
                   </label>
                   <input
                     type="text"
@@ -219,15 +228,15 @@ Query from Kesari Nakshatra website`;
                     value={formData.subject}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background"
-                    placeholder={content.subjectPlaceholder}
+                    placeholder={t('subjectPlaceholder')}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className={`block text-sm font-medium text-text-primary mb-2 ${
-                    language === 'hi' ? 'body-hi' : ''
+                    locale === 'hi' ? 'body-hi' : ''
                   }`}>
-                    {content.messageLabel} *
+                    {t('messageLabel')} *
                   </label>
                   <textarea
                     id="message"
@@ -237,18 +246,18 @@ Query from Kesari Nakshatra website`;
                     value={formData.message}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background resize-vertical"
-                    placeholder={content.messagePlaceholder}
+                    placeholder={t('messagePlaceholder')}
                   />
                 </div>
 
                 <button
                   type="submit"
                   className={`w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-lg font-medium text-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 flex items-center justify-center space-x-2 ${
-                    language === 'hi' ? 'heading-hi' : ''
+                    locale === 'hi' ? 'heading-hi' : ''
                   }`}
                 >
                   <span>📱</span>
-                  <span>{content.submitButton}</span>
+                  <span>{t('submitButton')}</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>

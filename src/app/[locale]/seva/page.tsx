@@ -3,11 +3,10 @@
 import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import LanguageToggle from '@/components/LanguageToggle';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 
 export default function SevaPage() {
-  const { language } = useLanguage();
+  const locale = useLocale();
 
   const content = {
     en: {
@@ -80,7 +79,6 @@ export default function SevaPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50">
       <Header />
-      <LanguageToggle />
 
       <main className="relative">
         {/* Content Section */}
@@ -103,7 +101,7 @@ export default function SevaPage() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
                   </span>
-                  {content[language].comingSoon}
+                  {content[locale as keyof typeof content].comingSoon}
                 </span>
               </div>
             </div>
@@ -111,18 +109,18 @@ export default function SevaPage() {
             {/* Title */}
             <div className="text-center mb-12 space-y-4">
               <h1 className={`text-5xl md:text-7xl font-bold text-gray-900 ${
-                language === 'hi' ? 'heading-hi' : 'heading-en'
+                locale === 'hi' ? 'heading-hi' : 'heading-en'
               }`}>
-                {content[language].title}
+                {content[locale as keyof typeof content].title}
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 animate-gradient">
-                  {content[language].titleAccent}
+                  {content[locale as keyof typeof content].titleAccent}
                 </span>
               </h1>
               <p className={`text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed ${
-                language === 'hi' ? 'body-hi' : ''
+                locale === 'hi' ? 'body-hi' : ''
               }`}>
-                {content[language].subtitle}
+                {content[locale as keyof typeof content].subtitle}
               </p>
             </div>
 
@@ -132,12 +130,12 @@ export default function SevaPage() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-red-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-300"></div>
                 <div className="relative px-8 py-6 bg-white/95 backdrop-blur-md border border-white/50 rounded-2xl shadow-xl">
                   <p className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600 text-center">
-                    {content[language].quoteHindi}
+                    {content[locale as keyof typeof content].quoteHindi}
                   </p>
                   <p className={`text-sm text-gray-600 text-center mt-2 ${
-                    language === 'hi' ? 'body-hi' : ''
+                    locale === 'hi' ? 'body-hi' : ''
                   }`}>
-                    {content[language].quote}
+                    {content[locale as keyof typeof content].quote}
                   </p>
                 </div>
               </div>
@@ -151,14 +149,14 @@ export default function SevaPage() {
                 <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/50 p-8 md:p-12">
                   <div className="text-center space-y-6">
                     <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 ${
-                      language === 'hi' ? 'heading-hi' : 'heading-en'
+                      locale === 'hi' ? 'heading-hi' : 'heading-en'
                     }`}>
-                      {content[language].contactHeading}
+                      {content[locale as keyof typeof content].contactHeading}
                     </h2>
                     <p className={`text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed ${
-                      language === 'hi' ? 'body-hi' : ''
+                      locale === 'hi' ? 'body-hi' : ''
                     }`}>
-                      {content[language].contactMessage}
+                      {content[locale as keyof typeof content].contactMessage}
                     </p>
 
                     {/* CTA Buttons */}
@@ -174,7 +172,7 @@ export default function SevaPage() {
                           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.703"/>
                           </svg>
-                          <span>{content[language].whatsappButton}</span>
+                          <span>{content[locale as keyof typeof content].whatsappButton}</span>
                         </div>
                       </a>
 
@@ -187,7 +185,7 @@ export default function SevaPage() {
                           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.57a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.57-2.3-.57-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
                           </svg>
-                          <span>{content[language].callButton}</span>
+                          <span>{content[locale as keyof typeof content].callButton}</span>
                         </div>
                       </a>
                     </div>
@@ -202,9 +200,9 @@ export default function SevaPage() {
         <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-white/50">
           <div className="max-w-7xl mx-auto">
             <h2 className={`text-4xl md:text-5xl font-bold text-center text-gray-900 mb-16 ${
-              language === 'hi' ? 'heading-hi' : 'heading-en'
+              locale === 'hi' ? 'heading-hi' : 'heading-en'
             }`}>
-              {content[language].sevaTypes}
+              {content[locale as keyof typeof content].sevaTypes}
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -229,9 +227,9 @@ export default function SevaPage() {
                     {/* Content Section */}
                     <div className="p-6">
                       <h3 className={`text-xl font-bold text-gray-900 text-center ${
-                        language === 'hi' ? 'heading-hi' : ''
+                        locale === 'hi' ? 'heading-hi' : ''
                       }`}>
-                        {program.name[language]}
+                        {program.name[locale as keyof typeof program.name]}
                       </h3>
                     </div>
                   </div>
@@ -245,8 +243,8 @@ export default function SevaPage() {
                 <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 via-red-500 to-orange-400 rounded-full blur-xl opacity-20"></div>
                 <div className="relative flex items-center gap-2 px-8 py-4 bg-white/90 backdrop-blur-sm rounded-full border border-orange-200 shadow-lg">
                   <span className="text-2xl">✨</span>
-                  <p className={`text-gray-700 font-medium ${language === 'hi' ? 'body-hi' : ''}`}>
-                    {language === 'en' ? 'Many more programs coming soon...' : 'और भी बहुत से कार्यक्रम जल्द आ रहे हैं...'}
+                  <p className={`text-gray-700 font-medium ${locale === 'hi' ? 'body-hi' : ''}`}>
+                    {locale === 'en' ? 'Many more programs coming soon...' : 'और भी बहुत से कार्यक्रम जल्द आ रहे हैं...'}
                   </p>
                 </div>
               </div>

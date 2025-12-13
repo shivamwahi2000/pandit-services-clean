@@ -1,11 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Link } from '@/i18n/routing';
+import { useLocale } from 'next-intl';
 
 export default function Hero() {
-  const { language } = useLanguage();
+  const locale = useLocale();
 
   const content = {
     en: {
@@ -61,17 +61,17 @@ export default function Hero() {
             {/* Headline */}
             <div className="space-y-4">
               <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight ${
-                language === 'hi' ? 'heading-hi' : 'heading-en'
+                locale === 'hi' ? 'heading-hi' : 'heading-en'
               }`}>
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  {content[language].headline}
+                  {content[locale as keyof typeof content].headline}
                 </span>
               </h1>
               
               <p className={`text-lg md:text-xl text-text-secondary max-w-2xl ${
-                language === 'hi' ? 'body-hi' : ''
+                locale === 'hi' ? 'body-hi' : ''
               }`}>
-                {content[language].subheadline}
+                {content[locale as keyof typeof content].subheadline}
               </p>
             </div>
 
@@ -81,7 +81,7 @@ export default function Hero() {
                 href="/book-puja"
                 className="btn-primary px-8 py-4 rounded-full text-lg font-semibold inline-flex items-center justify-center space-x-2 hover:scale-105 transition-transform"
               >
-                <span>{content[language].primaryCTA}</span>
+                <span>{content[locale as keyof typeof content].primaryCTA}</span>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
@@ -91,7 +91,7 @@ export default function Hero() {
                 href="/services"
                 className="px-8 py-4 rounded-full text-lg font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors inline-flex items-center justify-center space-x-2"
               >
-                <span>{content[language].secondaryCTA}</span>
+                <span>{content[locale as keyof typeof content].secondaryCTA}</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -102,15 +102,15 @@ export default function Hero() {
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-8 text-sm text-text-secondary">
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span>{language === 'en' ? '15+ Years Experience' : '15+ वर्षों का अनुभव'}</span>
+                <span>{locale === 'en' ? '15+ Years Experience' : '15+ वर्षों का अनुभव'}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span>{language === 'en' ? '1000+ Happy Families' : '1000+ खुश परिवार'}</span>
+                <span>{locale === 'en' ? '1000+ Happy Families' : '1000+ खुश परिवार'}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span>{language === 'en' ? 'Pan India Service' : 'पैन इंडिया सेवा'}</span>
+                <span>{locale === 'en' ? 'Pan India Service' : 'पैन इंडिया सेवा'}</span>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ export default function Hero() {
               {/* YouTube Video Embed */}
               <iframe
                 src="https://www.youtube.com/embed/b6UMt_Cfxc8"
-                title={content[language].videoAlt}
+                title={content[locale as keyof typeof content].videoAlt}
                 className="absolute inset-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

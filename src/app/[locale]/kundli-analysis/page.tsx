@@ -3,15 +3,13 @@
 import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import LanguageToggle from '@/components/LanguageToggle';
 import TraditionalKundli from '@/components/TraditionalKundli';
 import PyJhoraChart from '@/components/PyJhoraChart';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { kundliContent } from '@/utils/kundliContent';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function KundliAnalysisPage() {
-  const { language } = useLanguage();
-  const content = kundliContent[language];
+  const locale = useLocale();
+  const t = useTranslations('kundli');
   const [kundliData, setKundliData] = useState<{
     result: {
       data: {
@@ -76,7 +74,7 @@ export default function KundliAnalysisPage() {
       <div className="min-h-screen sacred-bg flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className={`text-text-secondary ${language === 'hi' ? 'body-hi' : ''}`}>{content.loadingText}</p>
+          <p className={`text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{t('loadingText')}</p>
         </div>
       </div>
     );
@@ -86,29 +84,28 @@ export default function KundliAnalysisPage() {
     return (
       <div className="min-h-screen sacred-bg page-load">
         <Header />
-        <LanguageToggle />
         <main className="pt-8 pb-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className={`text-3xl font-bold text-primary mb-4 ${
-              language === 'hi' ? 'heading-hi' : 'heading-en'
-            }`}>{content.pageTitle}</h1>
+              locale === 'hi' ? 'heading-hi' : 'heading-en'
+            }`}>{t('pageTitle')}</h1>
             <div className="bg-surface rounded-2xl p-8 border border-line">
               <div className="text-6xl mb-4">📊</div>
               <h2 className={`text-xl font-semibold text-text-primary mb-2 ${
-                language === 'hi' ? 'heading-hi' : ''
-              }`}>{content.noDataTitle}</h2>
+                locale === 'hi' ? 'heading-hi' : ''
+              }`}>{t('noDataTitle')}</h2>
               <p className={`text-text-secondary mb-6 ${
-                language === 'hi' ? 'body-hi' : ''
+                locale === 'hi' ? 'body-hi' : ''
               }`}>
-                {content.noDataText}
+                {t('noDataText')}
               </p>
               <a
                 href="/astrology-vastu"
                 className={`btn-primary px-6 py-3 rounded-lg font-medium inline-block ${
-                  language === 'hi' ? 'heading-hi' : ''
+                  locale === 'hi' ? 'heading-hi' : ''
                 }`}
               >
-                {content.generateButton}
+                {t('generateButton')}
               </a>
             </div>
           </div>
@@ -170,18 +167,17 @@ export default function KundliAnalysisPage() {
   };
 
   const tabs = [
-    { id: 'chart', label: content.chartTab, icon: '📊' },
-    { id: 'planets', label: content.planetsTab, icon: '🪐' },
-    { id: 'houses', label: content.housesTab, icon: '🏠' },
-    { id: 'yogas', label: content.yogasTab, icon: '🧘' },
-    { id: 'nakshatra', label: content.nakshatraTab, icon: '⭐' },
-    { id: 'panchang', label: content.panchangTab, icon: '📅' }
+    { id: 'chart', label: t('chartTab'), icon: '📊' },
+    { id: 'planets', label: t('planetsTab'), icon: '🪐' },
+    { id: 'houses', label: t('housesTab'), icon: '🏠' },
+    { id: 'yogas', label: t('yogasTab'), icon: '🧘' },
+    { id: 'nakshatra', label: t('nakshatraTab'), icon: '⭐' },
+    { id: 'panchang', label: t('panchangTab'), icon: '📅' }
   ];
 
   return (
     <div className="min-h-screen sacred-bg page-load">
       <Header />
-      <LanguageToggle />
 
       <main className="pt-8 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -189,28 +185,28 @@ export default function KundliAnalysisPage() {
           {/* Header Section */}
           <section className="text-center mb-8">
             <h1 className={`text-3xl md:text-4xl font-bold text-primary mb-4 ${
-              language === 'hi' ? 'heading-hi' : 'heading-en'
+              locale === 'hi' ? 'heading-hi' : 'heading-en'
             }`}>
-              {content.pageTitle}
+              {t('pageTitle')}
             </h1>
 
             <div className="bg-surface rounded-xl p-4 border border-line max-w-4xl mx-auto">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
                 <div>
-                  <span className={`text-text-secondary block ${language === 'hi' ? 'body-hi' : ''}`}>{content.nameLabel}</span>
-                  <span className={`text-text-primary font-semibold ${language === 'hi' ? 'heading-hi' : ''}`}>{result.name || form.name}</span>
+                  <span className={`text-text-secondary block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('nameLabel')}</span>
+                  <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'heading-hi' : ''}`}>{result.name || form.name}</span>
                 </div>
                 <div>
-                  <span className={`text-text-secondary block ${language === 'hi' ? 'body-hi' : ''}`}>{content.dateLabel}</span>
-                  <span className={`text-text-primary font-semibold ${language === 'hi' ? 'heading-hi' : ''}`}>{form.dateOfBirth}</span>
+                  <span className={`text-text-secondary block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dateLabel')}</span>
+                  <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'heading-hi' : ''}`}>{form.dateOfBirth}</span>
                 </div>
                 <div>
-                  <span className={`text-text-secondary block ${language === 'hi' ? 'body-hi' : ''}`}>{content.timeLabel}</span>
-                  <span className={`text-text-primary font-semibold ${language === 'hi' ? 'heading-hi' : ''}`}>{form.timeOfBirth}</span>
+                  <span className={`text-text-secondary block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('timeLabel')}</span>
+                  <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'heading-hi' : ''}`}>{form.timeOfBirth}</span>
                 </div>
                 <div>
-                  <span className={`text-text-secondary block ${language === 'hi' ? 'body-hi' : ''}`}>{content.placeLabel}</span>
-                  <span className={`text-text-primary font-semibold ${language === 'hi' ? 'heading-hi' : ''}`}>{location?.name}</span>
+                  <span className={`text-text-secondary block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('placeLabel')}</span>
+                  <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'heading-hi' : ''}`}>{location?.name}</span>
                 </div>
               </div>
             </div>
@@ -247,11 +243,11 @@ export default function KundliAnalysisPage() {
                 <div className="space-y-8">
                   <div className="bg-surface rounded-xl p-6 border border-line">
                     <h2 className={`text-2xl font-bold text-primary mb-6 flex items-center gap-3 ${
-                      language === 'hi' ? 'heading-hi' : 'heading-en'
+                      locale === 'hi' ? 'heading-hi' : 'heading-en'
                     }`}>
-                      🔶 {content.traditionalChartTitle}
+                      🔶 {t('traditionalChartTitle')}
                     </h2>
-                    <p className={`text-text-secondary mb-6 ${language === 'hi' ? 'body-hi' : ''}`}>{content.traditionalChartDesc}</p>
+                    <p className={`text-text-secondary mb-6 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('traditionalChartDesc')}</p>
                     
                     <div className="flex justify-center">
                       <TraditionalKundli
@@ -265,11 +261,11 @@ export default function KundliAnalysisPage() {
                   {typeof data === 'object' && data !== null && 'navamsa_chart' in data && (data as any).navamsa_chart && Object.keys((data as any).navamsa_chart).length > 0 && (
                     <div className="bg-surface rounded-xl p-6 border border-line">
                       <h2 className={`text-2xl font-bold text-primary mb-6 flex items-center gap-3 ${
-                        language === 'hi' ? 'heading-hi' : 'heading-en'
+                        locale === 'hi' ? 'heading-hi' : 'heading-en'
                       }`}>
-                        🔶 {content.navamsaChartTitle}
+                        🔶 {t('navamsaChartTitle')}
                       </h2>
-                      <p className={`text-text-secondary mb-6 ${language === 'hi' ? 'body-hi' : ''}`}>{content.navamsaChartDesc}</p>
+                      <p className={`text-text-secondary mb-6 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('navamsaChartDesc')}</p>
                       
                       <div className="flex justify-center">
                         <TraditionalKundli
@@ -287,22 +283,22 @@ export default function KundliAnalysisPage() {
                 <div className="bg-surface rounded-xl border border-line overflow-hidden">
                   <div className="p-6 border-b border-line">
                     <h2 className={`text-2xl font-bold text-primary flex items-center gap-3 ${
-                      language === 'hi' ? 'heading-hi' : 'heading-en'
+                      locale === 'hi' ? 'heading-hi' : 'heading-en'
                     }`}>
-                      🪐 {content.planetsTitle}
+                      🪐 {t('planetsTitle')}
                     </h2>
-                    <p className={`text-text-secondary mt-2 ${language === 'hi' ? 'body-hi' : ''}`}>{content.planetsDesc}</p>
+                    <p className={`text-text-secondary mt-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('planetsDesc')}</p>
                   </div>
 
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead className="bg-elevations">
                         <tr>
-                          <th className={`px-6 py-4 text-left text-sm font-semibold text-text-primary ${language === 'hi' ? 'heading-hi' : ''}`}>{content.planetHeader}</th>
-                          <th className={`px-6 py-4 text-left text-sm font-semibold text-text-primary ${language === 'hi' ? 'heading-hi' : ''}`}>{content.signHeader}</th>
-                          <th className={`px-6 py-4 text-left text-sm font-semibold text-text-primary ${language === 'hi' ? 'heading-hi' : ''}`}>{content.houseHeader}</th>
-                          <th className={`px-6 py-4 text-left text-sm font-semibold text-text-primary ${language === 'hi' ? 'heading-hi' : ''}`}>{content.degreeHeader}</th>
-                          <th className={`px-6 py-4 text-left text-sm font-semibold text-text-primary ${language === 'hi' ? 'heading-hi' : ''}`}>{content.longitudeHeader}</th>
+                          <th className={`px-6 py-4 text-left text-sm font-semibold text-text-primary ${locale === 'hi' ? 'heading-hi' : ''}`}>{t('planetHeader')}</th>
+                          <th className={`px-6 py-4 text-left text-sm font-semibold text-text-primary ${locale === 'hi' ? 'heading-hi' : ''}`}>{t('signHeader')}</th>
+                          <th className={`px-6 py-4 text-left text-sm font-semibold text-text-primary ${locale === 'hi' ? 'heading-hi' : ''}`}>{t('houseHeader')}</th>
+                          <th className={`px-6 py-4 text-left text-sm font-semibold text-text-primary ${locale === 'hi' ? 'heading-hi' : ''}`}>{t('degreeHeader')}</th>
+                          <th className={`px-6 py-4 text-left text-sm font-semibold text-text-primary ${locale === 'hi' ? 'heading-hi' : ''}`}>{t('longitudeHeader')}</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-line">
@@ -314,10 +310,10 @@ export default function KundliAnalysisPage() {
                               <div className="flex items-center gap-3">
                                 <span className="text-2xl">{getPlanetSymbol(planetName)}</span>
                                 <div>
-                                  <div className={`font-semibold text-text-primary ${language === 'hi' ? 'heading-hi' : ''}`}>{planetName}</div>
-                                  <div className={`text-xs text-text-secondary capitalize ${language === 'hi' ? 'body-hi' : ''}`}>
-                                    {planetName === 'Rahu' || planetName === 'Ketu' ? content.shadowPlanet :
-                                     ['Sun', 'Moon'].includes(planetName) ? content.luminary : content.planet}
+                                  <div className={`font-semibold text-text-primary ${locale === 'hi' ? 'heading-hi' : ''}`}>{planetName}</div>
+                                  <div className={`text-xs text-text-secondary capitalize ${locale === 'hi' ? 'body-hi' : ''}`}>
+                                    {planetName === 'Rahu' || planetName === 'Ketu' ? t('shadowPlanet') :
+                                     ['Sun', 'Moon'].includes(planetName) ? t('luminary') : t('planet')}
                                   </div>
                                 </div>
                               </div>
@@ -327,9 +323,9 @@ export default function KundliAnalysisPage() {
                             </td>
                             <td className="px-6 py-4">
                               <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary ${
-                                language === 'hi' ? 'heading-hi' : ''
+                                locale === 'hi' ? 'heading-hi' : ''
                               }`}>
-                                {content.housePrefix} {planetData.house || 'N/A'}
+                                {t('housePrefix')} {planetData.house || 'N/A'}
                               </span>
                             </td>
                             <td className="px-6 py-4">
@@ -359,9 +355,9 @@ export default function KundliAnalysisPage() {
               {activeTab === 'houses' && data?.houses && (
                 <div className="bg-surface rounded-xl p-6 border border-line">
                   <h2 className={`text-2xl font-bold text-primary mb-6 flex items-center gap-3 ${
-                    language === 'hi' ? 'heading-hi' : 'heading-en'
+                    locale === 'hi' ? 'heading-hi' : 'heading-en'
                   }`}>
-                    🏠 {content.housesTitle}
+                    🏠 {t('housesTitle')}
                   </h2>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {Array.from({ length: 12 }, (_, i) => i + 1).map((houseNum) => {
@@ -377,12 +373,12 @@ export default function KundliAnalysisPage() {
                         }`}>
                           <div className="flex items-center justify-between mb-3">
                             <h3 className={`font-bold text-lg text-text-primary ${
-                              language === 'hi' ? 'heading-hi' : ''
-                            }`}>{content.housePrefix} {houseNum}</h3>
+                              locale === 'hi' ? 'heading-hi' : ''
+                            }`}>{t('housePrefix')} {houseNum}</h3>
                             <span className={`px-2 py-1 rounded text-xs font-medium ${
                               hasplanets ? 'bg-primary text-white' : 'bg-line text-text-secondary'
-                            } ${language === 'hi' ? 'heading-hi' : ''}`}>
-                              {houseData?.planet_count || 0} {content.planetsCount}
+                            } ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                              {houseData?.planet_count || 0} {t('planetsCount')}
                             </span>
                           </div>
 
@@ -391,12 +387,12 @@ export default function KundliAnalysisPage() {
                               {houseData.planets.map((planet: string, index: number) => (
                                 <div key={index} className="flex items-center gap-2 p-2 bg-background rounded">
                                   <span className="text-lg">{getPlanetSymbol(planet)}</span>
-                                  <span className={`font-medium text-text-primary ${language === 'hi' ? 'heading-hi' : ''}`}>{planet}</span>
+                                  <span className={`font-medium text-text-primary ${locale === 'hi' ? 'heading-hi' : ''}`}>{planet}</span>
                                 </div>
                               ))}
                             </div>
                           ) : (
-                            <p className={`text-text-secondary text-sm italic ${language === 'hi' ? 'body-hi' : ''}`}>{content.noPlanets}</p>
+                            <p className={`text-text-secondary text-sm italic ${locale === 'hi' ? 'body-hi' : ''}`}>{t('noPlanets')}</p>
                           )}
                         </div>
                       );
@@ -409,9 +405,9 @@ export default function KundliAnalysisPage() {
               {activeTab === 'yogas' && (
                 <div className="bg-surface rounded-xl p-6 border border-line">
                   <h2 className={`text-2xl font-bold text-primary mb-6 flex items-center gap-3 ${
-                    language === 'hi' ? 'heading-hi' : 'heading-en'
+                    locale === 'hi' ? 'heading-hi' : 'heading-en'
                   }`}>
-                    🧘 {content.yogasTitle}
+                    🧘 {t('yogasTitle')}
                   </h2>
 
                   {data?.yogas && data.yogas.length > 0 ? (
@@ -420,15 +416,15 @@ export default function KundliAnalysisPage() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                           <div>
                             <span className="block text-3xl font-bold text-green-600">{data.yoga_summary?.benefic_yogas || 0}</span>
-                            <span className={`text-sm text-green-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.beneficYogas}</span>
+                            <span className={`text-sm text-green-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('beneficYogas')}</span>
                           </div>
                           <div>
                             <span className="block text-3xl font-bold text-orange-600">{data.yoga_summary?.challenging_yogas || 0}</span>
-                            <span className={`text-sm text-orange-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.challengingYogas}</span>
+                            <span className={`text-sm text-orange-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('challengingYogas')}</span>
                           </div>
                           <div>
                             <span className="block text-3xl font-bold text-blue-600">{data.yoga_summary?.total_yogas || 0}</span>
-                            <span className={`text-sm text-blue-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.totalCombinations}</span>
+                            <span className={`text-sm text-blue-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('totalCombinations')}</span>
                           </div>
                         </div>
                       </div>
@@ -442,20 +438,20 @@ export default function KundliAnalysisPage() {
                           }`}>
                             <div className="flex justify-between items-start mb-4">
                               <h3 className={`font-bold text-xl text-text-primary ${
-                                language === 'hi' ? 'heading-hi' : ''
+                                locale === 'hi' ? 'heading-hi' : ''
                               }`}>{yoga.name}</h3>
                               <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                                 yoga.benefic !== false ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'
-                              } ${language === 'hi' ? 'heading-hi' : ''}`}>
-                                {yoga.benefic !== false ? content.beneficLabel : content.challengingLabel}
+                              } ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                                {yoga.benefic !== false ? t('beneficLabel') : t('challengingLabel')}
                               </span>
                             </div>
 
-                            <p className={`text-text-secondary mb-4 leading-relaxed ${language === 'hi' ? 'body-hi' : ''}`}>{yoga.description}</p>
+                            <p className={`text-text-secondary mb-4 leading-relaxed ${locale === 'hi' ? 'body-hi' : ''}`}>{yoga.description}</p>
 
                             {yoga.planets_involved && yoga.planets_involved.length > 0 && (
                               <div className="flex flex-wrap gap-2">
-                                <span className={`text-sm text-text-secondary font-medium ${language === 'hi' ? 'body-hi' : ''}`}>{content.planetsInvolved}</span>
+                                <span className={`text-sm text-text-secondary font-medium ${locale === 'hi' ? 'body-hi' : ''}`}>{t('planetsInvolved')}</span>
                                 {yoga.planets_involved.map((planet: string, planetIndex: number) => (
                                   <span 
                                     key={planetIndex}
@@ -475,9 +471,9 @@ export default function KundliAnalysisPage() {
                     <div className="text-center py-12">
                       <div className="text-6xl mb-4">🔮</div>
                       <h3 className={`text-xl font-semibold text-text-primary mb-2 ${
-                        language === 'hi' ? 'heading-hi' : ''
-                      }`}>{content.yogasCalculating}</h3>
-                      <p className={`text-text-secondary ${language === 'hi' ? 'body-hi' : ''}`}>{content.yogasProcessing}</p>
+                        locale === 'hi' ? 'heading-hi' : ''
+                      }`}>{t('yogasCalculating')}</h3>
+                      <p className={`text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{t('yogasProcessing')}</p>
                     </div>
                   )}
                 </div>
@@ -487,47 +483,47 @@ export default function KundliAnalysisPage() {
               {activeTab === 'nakshatra' && (
                 <div className="bg-surface rounded-xl p-6 border border-line">
                   <h2 className={`text-2xl font-bold text-primary mb-6 flex items-center gap-3 ${
-                    language === 'hi' ? 'heading-hi' : 'heading-en'
+                    locale === 'hi' ? 'heading-hi' : 'heading-en'
                   }`}>
-                    ⭐ {content.nakshatraTitle}
+                    ⭐ {t('nakshatraTitle')}
                   </h2>
 
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-6">
                       <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-6 border border-blue-200">
-                        <h3 className={`font-bold text-lg text-blue-800 mb-3 ${language === 'hi' ? 'heading-hi' : ''}`}>{content.birthNakshatra}</h3>
-                        <p className={`text-2xl font-bold text-primary mb-2 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                          {data?.nakshatra_details?.birth_nakshatra || content.calculating}
+                        <h3 className={`font-bold text-lg text-blue-800 mb-3 ${locale === 'hi' ? 'heading-hi' : ''}`}>{t('birthNakshatra')}</h3>
+                        <p className={`text-2xl font-bold text-primary mb-2 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                          {data?.nakshatra_details?.birth_nakshatra || t('calculating')}
                         </p>
-                        <p className={`text-sm text-blue-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.birthNakshatraDesc}</p>
+                        <p className={`text-sm text-blue-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('birthNakshatraDesc')}</p>
                       </div>
 
                       <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-lg p-6 border border-green-200">
-                        <h3 className={`font-bold text-lg text-green-800 mb-3 ${language === 'hi' ? 'heading-hi' : ''}`}>{content.moonSign}</h3>
-                        <p className={`text-2xl font-bold text-success mb-2 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                          {data?.nakshatra_details?.moon_sign || data?.planets?.Moon?.sign || content.calculating}
+                        <h3 className={`font-bold text-lg text-green-800 mb-3 ${locale === 'hi' ? 'heading-hi' : ''}`}>{t('moonSign')}</h3>
+                        <p className={`text-2xl font-bold text-success mb-2 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                          {data?.nakshatra_details?.moon_sign || data?.planets?.Moon?.sign || t('calculating')}
                         </p>
-                        <p className={`text-sm text-green-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.moonSignDesc}</p>
+                        <p className={`text-sm text-green-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('moonSignDesc')}</p>
                       </div>
                     </div>
 
                     <div className="space-y-6">
                       <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-6 border border-orange-200">
-                        <h3 className={`font-bold text-lg text-orange-800 mb-3 ${language === 'hi' ? 'heading-hi' : ''}`}>{content.sunSign}</h3>
-                        <p className={`text-2xl font-bold text-deep-accent mb-2 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                          {data?.nakshatra_details?.sun_sign || data?.planets?.Sun?.sign || content.calculating}
+                        <h3 className={`font-bold text-lg text-orange-800 mb-3 ${locale === 'hi' ? 'heading-hi' : ''}`}>{t('sunSign')}</h3>
+                        <p className={`text-2xl font-bold text-deep-accent mb-2 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                          {data?.nakshatra_details?.sun_sign || data?.planets?.Sun?.sign || t('calculating')}
                         </p>
-                        <p className={`text-sm text-orange-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.sunSignDesc}</p>
+                        <p className={`text-sm text-orange-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('sunSignDesc')}</p>
                       </div>
 
                       {data?.planets?.Moon && (
                         <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200">
-                          <h3 className={`font-bold text-lg text-purple-800 mb-3 ${language === 'hi' ? 'heading-hi' : ''}`}>{content.moonPosition}</h3>
-                          <p className={`text-xl font-bold text-accent mb-1 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                            {data.planets.Moon.degrees_in_sign?.toFixed(2)}° {data.planets.Moon.sign} {content.in}
+                          <h3 className={`font-bold text-lg text-purple-800 mb-3 ${locale === 'hi' ? 'heading-hi' : ''}`}>{t('moonPosition')}</h3>
+                          <p className={`text-xl font-bold text-accent mb-1 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                            {data.planets.Moon.degrees_in_sign?.toFixed(2)}° {data.planets.Moon.sign} {t('in')}
                           </p>
-                          <p className={`text-sm text-purple-700 mb-2 ${language === 'hi' ? 'body-hi' : ''}`}>{content.houseLabel} {data.planets.Moon.house}</p>
-                          <p className={`text-xs text-purple-600 ${language === 'hi' ? 'body-hi' : ''}`}>{content.longitudeLabel} {data.planets.Moon.longitude?.toFixed(3)}°</p>
+                          <p className={`text-sm text-purple-700 mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('houseLabel')} {data.planets.Moon.house}</p>
+                          <p className={`text-xs text-purple-600 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('longitudeLabel')} {data.planets.Moon.longitude?.toFixed(3)}°</p>
                         </div>
                       )}
                     </div>
@@ -539,22 +535,22 @@ export default function KundliAnalysisPage() {
               {activeTab === 'panchang' && (
                 <div className="bg-surface rounded-xl p-6 border border-line">
                   <h2 className={`text-2xl font-bold text-primary mb-6 flex items-center gap-3 ${
-                    language === 'hi' ? 'heading-hi' : 'heading-en'
+                    locale === 'hi' ? 'heading-hi' : 'heading-en'
                   }`}>
-                    📅 {content.panchangTitle}
+                    📅 {t('panchangTitle')}
                   </h2>
-                  <p className={`text-text-secondary mb-6 ${language === 'hi' ? 'body-hi' : ''}`}>{content.panchangDesc}</p>
+                  <p className={`text-text-secondary mb-6 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('panchangDesc')}</p>
                   
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Tithi */}
                     <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-lg p-6 border border-red-200">
-                      <h3 className={`font-bold text-lg text-red-800 mb-3 flex items-center gap-2 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        🌙 {content.tithiTitle}
+                      <h3 className={`font-bold text-lg text-red-800 mb-3 flex items-center gap-2 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        🌙 {t('tithiTitle')}
                       </h3>
-                      <p className={`text-xl font-bold text-primary mb-1 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        {(data as any)?.nakshatra_details?.tithi || (data as any)?.panchang?.tithi?.name || content.calculating}
+                      <p className={`text-xl font-bold text-primary mb-1 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        {(data as any)?.nakshatra_details?.tithi || (data as any)?.panchang?.tithi?.name || t('calculating')}
                       </p>
-                      <p className={`text-sm text-red-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.tithiDesc}</p>
+                      <p className={`text-sm text-red-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('tithiDesc')}</p>
                       {(data as any)?.panchang?.tithi?.paksha && (
                         <p className="text-xs text-red-600 mt-1">
                           {(data as any).panchang.tithi.paksha} Paksha
@@ -564,64 +560,64 @@ export default function KundliAnalysisPage() {
 
                     {/* Nakshatra */}
                     <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-                      <h3 className={`font-bold text-lg text-blue-800 mb-3 flex items-center gap-2 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        ⭐ {content.nakshatraTitle}
+                      <h3 className={`font-bold text-lg text-blue-800 mb-3 flex items-center gap-2 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        ⭐ {t('nakshatraTitle')}
                       </h3>
-                      <p className={`text-xl font-bold text-primary mb-1 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        {data?.nakshatra_details?.birth_nakshatra || (data as any)?.panchang?.nakshatra?.name || content.calculating}
+                      <p className={`text-xl font-bold text-primary mb-1 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        {data?.nakshatra_details?.birth_nakshatra || (data as any)?.panchang?.nakshatra?.name || t('calculating')}
                       </p>
-                      <p className={`text-sm text-blue-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.nakshatraDesc}</p>
+                      <p className={`text-sm text-blue-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('nakshatraDesc')}</p>
                     </div>
 
                     {/* Yoga */}
                     <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200">
-                      <h3 className={`font-bold text-lg text-green-800 mb-3 flex items-center gap-2 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        🧘 {content.yogaTitle}
+                      <h3 className={`font-bold text-lg text-green-800 mb-3 flex items-center gap-2 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        🧘 {t('yogaTitle')}
                       </h3>
-                      <p className={`text-xl font-bold text-primary mb-1 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        {(data as any)?.nakshatra_details?.yoga || (data as any)?.panchang?.yoga?.name || content.calculating}
+                      <p className={`text-xl font-bold text-primary mb-1 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        {(data as any)?.nakshatra_details?.yoga || (data as any)?.panchang?.yoga?.name || t('calculating')}
                       </p>
-                      <p className={`text-sm text-green-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.yogaDesc}</p>
+                      <p className={`text-sm text-green-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('yogaDesc')}</p>
                     </div>
 
                     {/* Karana */}
                     <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-6 border border-yellow-200">
-                      <h3 className={`font-bold text-lg text-yellow-800 mb-3 flex items-center gap-2 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        ⚡ {content.karanaTitle}
+                      <h3 className={`font-bold text-lg text-yellow-800 mb-3 flex items-center gap-2 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        ⚡ {t('karanaTitle')}
                       </h3>
-                      <p className={`text-xl font-bold text-primary mb-1 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        {(data as any)?.nakshatra_details?.karana || (data as any)?.panchang?.karana?.name || content.calculating}
+                      <p className={`text-xl font-bold text-primary mb-1 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        {(data as any)?.nakshatra_details?.karana || (data as any)?.panchang?.karana?.name || t('calculating')}
                       </p>
-                      <p className={`text-sm text-yellow-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.karanaDesc}</p>
+                      <p className={`text-sm text-yellow-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('karanaDesc')}</p>
                     </div>
 
                     {/* Vara */}
                     <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-lg p-6 border border-purple-200">
-                      <h3 className={`font-bold text-lg text-purple-800 mb-3 flex items-center gap-2 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        📆 {content.varaTitle}
+                      <h3 className={`font-bold text-lg text-purple-800 mb-3 flex items-center gap-2 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        📆 {t('varaTitle')}
                       </h3>
-                      <p className={`text-xl font-bold text-primary mb-1 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        {(data as any)?.nakshatra_details?.vara || (data as any)?.panchang?.vara?.name || content.calculating}
+                      <p className={`text-xl font-bold text-primary mb-1 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        {(data as any)?.nakshatra_details?.vara || (data as any)?.panchang?.vara?.name || t('calculating')}
                       </p>
-                      <p className={`text-sm text-purple-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.varaDesc}</p>
+                      <p className={`text-sm text-purple-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('varaDesc')}</p>
                     </div>
 
                     {/* Additional Info */}
                     <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-lg p-6 border border-teal-200">
-                      <h3 className={`font-bold text-lg text-teal-800 mb-3 flex items-center gap-2 ${language === 'hi' ? 'heading-hi' : ''}`}>
-                        🌿 {content.seasonMasa}
+                      <h3 className={`font-bold text-lg text-teal-800 mb-3 flex items-center gap-2 ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                        🌿 {t('seasonMasa')}
                       </h3>
                       <div className="space-y-2">
                         <div>
-                          <p className={`text-sm font-medium text-teal-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.season}</p>
-                          <p className={`text-lg font-bold text-primary ${language === 'hi' ? 'heading-hi' : ''}`}>
-                            {(data as any)?.nakshatra_details?.ritu || (data as any)?.panchang?.ritu || content.unknown}
+                          <p className={`text-sm font-medium text-teal-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('season')}</p>
+                          <p className={`text-lg font-bold text-primary ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                            {(data as any)?.nakshatra_details?.ritu || (data as any)?.panchang?.ritu || t('unknown')}
                           </p>
                         </div>
                         <div>
-                          <p className={`text-sm font-medium text-teal-700 ${language === 'hi' ? 'body-hi' : ''}`}>{content.month}</p>
-                          <p className={`text-lg font-bold text-primary ${language === 'hi' ? 'heading-hi' : ''}`}>
-                            {(data as any)?.nakshatra_details?.masa || (data as any)?.panchang?.masa || content.unknown}
+                          <p className={`text-sm font-medium text-teal-700 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('month')}</p>
+                          <p className={`text-lg font-bold text-primary ${locale === 'hi' ? 'heading-hi' : ''}`}>
+                            {(data as any)?.nakshatra_details?.masa || (data as any)?.panchang?.masa || t('unknown')}
                           </p>
                         </div>
                       </div>
@@ -629,9 +625,9 @@ export default function KundliAnalysisPage() {
                   </div>
 
                   <div className="mt-8 p-4 bg-primary/5 rounded-lg border border-primary/20">
-                    <h4 className={`font-semibold text-primary mb-2 ${language === 'hi' ? 'heading-hi' : ''}`}>{content.aboutPanchang}</h4>
-                    <p className={`text-sm text-text-secondary leading-relaxed ${language === 'hi' ? 'body-hi' : ''}`}>
-                      {content.panchangInfo}
+                    <h4 className={`font-semibold text-primary mb-2 ${locale === 'hi' ? 'heading-hi' : ''}`}>{t('aboutPanchang')}</h4>
+                    <p className={`text-sm text-text-secondary leading-relaxed ${locale === 'hi' ? 'body-hi' : ''}`}>
+                      {t('panchangInfo')}
                     </p>
                   </div>
                 </div>
@@ -645,37 +641,39 @@ export default function KundliAnalysisPage() {
           <section className="mb-12">
             <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8 border border-line text-center">
               <h2 className={`text-2xl font-bold text-primary mb-4 ${
-                language === 'hi' ? 'heading-hi' : 'heading-en'
-              }`}>{content.detailedAnalysisTitle}</h2>
+                locale === 'hi' ? 'heading-hi' : 'heading-en'
+              }`}>{t('detailedAnalysisTitle')}</h2>
               <p className={`text-text-secondary mb-6 max-w-2xl mx-auto ${
-                language === 'hi' ? 'body-hi' : ''
+                locale === 'hi' ? 'body-hi' : ''
               }`}>
-                {content.detailedAnalysisText}
+                {t('detailedAnalysisText')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="/astrology-vastu#consultation-form"
                   className={`btn-primary px-6 py-3 rounded-lg font-medium ${
-                    language === 'hi' ? 'heading-hi' : ''
+                    locale === 'hi' ? 'heading-hi' : ''
                   }`}
                 >
-                  {content.bookConsultation}
+                  {t('bookConsultation')}
                 </a>
                 <a
-                  href={`https://wa.me/919340337323?text=${content.whatsappTemplate(
-                    result.name || form.name,
-                    form.dateOfBirth,
-                    form.timeOfBirth,
-                    location?.name,
-                    location?.state
+                  href={`https://wa.me/919340337323?text=${encodeURIComponent(
+                    t('whatsappTemplate', {
+                      name: result.name || form.name,
+                      dateOfBirth: form.dateOfBirth,
+                      timeOfBirth: form.timeOfBirth,
+                      locationName: location?.name || '',
+                      locationState: location?.state || ''
+                    })
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`bg-success hover:bg-success/90 text-white px-6 py-3 rounded-lg font-medium transition-colors ${
-                    language === 'hi' ? 'heading-hi' : ''
+                    locale === 'hi' ? 'heading-hi' : ''
                   }`}
                 >
-                  {content.whatsappAnalysis}
+                  {t('whatsappAnalysis')}
                 </a>
               </div>
             </div>
@@ -687,10 +685,10 @@ export default function KundliAnalysisPage() {
               <button
                 onClick={() => window.print()}
                 className={`border border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg font-medium transition-colors ${
-                  language === 'hi' ? 'heading-hi' : ''
+                  locale === 'hi' ? 'heading-hi' : ''
                 }`}
               >
-                {content.printButton}
+                {t('printButton')}
               </button>
               <button
                 onClick={() => {
@@ -698,10 +696,10 @@ export default function KundliAnalysisPage() {
                   window.location.href = '/astrology-vastu';
                 }}
                 className={`border border-line text-text-primary hover:bg-elevations px-6 py-3 rounded-lg font-medium transition-colors ${
-                  language === 'hi' ? 'heading-hi' : ''
+                  locale === 'hi' ? 'heading-hi' : ''
                 }`}
               >
-                {content.newKundliButton}
+                {t('newKundliButton')}
               </button>
             </div>
           </section>

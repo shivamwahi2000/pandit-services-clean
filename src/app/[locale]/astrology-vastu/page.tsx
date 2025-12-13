@@ -3,18 +3,16 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import LanguageToggle from '@/components/LanguageToggle';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import usePanchang from '@/hooks/usePanchang';
 import LocationPicker from '@/components/LocationPicker';
 import ClockTimePicker from '@/components/ClockTimePicker';
 import { Location, DEFAULT_LOCATION } from '@/utils/locations';
 import { ServiceSchema } from '@/components/StructuredData';
 import PanchangCalendarModal from '@/components/PanchangCalendarModal';
-import { pageContent, astrologyServices as astrologyServicesData, vastuServices as vastuServicesData, testimonials } from '@/utils/astrologyVastuContent';
 
 export default function AstrologyVastuPage() {
-  const { language } = useLanguage();
+  const locale = useLocale();
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const serviceSchemaData = [
     {
@@ -59,12 +57,14 @@ export default function AstrologyVastuPage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const { panchangData, refreshPanchang } = usePanchang(true); // Enable auto-fetch on this page
 
-  // Get bilingual content
-  const content = pageContent[language];
-  const astrologyServices = astrologyServicesData[language];
-  const vastuServices = vastuServicesData[language];
-  const testimonialsData = testimonials[language];
-  
+  // Temporary content object - TODO: move to translations
+  const content = {
+    heroTitle: locale === 'hi' ? 'ज्योतिष और वास्तु शास्त्र' : 'Astrology & Vastu Shastra',
+    heroSubtitle: locale === 'hi' ? 'आधुनिक जीवन के लिए प्राचीन ज्ञान - प्रामाणिक वैदिक विज्ञान के साथ अपनी नियति को अनलॉक करें' : 'Ancient Wisdom for Modern Life - Unlock Your Destiny with Authentic Vedic Sciences',
+    bookConsultation: locale === 'hi' ? 'परामर्श बुक करें' : 'Book Consultation',
+    whatsappUs: locale === 'hi' ? 'व्हाट्सऐप करें' : 'WhatsApp Us'
+  };
+
   // Kundli form state
   const [kundliForm, setKundliForm] = useState({
     name: '',
@@ -451,7 +451,6 @@ export default function AstrologyVastuPage() {
     <div className="min-h-screen sacred-bg page-load">
       <ServiceSchema services={serviceSchemaData} />
       <Header />
-      <LanguageToggle />
       
       <main className="pt-8 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -459,28 +458,28 @@ export default function AstrologyVastuPage() {
           {/* Hero Section */}
           <section className="text-center mb-16">
             <div className="max-w-4xl mx-auto">
-              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 ${language === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
                 {content.heroTitle}
               </h1>
-              <p className={`text-xl md:text-2xl text-text-secondary leading-relaxed mb-8 ${language === 'hi' ? 'body-hi' : ''}`}>
+              <p className={`text-xl md:text-2xl text-text-secondary leading-relaxed mb-8 ${locale === 'hi' ? 'body-hi' : ''}`}>
                 {content.heroSubtitle}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a
                   href="#consultation-form"
-                  className={`btn-primary px-8 py-3 rounded-full text-lg font-medium inline-block ${language === 'hi' ? 'body-hi' : ''}`}
+                  className={`btn-primary px-8 py-3 rounded-full text-lg font-medium inline-block ${locale === 'hi' ? 'body-hi' : ''}`}
                 >
                   {content.bookConsultation}
                 </a>
 
                 <a
-                  href={language === 'hi'
+                  href={locale === 'hi'
                     ? "https://wa.me/919340337323?text=नमस्ते, मैं ज्योतिष और वास्तु सेवाओं के बारे में जानना चाहता हूं।"
                     : "https://wa.me/919340337323?text=Hello, I would like to know about astrology and vastu services."}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`border border-primary text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-primary hover:text-white transition-colors ${language === 'hi' ? 'body-hi' : ''}`}
+                  className={`border border-primary text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-primary hover:text-white transition-colors ${locale === 'hi' ? 'body-hi' : ''}`}
                 >
                   {content.whatsappUs}
                 </a>

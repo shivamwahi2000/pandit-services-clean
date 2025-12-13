@@ -110,35 +110,14 @@ const AnimatedBannerCarousel: React.FC<AnimatedBannerCarouselProps> = ({
             key={index}
             onClick={() => goToBanner(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentBanner 
-                ? `bg-gradient-to-r ${banner.color} shadow-lg scale-125` 
+              index === currentBanner
+                ? `bg-gradient-to-r ${banner.color} shadow-lg scale-125`
                 : 'bg-gray-300 hover:bg-gray-400'
             }`}
           >
           </button>
         ))}
       </div>
-
-      {/* Manual Navigation Arrows (Optional) */}
-      <button
-        onClick={nextBanner}
-        disabled={isAnimating}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-700 p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 disabled:opacity-50"
-      >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-
-      <button
-        onClick={() => goToBanner((currentBanner - 1 + banners.length) % banners.length)}
-        disabled={isAnimating}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-700 p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 disabled:opacity-50"
-      >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
     </div>
   );
 };

@@ -82,19 +82,22 @@ body {
   transform: scale(1.02);
 }
 
-.heading-en {
-  font-family: serif;
+/* Hindi font styling - automatically applied when body has .font-hindi class */
+.font-hindi {
+  font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans Devanagari', sans-serif;
+}
+
+.font-hindi h1,
+.font-hindi h2,
+.font-hindi h3,
+.font-hindi h4,
+.font-hindi h5,
+.font-hindi h6 {
+  font-family: serif, 'Noto Serif Devanagari';
   font-weight: 600;
 }
 
-.heading-hi {
-  font-family: serif;
-  font-weight: 600;
-}
-
-.body-hi {
-  font-family: system-ui, -apple-system, sans-serif;
-}
+/* Legacy classes removed - now using automatic locale-based styling */
 
 .sacred-bg {
   position: relative;

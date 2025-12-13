@@ -2,16 +2,15 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import LanguageToggle from '@/components/LanguageToggle';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import WhatsAppEnrollmentModal from '@/components/WhatsAppEnrollmentModal';
 import { CourseSchema } from '@/components/StructuredData';
 
 export default function CoursesPage() {
-  const { language } = useLanguage();
+  const locale = useLocale();
 
   const courseSchemaData = [
     {
@@ -157,27 +156,26 @@ export default function CoursesPage() {
     ]
   };
 
-  const filteredCourses = courses[language].filter(course => course.category === selectedCategory);
+  const filteredCourses = courses[locale as keyof typeof courses].filter(course => course.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-background">
       <CourseSchema courses={courseSchemaData} />
       <Header />
-      <LanguageToggle />
 
       <main className="pt-8">
         {/* Hero Section */}
         <section className="py-12 bg-elevations">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-primary ${
-              language === 'hi' ? 'heading-hi' : 'heading-en'
+              locale === 'hi' ? 'heading-hi' : 'heading-en'
             }`}>
-              {content[language].title}
+              {content[locale as keyof typeof content].title}
             </h1>
             <p className={`text-lg text-text-secondary max-w-3xl mx-auto ${
-              language === 'hi' ? 'body-hi' : ''
+              locale === 'hi' ? 'body-hi' : ''
             }`}>
-              {content[language].subtitle}
+              {content[locale as keyof typeof content].subtitle}
             </p>
           </div>
         </section>
@@ -186,7 +184,7 @@ export default function CoursesPage() {
         <section className="py-8 bg-surface border-b border-line">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap gap-4 justify-center">
-              {categories[language].map((category) => (
+              {categories[locale as keyof typeof categories].map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
@@ -197,7 +195,7 @@ export default function CoursesPage() {
                   }`}
                 >
                   <span className="mr-2 text-lg">{category.icon}</span>
-                  <span className={language === 'hi' ? 'body-hi' : ''}>{category.name}</span>
+                  <span className={locale === 'hi' ? 'body-hi' : ''}>{category.name}</span>
                 </button>
               ))}
             </div>
@@ -239,7 +237,7 @@ export default function CoursesPage() {
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
                       <h3 className={`text-xl font-bold text-primary ${
-                        language === 'hi' ? 'heading-hi' : 'heading-en'
+                        locale === 'hi' ? 'heading-hi' : 'heading-en'
                       }`}>
                         {course.title}
                       </h3>
@@ -257,17 +255,17 @@ export default function CoursesPage() {
                     </div>
                     
                     <p className={`text-text-secondary mb-4 text-sm ${
-                      language === 'hi' ? 'body-hi' : ''
+                      locale === 'hi' ? 'body-hi' : ''
                     }`}>
                       {course.description}
                     </p>
                     
                     {/* Features */}
                     <div className="mb-4">
-                      <h4 className={`font-semibold text-primary mb-2 text-sm ${language === 'hi' ? 'body-hi' : ''}`}>
-                        {language === 'en' ? 'Course Features:' : 'पाठ्यक्रम विशेषताएं:'}
+                      <h4 className={`font-semibold text-primary mb-2 text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>
+                        {locale === 'en' ? 'Course Features:' : 'पाठ्यक्रम विशेषताएं:'}
                       </h4>
-                      <ul className={`text-xs text-text-secondary space-y-1 ${language === 'hi' ? 'body-hi' : ''}`}>
+                      <ul className={`text-xs text-text-secondary space-y-1 ${locale === 'hi' ? 'body-hi' : ''}`}>
                         {course.features.map((feature, index) => (
                           <li key={index} className="flex items-center gap-2">
                             <span className="text-accent">✓</span>
@@ -277,14 +275,14 @@ export default function CoursesPage() {
                       </ul>
                     </div>
                     
-                    <button 
+                    <button
                       onClick={() => {
                         setSelectedCourse(course);
                         setIsModalOpen(true);
                       }}
                       className="w-full btn-primary py-3 rounded-full font-medium hover:scale-105 transition-transform"
                     >
-                      {content[language].enroll}
+                      {content[locale as keyof typeof content].enroll}
                     </button>
                   </div>
                 </div>
@@ -295,7 +293,7 @@ export default function CoursesPage() {
               <div className="text-center py-12">
                 <div className="text-4xl mb-4">🔍</div>
                 <p className="text-text-secondary">
-                  {language === 'en' ? 'No courses found in this category.' : 'इस श्रेणी में कोई पाठ्यक्रम नहीं मिला।'}
+                  {locale === 'en' ? 'No courses found in this category.' : 'इस श्रेणी में कोई पाठ्यक्रम नहीं मिला।'}
                 </p>
               </div>
             )}
@@ -307,7 +305,7 @@ export default function CoursesPage() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         course={selectedCourse}
-        language={language}
+        language={locale as "en" | "hi"}
       />
       
       <Footer />

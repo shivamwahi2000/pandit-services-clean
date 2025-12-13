@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import Image from 'next/image';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 
 export default function Footer() {
-  const { language } = useLanguage();
+  const locale = useLocale();
 
   const content = {
     en: {
@@ -95,9 +95,9 @@ export default function Footer() {
               </div>
             </Link>
             <p className={`text-sm text-text-secondary mb-4 ${
-              language === 'hi' ? 'body-hi' : ''
+              locale === 'hi' ? 'body-hi' : ''
             }`}>
-              {content[language].description.replace('Pandit Services', 'Kesari Nakshatra')}
+              {content[locale as keyof typeof content].description.replace('Pandit Services', 'Kesari Nakshatra')}
             </p>
             
             {/* Social Links */}
@@ -126,17 +126,17 @@ export default function Footer() {
           {/* Services Links */}
           <div>
             <h3 className={`text-lg font-semibold mb-4 ${
-              language === 'hi' ? 'heading-hi' : 'heading-en'
+              locale === 'hi' ? 'heading-hi' : 'heading-en'
             }`}>
-              {content[language].services}
+              {content[locale as keyof typeof content].services}
             </h3>
             <ul className="space-y-2">
-              {serviceLinks[language].map((link) => (
+              {serviceLinks[locale as keyof typeof serviceLinks].map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
                     className={`text-sm text-text-secondary hover:text-primary transition-colors ${
-                      language === 'hi' ? 'body-hi' : ''
+                      locale === 'hi' ? 'body-hi' : ''
                     }`}
                   >
                     {link.name}
@@ -149,17 +149,17 @@ export default function Footer() {
           {/* Company Links */}
           <div>
             <h3 className={`text-lg font-semibold mb-4 ${
-              language === 'hi' ? 'heading-hi' : 'heading-en'
+              locale === 'hi' ? 'heading-hi' : 'heading-en'
             }`}>
-              {content[language].company}
+              {content[locale as keyof typeof content].company}
             </h3>
             <ul className="space-y-2">
-              {companyLinks[language].map((link) => (
+              {companyLinks[locale as keyof typeof companyLinks].map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
                     className={`text-sm text-text-secondary hover:text-primary transition-colors ${
-                      language === 'hi' ? 'body-hi' : ''
+                      locale === 'hi' ? 'body-hi' : ''
                     }`}
                   >
                     {link.name}
@@ -172,9 +172,9 @@ export default function Footer() {
           {/* Contact & Newsletter */}
           <div>
             <h3 className={`text-lg font-semibold mb-4 ${
-              language === 'hi' ? 'heading-hi' : 'heading-en'
+              locale === 'hi' ? 'heading-hi' : 'heading-en'
             }`}>
-              {content[language].contact}
+              {content[locale as keyof typeof content].contact}
             </h3>
             <div className="space-y-3 text-sm text-text-secondary">
               <div className="flex items-center space-x-2">
@@ -207,34 +207,34 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-line">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className={`text-sm text-text-secondary ${
-              language === 'hi' ? 'body-hi' : ''
+              locale === 'hi' ? 'body-hi' : ''
             }`}>
-              © 2024 Kesari Nakshatra. {content[language].rights}
+              © 2024 Kesari Nakshatra. {content[locale as keyof typeof content].rights}
             </p>
             <div className="flex space-x-6">
               <Link
                 href="/privacy"
                 className={`text-sm text-text-secondary hover:text-primary transition-colors ${
-                  language === 'hi' ? 'body-hi' : ''
+                  locale === 'hi' ? 'body-hi' : ''
                 }`}
               >
-                {content[language].privacy}
+                {content[locale as keyof typeof content].privacy}
               </Link>
               <Link
                 href="/terms"
                 className={`text-sm text-text-secondary hover:text-primary transition-colors ${
-                  language === 'hi' ? 'body-hi' : ''
+                  locale === 'hi' ? 'body-hi' : ''
                 }`}
               >
-                {content[language].terms}
+                {content[locale as keyof typeof content].terms}
               </Link>
               <Link
                 href="/sitemap"
                 className={`text-sm text-text-secondary hover:text-primary transition-colors ${
-                  language === 'hi' ? 'body-hi' : ''
+                  locale === 'hi' ? 'body-hi' : ''
                 }`}
               >
-                {content[language].sitemap}
+                {content[locale as keyof typeof content].sitemap}
               </Link>
             </div>
           </div>

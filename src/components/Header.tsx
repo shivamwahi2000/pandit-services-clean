@@ -2,14 +2,14 @@
 
 import { useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { useRouter } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Link, useRouter } from '@/i18n/routing';
 
 export default function Header() {
   const router = useRouter();
-  const { language, toggleLanguage } = useLanguage();
+  const locale = useLocale();
+  const t = useTranslations('header');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
@@ -17,12 +17,12 @@ export default function Header() {
 
   const handleDropdownEnter = (itemName: string) => {
     setActiveDropdown(itemName);
-    
+
     // Calculate position for portal
     if (menuItemRef.current) {
       const rect = menuItemRef.current.getBoundingClientRect();
       setDropdownPosition({
-        top: rect.bottom + window.scrollY - 5, // Overlap slightly to prevent gap
+        top: rect.bottom + window.scrollY - 5,
         left: rect.left + window.scrollX
       });
     }
@@ -32,157 +32,47 @@ export default function Header() {
     setActiveDropdown(null);
   };
 
-  const navigation = {
-    en: [
-      { name: 'Home', href: '/' },
-      { name: 'Astrology & Vastu', href: '/astrology-vastu' },
-      { name: 'Book a Ritual', href: '/book-ritual', hasDropdown: true },
-      { name: 'Courses', href: '/courses' },
-      { name: 'Seva', href: '/seva' },
-      { name: 'About', href: '/about' },
-      { name: 'Contact', href: '/contact' },
-    ],
-    hi: [
-      { name: 'होम', href: '/' },
-      { name: 'ज्योतिष और वास्तु', href: '/astrology-vastu' },
-      { name: 'अनुष्ठान बुक करें', href: '/book-ritual', hasDropdown: true },
-      { name: 'पाठ्यक्रम', href: '/courses' },
-      { name: 'सेवा', href: '/seva' },
-      { name: 'हमारे बारे में', href: '/about' },
-      { name: 'संपर्क', href: '/contact' },
-    ],
+  const toggleLanguage = () => {
+    const newLocale = locale === 'en' ? 'hi' : 'en';
+    const currentPath = window.location.pathname;
+    // Remove current locale prefix if exists
+    const pathWithoutLocale = currentPath.replace(/^\/(en|hi)/, '') || '/';
+    // Navigate to new locale using the router from next-intl
+    router.replace(pathWithoutLocale, { locale: newLocale });
   };
 
-  const ritualCategories = {
-    en: [
-      {
-        id: 'home-puja',
-        name: 'Puja at Home',
-        services: [
-          { name: 'Grih Pravesh Puja', href: '/book-ritual?category=home-puja&service=grih-pravesh-puja' },
-          { name: 'Satyanarayan Puja', href: '/book-ritual?category=home-puja&service=satyanarayan-puja' },
-          { name: 'Ganesh Puja', href: '/book-ritual?category=home-puja&service=ganesh-puja' },
-          { name: 'Lakshmi Puja', href: '/book-ritual?category=home-puja&service=lakshmi-puja' },
-          { name: 'Saraswati Puja', href: '/book-ritual?category=home-puja&service=saraswati-puja' }
-        ]
-      },
-      {
-        id: 'katha-vachan',
-        name: 'Katha Vachan',
-        services: [
-          { name: 'Bhagwat Katha', href: '/book-ritual?category=katha-vachan&service=bhagwat-katha' },
-          { name: 'Hanumant Katha', href: '/book-ritual?category=katha-vachan&service=hanumant-katha' },
-          { name: 'Shree Durga Path', href: '/book-ritual?category=katha-vachan&service=shree-durga-path' },
-          { name: 'Ramayana Path', href: '/book-ritual?category=katha-vachan&service=ramayana-path' },
-          { name: 'Vishnu Puran Katha', href: '/book-ritual?category=katha-vachan&service=vishnu-puran-katha' }
-        ]
-      },
-      {
-        id: 'temple-services',
-        name: 'Temple Services',
-        services: [
-          { name: 'Temple Abhishek', href: '/book-ritual?category=temple-services&service=temple-abhishek' },
-          { name: 'Aarti at Temple', href: '/book-ritual?category=temple-services&service=aarti-at-temple' },
-          { name: 'Prasad Distribution', href: '/book-ritual?category=temple-services&service=prasad-distribution' },
-          { name: 'Temple Decoration', href: '/book-ritual?category=temple-services&service=temple-decoration' }
-        ]
-      },
-      {
-        id: 'life-events',
-        name: 'Life Events',
-        services: [
-          { name: 'Marriage Ceremony', href: '/book-ritual?category=life-events&service=marriage-ceremony' },
-          { name: 'Naamkaran Sanskar', href: '/book-ritual?category=life-events&service=naamkaran-sanskar' },
-          { name: 'Mundan Ceremony', href: '/book-ritual?category=life-events&service=mundan-ceremony' },
-          { name: 'Thread Ceremony', href: '/book-ritual?category=life-events&service=thread-ceremony' },
-          { name: 'Shradh Karma', href: '/book-ritual?category=life-events&service=shradh-karma' }
-        ]
-      },
-      {
-        id: 'online-services',
-        name: 'Online Services',
-        services: [
-          { name: 'Virtual Puja', href: '/book-ritual?category=online-services&service=virtual-puja' },
-          { name: 'Online Consultation', href: '/book-ritual?category=online-services&service=online-consultation' },
-          { name: 'Digital Aarti', href: '/book-ritual?category=online-services&service=digital-aarti' },
-          { name: 'E-Prasad Booking', href: '/book-ritual?category=online-services&service=e-prasad-booking' }
-        ]
-      }
-    ],
-    hi: [
-      {
-        id: 'home-puja',
-        name: 'घर की पूजा',
-        services: [
-          { name: 'गृह प्रवेश पूजा', href: '/book-ritual?category=home-puja&service=grih-pravesh-puja' },
-          { name: 'सत्यनारायण पूजा', href: '/book-ritual?category=home-puja&service=satyanarayan-puja' },
-          { name: 'गणेश पूजा', href: '/book-ritual?category=home-puja&service=ganesh-puja' },
-          { name: 'लक्ष्मी पूजा', href: '/book-ritual?category=home-puja&service=lakshmi-puja' },
-          { name: 'सरस्वती पूजा', href: '/book-ritual?category=home-puja&service=saraswati-puja' }
-        ]
-      },
-      {
-        id: 'katha-vachan',
-        name: 'कथा वाचन',
-        services: [
-          { name: 'भागवत कथा', href: '/book-ritual?category=katha-vachan&service=bhagwat-katha' },
-          { name: 'हनुमत कथा', href: '/book-ritual?category=katha-vachan&service=hanumant-katha' },
-          { name: 'श्री दुर्गा पाठ', href: '/book-ritual?category=katha-vachan&service=shree-durga-path' },
-          { name: 'रामायण पाठ', href: '/book-ritual?category=katha-vachan&service=ramayana-path' },
-          { name: 'विष्णु पुराण कथा', href: '/book-ritual?category=katha-vachan&service=vishnu-puran-katha' }
-        ]
-      },
-      {
-        id: 'temple-services',
-        name: 'मंदिर सेवाएं',
-        services: [
-          { name: 'मंदिर अभिषेक', href: '/book-ritual?category=temple-services&service=temple-abhishek' },
-          { name: 'मंदिर आरती', href: '/book-ritual?category=temple-services&service=aarti-at-temple' },
-          { name: 'प्रसाद वितरण', href: '/book-ritual?category=temple-services&service=prasad-distribution' },
-          { name: 'मंदिर सजावट', href: '/book-ritual?category=temple-services&service=temple-decoration' }
-        ]
-      },
-      {
-        id: 'life-events',
-        name: 'जीवन संस्कार',
-        services: [
-          { name: 'विवाह संस्कार', href: '/book-ritual?category=life-events&service=marriage-ceremony' },
-          { name: 'नामकरण संस्कार', href: '/book-ritual?category=life-events&service=naamkaran-sanskar' },
-          { name: 'मुंडन संस्कार', href: '/book-ritual?category=life-events&service=mundan-ceremony' },
-          { name: 'यज्ञोपवीत संस्कार', href: '/book-ritual?category=life-events&service=thread-ceremony' },
-          { name: 'श्राद्ध कर्म', href: '/book-ritual?category=life-events&service=shradh-karma' }
-        ]
-      },
-      {
-        id: 'online-services',
-        name: 'ऑनलाइन सेवाएं',
-        services: [
-          { name: 'वर्चुअल पूजा', href: '/book-ritual?category=online-services&service=virtual-puja' },
-          { name: 'ऑनलाइन परामर्श', href: '/book-ritual?category=online-services&service=online-consultation' },
-          { name: 'डिजिटल आरती', href: '/book-ritual?category=online-services&service=digital-aarti' },
-          { name: 'ई-प्रसाद बुकिंग', href: '/book-ritual?category=online-services&service=e-prasad-booking' }
-        ]
-      }
-    ]
-  };
+  const navigation = [
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.astrologyVastu'), href: '/astrology-vastu' },
+    { name: t('nav.bookRitual'), href: '/book-ritual', hasDropdown: true },
+    { name: t('nav.courses'), href: '/courses' },
+    { name: t('nav.seva'), href: '/seva' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.contact'), href: '/contact' },
+  ];
 
-  const quickActions = {
-    en: {
-      bookRitual: 'Book Ritual',
-      whatsapp: 'WhatsApp',
-      call: 'Call',
+  const ritualCategories = [
+    {
+      id: 'home-puja',
+      name: t('ritualCategories.homePuja.name'),
     },
-    hi: {
-      bookRitual: 'अनुष्ठान बुक करें',
-      whatsapp: 'व्हाट्सऐप',
-      call: 'कॉल',
+    {
+      id: 'katha-vachan',
+      name: t('ritualCategories.kathaVachan.name'),
     },
-  };
-
-  const tagline = {
-    en: 'Sacred Rituals, Divine Blessings',
-    hi: 'पवित्र अनुष्ठान, दिव्य आशीर्वाद'
-  };
+    {
+      id: 'temple-services',
+      name: t('ritualCategories.templeServices.name'),
+    },
+    {
+      id: 'life-events',
+      name: t('ritualCategories.lifeEvents.name'),
+    },
+    {
+      id: 'online-services',
+      name: t('ritualCategories.onlineServices.name'),
+    }
+  ];
 
   return (
     <header className="sticky top-0 z-[99999] bg-background/90 backdrop-blur-md border-b border-line">
@@ -198,18 +88,18 @@ export default function Header() {
               className="w-24 h-24 md:w-28 md:h-28"
             />
             <div className="flex flex-col">
-              <span className="text-xl md:text-2xl font-bold heading-en text-primary">
+              <span className="text-xl md:text-2xl font-bold text-primary">
                 Kesari Nakshatra
               </span>
-              <span className={`text-sm md:text-base text-text-secondary ${language === 'hi' ? 'body-hi' : ''}`}>
-                {tagline[language]}
+              <span className="text-sm md:text-base text-text-secondary">
+                {t('tagline')}
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            {navigation[language].map((item) => (
+            {navigation.map((item) => (
               <div
                 key={item.name}
                 ref={item.hasDropdown ? menuItemRef : null}
@@ -221,7 +111,6 @@ export default function Header() {
                 }}
                 onMouseLeave={() => {
                   if (item.hasDropdown) {
-                    // Only close if mouse is really leaving the entire area
                     setTimeout(() => {
                       if (!document.querySelector('.dropdown-container:hover') && !menuItemRef.current?.matches(':hover')) {
                         handleDropdownLeave();
@@ -232,9 +121,7 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary flex items-center ${
-                    language === 'hi' ? 'body-hi' : ''
-                  }`}
+                  className="text-sm font-medium transition-colors hover:text-primary flex items-center"
                 >
                   {item.name}
                   {item.hasDropdown && (
@@ -254,16 +141,15 @@ export default function Header() {
               onClick={toggleLanguage}
               className="text-sm px-2 py-1 rounded border border-line hover:bg-surface transition-colors"
             >
-              {language === 'en' ? 'हिं' : 'EN'}
+              {locale === 'en' ? 'हिं' : 'EN'}
             </button>
-
 
             <a
               href="https://wa.me/919340337323"
               target="_blank"
               rel="noopener noreferrer"
               className="text-success hover:text-success/80 transition-colors"
-              title={quickActions[language].whatsapp}
+              title="WhatsApp"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.703"/>
@@ -285,7 +171,7 @@ export default function Header() {
             <a
               href="tel:+919340337323"
               className="text-primary hover:text-primary-hover transition-colors"
-              title={quickActions[language].call}
+              title="Call"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.57a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.57-2.3-.57-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
@@ -327,38 +213,35 @@ export default function Header() {
         {isMenuOpen && (
           <div className="lg:hidden py-4 border-t border-line">
             <div className="flex flex-col space-y-4">
-              {navigation[language].map((item) => (
+              {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-base font-medium transition-colors hover:text-primary ${
-                    language === 'hi' ? 'body-hi' : ''
-                  }`}
+                  className="text-base font-medium transition-colors hover:text-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              
+
               <div className="flex items-center space-x-4 pt-4 border-t border-line">
                 <button
                   onClick={toggleLanguage}
                   className="text-sm px-3 py-2 rounded border border-line hover:bg-surface transition-colors"
                 >
-                  {language === 'en' ? 'हिं' : 'EN'}
+                  {locale === 'en' ? 'हिं' : 'EN'}
                 </button>
-
               </div>
             </div>
           </div>
         )}
       </div>
-      
-      {/* Portal Dropdown - Rendered outside header DOM */}
+
+      {/* Portal Dropdown */}
       {activeDropdown && typeof window !== 'undefined' && createPortal(
-        <div 
+        <div
           className="dropdown-container fixed w-64 bg-white border border-gray-300 rounded-lg shadow-2xl"
-          style={{ 
+          style={{
             top: `${dropdownPosition.top}px`,
             left: `${dropdownPosition.left}px`,
             zIndex: 2147483647,
@@ -367,25 +250,21 @@ export default function Header() {
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
             paddingTop: '8px'
           }}
-          onMouseEnter={() => {
-            // Keep dropdown open when hovering over it
-          }}
+          onMouseEnter={() => {}}
           onMouseLeave={handleDropdownLeave}
         >
           <div className="p-4">
-            {ritualCategories[language].map((category) => (
-              <button
+            {ritualCategories.map((category) => (
+              <Link
                 key={category.id}
-                className={`w-full text-left px-4 py-3 text-sm font-medium text-gray-800 hover:text-red-600 hover:bg-gray-50 rounded-md transition-colors ${
-                  language === 'hi' ? 'body-hi' : ''
-                }`}
+                href={`/book-ritual?category=${category.id}`}
+                className="w-full text-left px-4 py-3 text-sm font-medium text-gray-800 hover:text-red-600 hover:bg-gray-50 rounded-md transition-colors block"
                 onClick={() => {
                   setActiveDropdown(null);
-                  router.push(`/book-ritual?category=${category.id}`);
                 }}
               >
                 {category.name}
-              </button>
+              </Link>
             ))}
           </div>
         </div>,

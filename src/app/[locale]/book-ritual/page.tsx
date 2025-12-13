@@ -3,16 +3,15 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import LanguageToggle from '@/components/LanguageToggle';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import WhatsAppBookingModal from '@/components/WhatsAppBookingModal';
 import LearnMoreModal from '@/components/LearnMoreModal';
 
 function BookRitualContent() {
-  const { language } = useLanguage();
+  const locale = useLocale();
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<string>('home-puja');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,7 +41,7 @@ function BookRitualContent() {
       
       const serviceName = serviceMap[learnParam as keyof typeof serviceMap];
       if (serviceName) {
-        const service = services[language].find(s => s.name === serviceName);
+        const service = services[locale as keyof typeof services].find(s => s.name === serviceName);
         if (service) {
           handleLearnMore(service);
         }
@@ -62,13 +61,13 @@ function BookRitualContent() {
       
       const serviceName = serviceMap[bookParam as keyof typeof serviceMap];
       if (serviceName) {
-        const service = services[language].find(s => s.name === serviceName);
+        const service = services[locale as keyof typeof services].find(s => s.name === serviceName);
         if (service) {
           handleBookService(service);
         }
       }
     }
-  }, [searchParams, language]);
+  }, [searchParams, locale]);
 
   const content = {
     en: {
@@ -183,12 +182,12 @@ function BookRitualContent() {
     ]
   };
 
-  const filteredServices = services[language].filter(service => service.category === selectedCategory);
+  const filteredServices = services[locale as keyof typeof services].filter(service => service.category === selectedCategory);
 
   const handleBookService = (service: any) => {
     setSelectedService({
       ...service,
-      category: categories[language].find(cat => cat.id === service.category)?.name || service.category
+      category: categories[locale as keyof typeof categories].find(cat => cat.id === service.category)?.name || service.category
     });
     setIsModalOpen(true);
   };
@@ -196,7 +195,7 @@ function BookRitualContent() {
   const handleLearnMore = (service: any) => {
     setSelectedService({
       ...service,
-      category: categories[language].find(cat => cat.id === service.category)?.name || service.category
+      category: categories[locale as keyof typeof categories].find(cat => cat.id === service.category)?.name || service.category
     });
     setIsLearnMoreOpen(true);
   };
@@ -204,21 +203,20 @@ function BookRitualContent() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <LanguageToggle />
 
       <main className="pt-8">
         {/* Hero Section */}
         <section className="py-12 bg-elevations">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-primary ${
-              language === 'hi' ? 'heading-hi' : 'heading-en'
+              locale === 'hi' ? 'heading-hi' : 'heading-en'
             }`}>
-              {content[language].title}
+              {content[locale as keyof typeof content].title}
             </h1>
             <p className={`text-lg text-text-secondary max-w-3xl mx-auto ${
-              language === 'hi' ? 'body-hi' : ''
+              locale === 'hi' ? 'body-hi' : ''
             }`}>
-              {content[language].subtitle}
+              {content[locale as keyof typeof content].subtitle}
             </p>
           </div>
         </section>
@@ -227,7 +225,7 @@ function BookRitualContent() {
         <section className="py-8 bg-surface border-b border-line">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap gap-4 justify-center">
-              {categories[language].map((category) => (
+              {categories[locale as keyof typeof categories].map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
@@ -238,7 +236,7 @@ function BookRitualContent() {
                   }`}
                 >
                   <span className="mr-2 text-lg">{category.icon}</span>
-                  <span className={language === 'hi' ? 'body-hi' : ''}>{category.name}</span>
+                  <span className={locale === 'hi' ? 'body-hi' : ''}>{category.name}</span>
                 </button>
               ))}
             </div>
@@ -257,7 +255,7 @@ function BookRitualContent() {
                   <div className="space-y-4">
                     <div className="flex justify-between items-start">
                       <h3 className={`text-xl font-bold text-primary ${
-                        language === 'hi' ? 'heading-hi' : 'heading-en'
+                        locale === 'hi' ? 'heading-hi' : 'heading-en'
                       }`}>
                         {service.name}
                       </h3>
@@ -267,7 +265,7 @@ function BookRitualContent() {
                     </div>
                     
                     <p className={`text-text-secondary ${
-                      language === 'hi' ? 'body-hi' : ''
+                      locale === 'hi' ? 'body-hi' : ''
                     }`}>
                       {service.description}
                     </p>
@@ -275,15 +273,15 @@ function BookRitualContent() {
                     <div className="flex gap-3 justify-end">
                       <button
                         onClick={() => handleLearnMore(service)}
-                        className={`bg-white hover:bg-orange-50 text-orange-600 border border-orange-400 px-4 py-3 rounded-full text-sm font-medium hover:scale-105 transition-transform ${language === 'hi' ? 'body-hi' : ''}`}
+                        className={`bg-white hover:bg-orange-50 text-orange-600 border border-orange-400 px-4 py-3 rounded-full text-sm font-medium hover:scale-105 transition-transform ${locale === 'hi' ? 'body-hi' : ''}`}
                       >
-                        {language === 'en' ? 'Learn More' : 'और जानें'}
+                        {locale === 'en' ? 'Learn More' : 'और जानें'}
                       </button>
                       <button
                         onClick={() => handleBookService(service)}
-                        className={`btn-primary px-6 py-3 rounded-full text-sm font-medium hover:scale-105 transition-transform ${language === 'hi' ? 'body-hi' : ''}`}
+                        className={`btn-primary px-6 py-3 rounded-full text-sm font-medium hover:scale-105 transition-transform ${locale === 'hi' ? 'body-hi' : ''}`}
                       >
-                        {content[language].book}
+                        {content[locale as keyof typeof content].book}
                       </button>
                     </div>
                   </div>
@@ -295,7 +293,7 @@ function BookRitualContent() {
               <div className="text-center py-12">
                 <div className="text-4xl mb-4">🔍</div>
                 <p className="text-text-secondary">
-                  {language === 'en' ? 'No services found in this category.' : 'इस श्रेणी में कोई सेवा नहीं मिली।'}
+                  {locale === 'en' ? 'No services found in this category.' : 'इस श्रेणी में कोई सेवा नहीं मिली।'}
                 </p>
               </div>
             )}
@@ -310,15 +308,15 @@ function BookRitualContent() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         service={selectedService}
-        language={language}
+        language={locale as "en" | "hi"}
       />
-      
+
       {/* Learn More Modal */}
       <LearnMoreModal
         isOpen={isLearnMoreOpen}
         onClose={() => setIsLearnMoreOpen(false)}
         service={selectedService}
-        language={language}
+        language={locale as "en" | "hi"}
       />
     </div>
   );
