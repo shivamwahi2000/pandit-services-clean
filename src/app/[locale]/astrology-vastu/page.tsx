@@ -454,22 +454,22 @@ export default function AstrologyVastuPage() {
                       <div className="text-center mb-4">
                         <div className="text-4xl mb-3">{service.icon}</div>
                         <h3 className={`text-xl font-bold text-primary mb-2 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
-                          {t(service.titleKey as any)}
+                          {t.raw(service.titleKey)}
                         </h3>
                         <p className={`text-text-secondary text-sm mb-4 ${locale === 'hi' ? 'body-hi' : ''}`}>
-                          {t(service.descriptionKey as any)}
+                          {t.raw(service.descriptionKey)}
                         </p>
 
                         <div className="flex justify-between items-center mb-4">
-                          <span className="text-2xl font-bold text-primary">{t(service.priceKey as any)}</span>
-                          <span className={`text-sm text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{t(service.durationKey as any)}</span>
+                          <span className="text-2xl font-bold text-primary">{t.raw(service.priceKey)}</span>
+                          <span className={`text-sm text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(service.durationKey)}</span>
                         </div>
                       </div>
 
                       {selectedService === service.id && (
                         <div className="border-t border-line pt-4 space-y-2">
                           <h4 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('common.whatsIncluded')}</h4>
-                          {(t.raw(service.featuresKey as any) as string[]).map((feature, index) => (
+                          {(t.raw(service.featuresKey) as string[]).map((feature, index) => (
                             <div key={index} className="flex items-start space-x-2">
                               <svg className="w-4 h-4 text-success mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -486,7 +486,7 @@ export default function AstrologyVastuPage() {
                               {t('common.bookThisService')}
                             </a>
                             <a
-                              href={`https://wa.me/919340337323?text=${locale === 'hi' ? 'नमस्ते' : 'Hello'}, I would like to book ${t(service.titleKey as any)} consultation.`}
+                              href={`https://wa.me/919340337323?text=${locale === 'hi' ? 'नमस्ते' : 'Hello'}, I would like to book ${t.raw(service.titleKey)} consultation.`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className={`block w-full bg-success hover:bg-success/90 text-white py-2 px-4 rounded-lg text-center text-sm font-medium transition-colors ${locale === 'hi' ? 'body-hi' : ''}`}
@@ -524,22 +524,22 @@ export default function AstrologyVastuPage() {
                       <div className="text-center mb-4">
                         <div className="text-4xl mb-3">{service.icon}</div>
                         <h3 className={`text-xl font-bold text-primary mb-2 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
-                          {t(service.titleKey as any)}
+                          {t.raw(service.titleKey)}
                         </h3>
                         <p className={`text-text-secondary text-sm mb-4 ${locale === 'hi' ? 'body-hi' : ''}`}>
-                          {t(service.descriptionKey as any)}
+                          {t.raw(service.descriptionKey)}
                         </p>
 
                         <div className="flex justify-between items-center mb-4">
-                          <span className="text-2xl font-bold text-primary">{t(service.priceKey as any)}</span>
-                          <span className={`text-sm text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{t(service.durationKey as any)}</span>
+                          <span className="text-2xl font-bold text-primary">{t.raw(service.priceKey)}</span>
+                          <span className={`text-sm text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(service.durationKey)}</span>
                         </div>
                       </div>
 
                       {selectedService === service.id && (
                         <div className="border-t border-line pt-4 space-y-2">
                           <h4 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('common.whatsIncluded')}</h4>
-                          {(t.raw(service.featuresKey as any) as string[]).map((feature, index) => (
+                          {(t.raw(service.featuresKey) as string[]).map((feature, index) => (
                             <div key={index} className="flex items-start space-x-2">
                               <svg className="w-4 h-4 text-success mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -556,7 +556,7 @@ export default function AstrologyVastuPage() {
                               {t('common.bookThisService')}
                             </a>
                             <a
-                              href={`https://wa.me/919340337323?text=${locale === 'hi' ? 'नमस्ते' : 'Hello'}, I would like to book ${t(service.titleKey as any)} consultation.`}
+                              href={`https://wa.me/919340337323?text=${locale === 'hi' ? 'नमस्ते' : 'Hello'}, I would like to book ${t.raw(service.titleKey)} consultation.`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className={`block w-full bg-success hover:bg-success/90 text-white py-2 px-4 rounded-lg text-center text-sm font-medium transition-colors ${locale === 'hi' ? 'body-hi' : ''}`}
@@ -588,11 +588,11 @@ export default function AstrologyVastuPage() {
               {consultationModes.map((mode) => (
                 <div key={mode.id} className="bg-elevations rounded-xl p-6 border border-line text-center">
                   <div className="text-3xl mb-4">{mode.icon}</div>
-                  <h3 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t(mode.titleKey as any)}</h3>
-                  <p className={`text-text-secondary text-sm mb-4 ${locale === 'hi' ? 'body-hi' : ''}`}>{t(mode.descriptionKey as any)}</p>
+                  <h3 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(mode.titleKey)}</h3>
+                  <p className={`text-text-secondary text-sm mb-4 ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(mode.descriptionKey)}</p>
 
                   <div className="space-y-2 mb-4">
-                    {(t.raw(mode.featuresKey as any) as string[]).map((feature, index) => (
+                    {(t.raw(mode.featuresKey) as string[]).map((feature, index) => (
                       <div key={index} className="flex items-center justify-center space-x-2">
                         <svg className="w-3 h-3 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -602,7 +602,7 @@ export default function AstrologyVastuPage() {
                     ))}
                   </div>
 
-                  <div className={`text-sm font-medium text-primary ${locale === 'hi' ? 'body-hi' : ''}`}>{t(mode.costKey as any)}</div>
+                  <div className={`text-sm font-medium text-primary ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(mode.costKey)}</div>
                 </div>
               ))}
             </div>
@@ -1265,15 +1265,15 @@ export default function AstrologyVastuPage() {
                       <option value="">{t('bookingForm.selectService')}</option>
                       <optgroup label={t('bookingForm.serviceGroups.astrology')}>
                         {astrologyServices.map((service) => (
-                          <option key={service.id} value={`${t(service.titleKey as any)} (${t(service.priceKey as any)})`}>
-                            {t(service.titleKey as any)} ({t(service.priceKey as any)})
+                          <option key={service.id} value={`${t.raw(service.titleKey)} (${t.raw(service.priceKey)})`}>
+                            {t.raw(service.titleKey)} ({t.raw(service.priceKey)})
                           </option>
                         ))}
                       </optgroup>
                       <optgroup label={t('bookingForm.serviceGroups.vastu')}>
                         {vastuServices.map((service) => (
-                          <option key={service.id} value={`${t(service.titleKey as any)} (${t(service.priceKey as any)})`}>
-                            {t(service.titleKey as any)} ({t(service.priceKey as any)})
+                          <option key={service.id} value={`${t.raw(service.titleKey)} (${t.raw(service.priceKey)})`}>
+                            {t.raw(service.titleKey)} ({t.raw(service.priceKey)})
                           </option>
                         ))}
                       </optgroup>
@@ -1292,8 +1292,8 @@ export default function AstrologyVastuPage() {
                     >
                       <option value="">{t('bookingForm.selectMode')}</option>
                       {consultationModes.map((mode) => (
-                        <option key={mode.id} value={t(mode.titleKey as any)}>
-                          {t(mode.titleKey as any)}
+                        <option key={mode.id} value={t.raw(mode.titleKey)}>
+                          {t.raw(mode.titleKey)}
                         </option>
                       ))}
                     </select>
@@ -1398,15 +1398,15 @@ export default function AstrologyVastuPage() {
                 <div key={key} className="bg-elevations rounded-xl p-6 border border-line">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      {t(`successStories.stories.${key}.name` as any).split(' ').map(n => n[0]).join('')}
+                      {t.raw(`successStories.stories.${key}.name`).split(' ').map((n: string) => n[0]).join('')}
                     </div>
                     <div className="ml-3">
-                      <h4 className={`font-semibold text-text-primary ${locale === 'hi' ? 'body-hi' : ''}`}>{t(`successStories.stories.${key}.name` as any)}</h4>
-                      <p className={`text-text-secondary text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{t(`successStories.stories.${key}.location` as any)}</p>
+                      <h4 className={`font-semibold text-text-primary ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(`successStories.stories.${key}.name`)}</h4>
+                      <p className={`text-text-secondary text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(`successStories.stories.${key}.location`)}</p>
                     </div>
                   </div>
                   <p className={`text-text-secondary text-sm mb-4 ${locale === 'hi' ? 'body-hi' : ''}`}>
-                    {t(`successStories.stories.${key}.testimonial` as any)}
+                    {t.raw(`successStories.stories.${key}.testimonial`)}
                   </p>
                   <div className="flex text-accent">
                     ⭐⭐⭐⭐⭐
