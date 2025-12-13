@@ -76,6 +76,33 @@ The Bhagwat Katha is a spiritual discourse that narrates the life and teachings 
 
 **Best Time:** Can be organized throughout the year`,
         image: '/rituals/bhagwat-katha-detail.jpg'
+      },
+      hi: {
+        title: 'श्रीमद् भागवत कथा',
+        subtitle: 'भगवान कृष्ण की पवित्र कथा',
+        description: `भागवत कथा हिंदू परंपरा में सबसे पूजनीय आध्यात्मिक प्रवचनों में से एक है। यह पवित्र कथा भगवान कृष्ण की दिव्य कहानियों को प्रस्तुत करती है, जैसा कि भागवत पुराण में वर्णित है।
+
+**भागवत कथा क्या है?**
+भागवत कथा एक आध्यात्मिक प्रवचन है जो भगवान कृष्ण के जीवन और शिक्षाओं का वर्णन करता है। यह माना जाता है कि भक्ति से इस पवित्र कथा को सुनने से आध्यात्मिक जागृति और दिव्य आशीर्वाद मिल सकते हैं।
+
+**लाभ:**
+• आध्यात्मिक शुद्धिकरण और आंतरिक शांति
+• नकारात्मक कर्म और बाधाओं का निवारण
+• भक्ति और विश्वास का सुदृढ़ीकरण
+• पारिवारिक सद्भाव और समृद्धि
+• बुरे प्रभावों से सुरक्षा
+
+**क्या अपेक्षा करें:**
+• पारंपरिक वैदिक पाठ
+• अनुभवी पंडितों द्वारा प्रामाणिक कथा
+• पवित्र अनुष्ठान और समारोह
+• प्रसाद वितरण
+• आध्यात्मिक मार्गदर्शन और आशीर्वाद
+
+**अवधि:** 7 दिन
+
+**सर्वोत्तम समय:** पूरे वर्ष आयोजित की जा सकती है`,
+        image: '/rituals/bhagwat-katha-detail.jpg'
       }
     },
     'hanumant katha': {
@@ -104,6 +131,33 @@ This sacred discourse narrates the heroic deeds, unwavering devotion, and spirit
 **Duration:** 3 days
 
 **Special:** Tuesday is considered auspicious`,
+        image: '/rituals/hanumant-katha-detail.jpg'
+      },
+      hi: {
+        title: 'हनुमत कथा',
+        subtitle: 'भगवान हनुमान की दिव्य कथाएं',
+        description: `हनुमत कथा भगवान हनुमान की दिव्य कहानियों और शिक्षाओं का उत्सव मनाती है, जो भक्ति, शक्ति और सेवा के प्रतीक हैं।
+
+**हनुमत कथा क्या है?**
+यह पवित्र प्रवचन भगवान हनुमान के वीरतापूर्ण कार्यों, अटल भक्ति और आध्यात्मिक शिक्षाओं का वर्णन करता है। यह साहस को प्रेरित करता है, बाधाओं को दूर करता है और विश्वास को मजबूत करता है।
+
+**लाभ:**
+• कठिन समय में साहस और शक्ति
+• नकारात्मक ऊर्जाओं से सुरक्षा
+• प्रयासों में सफलता
+• मानसिक शांति और आध्यात्मिक विकास
+• भय और चिंताओं का निवारण
+
+**क्या अपेक्षा करें:**
+• हनुमान चालीसा का पाठ
+• दिव्य कहानियों का वर्णन
+• पारंपरिक प्रार्थना और अनुष्ठान
+• प्रसाद वितरण
+• शक्ति और सुरक्षा के लिए आशीर्वाद
+
+**अवधि:** 3 दिन
+
+**विशेष:** मंगलवार को शुभ माना जाता है`,
         image: '/rituals/hanumant-katha-detail.jpg'
       }
     },
@@ -222,6 +276,33 @@ This is a Vedic ritual performed to purify and sanctify a new home, removing any
 **Duration:** 2-3 hours
 
 **Best Time:** Auspicious muhurat as per Hindu calendar`,
+        image: '/rituals/grih-pravesh-detail.jpg'
+      },
+      hi: {
+        title: 'गृह प्रवेश पूजा',
+        subtitle: 'पवित्र गृह प्रवेश संस्कार',
+        description: `गृह प्रवेश पूजा नए घर में प्रवेश करने से पहले की जाने वाली एक शुभ संस्कार है जो दिव्य आशीर्वाद प्राप्त करने और समृद्धि, शांति और सुरक्षा सुनिश्चित करने के लिए की जाती है।
+
+**गृह प्रवेश पूजा क्या है?**
+यह एक वैदिक अनुष्ठान है जो नए घर को शुद्ध और पवित्र करने, किसी भी नकारात्मक ऊर्जा को दूर करने और सकारात्मक कंपन और दिव्य आशीर्वाद को आमंत्रित करने के लिए किया जाता है।
+
+**लाभ:**
+• नए घर की शुद्धि
+• नकारात्मक ऊर्जाओं से सुरक्षा
+• समृद्धि और प्रचुरता
+• परिवार में शांति और सद्भाव
+• नई शुरुआत के लिए दिव्य आशीर्वाद
+
+**क्या अपेक्षा करें:**
+• बाधाओं को दूर करने के लिए गणेश पूजा
+• घर की पवित्रता के लिए वास्तु पूजा
+• शुद्धिकरण के लिए हवन (अग्नि संस्कार)
+• कलश स्थापना और अन्य अनुष्ठान
+• प्रसाद और आशीर्वाद
+
+**अवधि:** 2-3 घंटे
+
+**सर्वोत्तम समय:** हिंदू पंचांग के अनुसार शुभ मुहूर्त`,
         image: '/rituals/grih-pravesh-detail.jpg'
       }
     },
@@ -663,6 +744,37 @@ This important ceremony involves offering food, water, and prayers to departed a
   };
 
   const getServiceKey = (serviceName: string) => {
+    // Map Hindi service names to English keys
+    const hindiToEnglishMap: Record<string, string> = {
+      'भागवत कथा': 'bhagwat katha',
+      'हनुमत कथा': 'hanumant katha',
+      'श्री दुर्गा पाठ': 'shree durga path',
+      'रामायण पाठ': 'ramayana path',
+      'विष्णु पुराण कथा': 'vishnu puran katha',
+      'गृह प्रवेश पूजा': 'grih pravesh puja',
+      'सत्यनारायण पूजा': 'satyanarayan puja',
+      'गणेश पूजा': 'ganesh puja',
+      'लक्ष्मी पूजा': 'lakshmi puja',
+      'सरस्वती पूजा': 'saraswati puja',
+      'महामृत्युंजय जप': 'mahamrityunjay jaap',
+      'नवग्रह जप': 'navgraha jaap',
+      'मंदिर अभिषेक': 'temple abhishek',
+      'मंदिर आरती': 'aarti at temple',
+      'प्रसाद वितरण': 'prasad distribution',
+      'मंदिर सजावट': 'temple decoration',
+      'विवाह संस्कार': 'marriage ceremony',
+      'नामकरण संस्कार': 'naamkaran sanskar',
+      'मुंडन संस्कार': 'mundan ceremony',
+      'यज्ञोपवीत संस्कार': 'thread ceremony',
+      'श्राद्ध कर्म': 'shradh karma'
+    };
+
+    // If the service name is in Hindi, map it to English
+    if (hindiToEnglishMap[serviceName]) {
+      return hindiToEnglishMap[serviceName];
+    }
+
+    // Otherwise, convert to lowercase
     return serviceName.toLowerCase().replace(/\s+/g, ' ');
   };
 
