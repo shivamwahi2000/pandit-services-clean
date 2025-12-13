@@ -39,9 +39,17 @@ jobs:
             # Navigate to project directory
             cd ~/pandit-services-clean || { echo "❌ Project directory not found"; exit 1; }
 
+            # Stash any local changes before pulling
+            echo "💾 Stashing local changes..."
+            git stash push -m "Auto-stash before deployment $(date)" || echo "No local changes to stash"
+
             # Pull latest changes from GitHub
             echo "📥 Pulling latest changes from GitHub..."
             git pull origin main || { echo "❌ Git pull failed"; exit 1; }
+
+            # Restore stashed changes if any (conflicts will be handled)
+            echo "📦 Restoring stashed changes if any..."
+            git stash pop || echo "No stashed changes to restore or merge conflicts - continuing..."
 
             # Install dependencies (in case new packages were added)
             echo "📦 Installing dependencies..."
