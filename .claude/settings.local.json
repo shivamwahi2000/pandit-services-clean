@@ -16,7 +16,17 @@
       "Bash(PORT=3002 npm start:*)",
       "WebSearch",
       "WebFetch(domain:next-intl.dev)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "WebFetch(domain:kesarinakshatra.com)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nFix Hindi service images in Learn More modal\n\n- Add Hindi-to-English service name mapping in LearnMoreModal\n- Add Hindi translations for key services (Bhagwat Katha, Hanumant Katha, Grih Pravesh)\n- Fix image loading issue when clicking \"और जानें\" on Hindi pages\n- Service details now correctly load images for both English and Hindi services\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git revert:*)",
+      "Bash(head:*)",
+      "Bash(ssh:*)",
+      "Bash(src/app/[locale]/astrology-vastu/page.tsx)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

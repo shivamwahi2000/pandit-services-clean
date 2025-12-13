@@ -1429,3 +1429,4 @@ export default function AstrologyVastuPage() {
     </div>
   );
 }
+// Force rebuild
