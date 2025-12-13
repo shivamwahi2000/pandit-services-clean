@@ -55,6 +55,10 @@ jobs:
             echo "📦 Installing dependencies..."
             npm install || { echo "❌ npm install failed"; exit 1; }
 
+            # Clean previous build
+            echo "🧹 Cleaning previous build..."
+            rm -rf .next || echo "No .next folder to clean"
+
             # Build the Next.js application
             echo "🔨 Building Next.js application..."
             npm run build || { echo "❌ Build failed"; exit 1; }
