@@ -255,5 +255,359 @@
   },
   "home": {
     "title": "Welcome to Kesari Nakshatra"
+  },
+  "astrologyVastu": {
+    "heroTitle": "Astrology & Vastu Shastra",
+    "heroSubtitle": "Ancient Wisdom for Modern Life - Unlock Your Destiny with Authentic Vedic Sciences",
+    "tabs": {
+      "astrology": "Astrology Services",
+      "vastu": "Vastu Shastra"
+    },
+    "astrologyServices": {
+      "title": "Vedic Astrology Services",
+      "subtitle": "Discover your life's purpose through ancient Vedic astrology. Get personalized insights into your past, present, and future with authentic astrological consultations.",
+      "services": {
+        "kundliAnalysis": {
+          "title": "Kundli & Birth Chart Analysis",
+          "description": "Complete Janam Kundli preparation with detailed planetary analysis",
+          "price": "₹1,100",
+          "duration": "60-90 minutes",
+          "features": [
+            "Complete birth chart preparation",
+            "Planetary positions analysis",
+            "Dasha predictions (Mahadasha, Antardasha)",
+            "Yoga formations identification",
+            "Remedial measures for afflictions"
+          ]
+        },
+        "marriageCompatibility": {
+          "title": "Marriage Compatibility",
+          "description": "Complete Gun Milan and compatibility analysis for marriage",
+          "price": "₹500",
+          "duration": "45-60 minutes",
+          "features": [
+            "Ashtakoot Gun Milan (36 points)",
+            "Manglik Dosha analysis",
+            "Nadi, Bhakoot & Gana matching",
+            "Post-marriage life predictions",
+            "Remedies for doshas"
+          ]
+        },
+        "careerGuidance": {
+          "title": "Career & Business Guidance",
+          "description": "Professional path predictions and business timing guidance",
+          "price": "₹500",
+          "duration": "60 minutes",
+          "features": [
+            "Career path analysis",
+            "Business timing consultation",
+            "Job change predictions",
+            "Partnership compatibility",
+            "Success remedies"
+          ]
+        },
+        "annualPredictions": {
+          "title": "Annual Predictions (Varshphal)",
+          "description": "Complete yearly forecast with monthly breakdowns",
+          "price": "₹1,100",
+          "duration": "90 minutes",
+          "features": [
+            "Year-long detailed predictions",
+            "Monthly highlights",
+            "Auspicious periods identification",
+            "Challenges and remedies",
+            "Important dates and festivals"
+          ]
+        },
+        "remedialSolutions": {
+          "title": "Remedial Solutions",
+          "description": "Personalized remedies for planetary afflictions",
+          "price": "₹500",
+          "duration": "30-45 minutes",
+          "features": [
+            "Gemstone recommendations",
+            "Mantra & Stotra prescriptions",
+            "Yantra suggestions",
+            "Charity & donation guidance",
+            "Puja & Havan recommendations"
+          ]
+        },
+        "healthAstrology": {
+          "title": "Health Astrology",
+          "description": "Medical astrology insights for health and wellness",
+          "price": "₹500",
+          "duration": "45-60 minutes",
+          "features": [
+            "Health analysis from birth chart",
+            "Disease prediction and timing",
+            "Remedial measures for health",
+            "Lifestyle recommendations",
+            "Preventive guidance"
+          ]
+        }
+      }
+    },
+    "vastuServices": {
+      "title": "Vastu Shastra Services",
+      "subtitle": "Create harmony between your living space and natural energies. Get expert Vastu guidance for homes, offices, and commercial properties.",
+      "services": {
+        "residential": {
+          "title": "Residential Vastu Consultation",
+          "description": "Complete home Vastu analysis and recommendations",
+          "price": "₹1,100",
+          "duration": "2-3 hours",
+          "features": [
+            "Existing home analysis",
+            "Plot selection guidance",
+            "Floor plans review",
+            "Room-wise recommendations",
+            "Entrance positioning advice"
+          ]
+        },
+        "commercial": {
+          "title": "Commercial Vastu",
+          "description": "Office, shop, and business establishment Vastu",
+          "price": "₹1,500",
+          "duration": "3-4 hours",
+          "features": [
+            "Office layout optimization",
+            "Shop placement guidance",
+            "Factory & industry consultation",
+            "Warehouse planning",
+            "Business growth remedies"
+          ]
+        },
+        "remedies": {
+          "title": "Vastu Dosh Nivaran",
+          "description": "Defect correction without reconstruction",
+          "price": "₹1,100",
+          "duration": "90 minutes",
+          "features": [
+            "Vastu defect identification",
+            "Crystal & pyramid placement",
+            "Color therapy recommendations",
+            "Plant & tree suggestions",
+            "Water feature positioning"
+          ]
+        },
+        "construction": {
+          "title": "Construction Vastu",
+          "description": "New construction guidance from foundation to completion",
+          "price": "₹2,100",
+          "duration": "4-5 hours",
+          "features": [
+            "Bhumi Pujan timing",
+            "Foundation laying guidance",
+            "Construction phase consultation",
+            "Griha Pravesh muhurat",
+            "Interior design compliance"
+          ]
+        },
+        "plotSelection": {
+          "title": "Plot & Property Selection",
+          "description": "Guidance for selecting the right property",
+          "price": "₹1,100",
+          "duration": "2 hours",
+          "features": [
+            "Plot evaluation criteria",
+            "Direction analysis",
+            "Neighborhood assessment",
+            "Future prospects evaluation",
+            "Investment timing guidance"
+          ]
+        },
+        "audit": {
+          "title": "Complete Vastu Audit",
+          "description": "Comprehensive property analysis with detailed report",
+          "price": "₹2,100",
+          "duration": "4-6 hours",
+          "features": [
+            "Room-by-room analysis",
+            "Detailed written report",
+            "Priority-wise recommendations",
+            "Cost-effective solutions",
+            "Follow-up consultation"
+          ]
+        }
+      }
+    },
+    "consultationModes": {
+      "title": "Consultation Options",
+      "subtitle": "Choose the consultation format that works best for you. All options provide the same quality of authentic guidance from Acharya Hari Om Shastri.",
+      "modes": {
+        "inPerson": {
+          "title": "In-Person Visit",
+          "description": "Direct consultation at your location",
+          "features": ["On-site analysis", "Detailed examination", "Immediate guidance"],
+          "cost": "+ Travel charges"
+        },
+        "videoCall": {
+          "title": "Video Consultation",
+          "description": "Detailed online consultation with screen sharing",
+          "features": ["HD video call", "Document sharing", "Recording available"],
+          "cost": "No extra charges"
+        },
+        "phoneCall": {
+          "title": "Phone Consultation",
+          "description": "Voice consultation for quick guidance",
+          "features": ["Direct phone call", "Quick solutions", "Follow-up support"],
+          "cost": "No extra charges"
+        },
+        "writtenReport": {
+          "title": "Written Report",
+          "description": "Detailed PDF analysis delivered via email",
+          "features": ["Comprehensive report", "Charts & diagrams", "Remedy suggestions"],
+          "cost": "No extra charges"
+        }
+      }
+    },
+    "whyChoose": {
+      "title": "Why Choose Kesari Nakshatra?",
+      "subtitle": "Experience authentic Vedic wisdom with modern convenience and personalized guidance.",
+      "reasons": {
+        "authentic": {
+          "title": "Authentic Vedic Methods",
+          "description": "Traditional calculations and interpretations following ancient scriptures"
+        },
+        "expert": {
+          "title": "Expert Guidance",
+          "description": "Acharya Hari Om Shastri's 25+ years of experience in Vedic sciences"
+        },
+        "accurate": {
+          "title": "Accurate Predictions",
+          "description": "Precise calculations using traditional methods and modern tools"
+        },
+        "support": {
+          "title": "Ongoing Support",
+          "description": "Follow-up guidance and clarifications for all consultations"
+        }
+      }
+    },
+    "dailyGuidance": {
+      "title": "Daily Spiritual Guidance",
+      "subtitle": "Access daily panchang, auspicious timings, and practical Vastu tips for everyday life.",
+      "panchang": {
+        "title": "Today's Panchang",
+        "subtitle": "Real-time Vedic Calendar",
+        "updating": "Updating...",
+        "tithi": "Tithi",
+        "nakshatra": "Nakshatra",
+        "yoga": "Yoga",
+        "karana": "Karana",
+        "day": "Day",
+        "sunrise": "Sunrise",
+        "sunset": "Sunset",
+        "moonrise": "Moonrise",
+        "moonset": "Moonset",
+        "nakshatraLord": "Nakshatra Lord",
+        "paksha": "Paksha",
+        "endTimes": "End Times",
+        "tithiEnds": "Tithi Ends",
+        "nakshatraEnds": "Nakshatra Ends",
+        "yogaEnds": "Yoga Ends",
+        "karanaEnds": "Karana Ends",
+        "refreshData": "Refresh Data",
+        "viewDetailed": "View Detailed Panchang",
+        "calculating": "Calculating...",
+        "poweredBy": "Powered by PyJHora",
+        "liveData": "Live Data",
+        "connectionError": "Connection Error"
+      },
+      "kundliGenerator": {
+        "title": "Quick Kundli Generator",
+        "subtitle": "Generate accurate birth chart instantly with PyJHora",
+        "fullName": "Full Name",
+        "dateOfBirth": "Date of Birth",
+        "timeOfBirth": "Time of Birth",
+        "placeOfBirth": "Place of Birth",
+        "advancedOptions": "Advanced Options",
+        "lahiriAyanamsa": "Lahiri Ayanamsa",
+        "kpAyanamsa": "KP Ayanamsa",
+        "yukteshwarAyanamsa": "Yukteshwar Ayanamsa",
+        "english": "English",
+        "hindi": "हिंदी",
+        "basicResult": "Basic (Yoga Counts Only)",
+        "advancedResult": "Advanced (Detailed Yoga Names)",
+        "generateButton": "Generate My Kundli",
+        "calculating": "Calculating Cosmic Positions...",
+        "disclaimer": "*For detailed analysis, book a consultation",
+        "birthInfo": "Birth Information",
+        "name": "Name",
+        "date": "Date of Birth",
+        "time": "Time",
+        "place": "Place",
+        "birthChartHighlights": "Your Birth Chart Highlights",
+        "birthStar": "Birth Star",
+        "moonSign": "Moon Sign",
+        "loading": "Loading...",
+        "yogaAnalysis": "Yoga Analysis",
+        "yogasFound": "Yogas Found",
+        "positiveYogas": "Positive Yogas",
+        "areasToFocus": "Areas to Focus",
+        "morePositive": "more positive combinations",
+        "moreToReview": "more to review",
+        "planets": "Planets:",
+        "calculatingYogas": "PyJHora calculating your yogas",
+        "detailsWillAppear": "Detailed combinations will appear here",
+        "viewCompleteAnalysis": "View Complete Analysis",
+        "completeAnalysisDesc": "See detailed birth chart with planetary positions, yoga analysis, and comprehensive predictions.",
+        "generateNew": "Generate New",
+        "viewFullAnalysis": "View Full Analysis →"
+      }
+    },
+    "bookingForm": {
+      "title": "Book Your Consultation",
+      "subtitle": "Get personalized guidance from Acharya Hari Om Shastri. Fill out the form below and we'll get back to you within 24 hours.",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Your full name",
+      "phoneNumber": "Phone Number",
+      "phonePlaceholder": "+91 93403 37323",
+      "emailAddress": "Email Address",
+      "emailPlaceholder": "kesarinakshatra@yahoo.com",
+      "serviceType": "Service Type",
+      "selectService": "Select Service",
+      "consultationMode": "Consultation Mode",
+      "selectMode": "Select Mode",
+      "dateOfBirth": "Date of Birth",
+      "timeOfBirth": "Time of Birth",
+      "placeOfBirth": "Place of Birth",
+      "placeholderPlace": "Enter PIN or city",
+      "preferredDateTime": "Preferred Date & Time",
+      "requirements": "Specific Questions or Requirements",
+      "requirementsPlaceholder": "Please describe your specific questions, concerns, or requirements for the consultation...",
+      "submitButton": "Send WhatsApp Message",
+      "privacyNote": "💫 All consultations are conducted with complete confidentiality and respect for your privacy.",
+      "required": "*",
+      "serviceGroups": {
+        "astrology": "Astrology Services",
+        "vastu": "Vastu Services"
+      }
+    },
+    "successStories": {
+      "title": "Success Stories",
+      "subtitle": "Read how our authentic Vedic guidance has transformed lives and brought positive changes.",
+      "stories": {
+        "rajesh": {
+          "name": "Rajesh S.",
+          "location": "Business Owner, Mumbai",
+          "testimonial": "Pandit ji's Vastu consultation completely transformed my office space. Within 3 months of implementing the changes, my business revenue increased by 40%. The energy in the office is so much more positive now."
+        },
+        "priya": {
+          "name": "Priya M.",
+          "location": "Software Engineer, Bangalore",
+          "testimonial": "The marriage compatibility analysis was incredibly accurate. Pandit ji not only confirmed our compatibility but also suggested remedies that strengthened our relationship. We're happily married now!"
+        },
+        "amit": {
+          "name": "Amit K.",
+          "location": "Doctor, Delhi",
+          "testimonial": "The career guidance consultation was a game-changer. Pandit ji predicted the exact timing for my promotion and suggested remedies. Everything happened exactly as predicted. Truly amazing!"
+        }
+      }
+    },
+    "common": {
+      "whatsIncluded": "What's Included:",
+      "bookThisService": "Book This Service",
+      "whatsappToBook": "WhatsApp to Book"
+    }
   }
 }
