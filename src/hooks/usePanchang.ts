@@ -161,12 +161,12 @@ const usePanchang = (autoFetch: boolean = false) => {
           return 'Shukla Saptami';
         } else if (tithi.name === 'Saptami' && tithi.paksha === 'Krishna Paksha') {
           return 'Krishna Saptami';
-        } else if (tithi.paksha) {
+        } else if (typeof tithi.paksha === 'string') {
           const paksha = tithi.paksha.replace(' Paksha', '');
           return `${paksha} ${tithi.name}`;
         }
         
-        return tithi.name;
+        return tithi.name || 'N/A';
       };
 
       return {

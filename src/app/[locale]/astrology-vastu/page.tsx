@@ -469,7 +469,7 @@ export default function AstrologyVastuPage() {
                       {selectedService === service.id && (
                         <div className="border-t border-line pt-4 space-y-2">
                           <h4 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('common.whatsIncluded')}</h4>
-                          {(t.raw(service.featuresKey) as string[]).map((feature, index) => (
+                          {Array.isArray(t.raw(service.featuresKey)) && (t.raw(service.featuresKey) as string[]).map((feature, index) => (
                             <div key={index} className="flex items-start space-x-2">
                               <svg className="w-4 h-4 text-success mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -539,7 +539,7 @@ export default function AstrologyVastuPage() {
                       {selectedService === service.id && (
                         <div className="border-t border-line pt-4 space-y-2">
                           <h4 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('common.whatsIncluded')}</h4>
-                          {(t.raw(service.featuresKey) as string[]).map((feature, index) => (
+                          {Array.isArray(t.raw(service.featuresKey)) && (t.raw(service.featuresKey) as string[]).map((feature, index) => (
                             <div key={index} className="flex items-start space-x-2">
                               <svg className="w-4 h-4 text-success mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -592,7 +592,7 @@ export default function AstrologyVastuPage() {
                   <p className={`text-text-secondary text-sm mb-4 ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(mode.descriptionKey)}</p>
 
                   <div className="space-y-2 mb-4">
-                    {(t.raw(mode.featuresKey) as string[]).map((feature, index) => (
+                    {Array.isArray(t.raw(mode.featuresKey)) && (t.raw(mode.featuresKey) as string[]).map((feature, index) => (
                       <div key={index} className="flex items-center justify-center space-x-2">
                         <svg className="w-3 h-3 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -687,19 +687,19 @@ export default function AstrologyVastuPage() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-elevations rounded-lg p-3">
                       <span className={`text-text-secondary text-sm block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.tithi')}</span>
-                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.tithi}</span>
+                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.tithi ? t(`dailyGuidance.panchangValues.${panchangData.tithi}`) : ''}</span>
                     </div>
                     <div className="bg-elevations rounded-lg p-3">
                       <span className={`text-text-secondary text-sm block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.nakshatra')}</span>
-                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.nakshatra}</span>
+                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.nakshatra ? t(`dailyGuidance.panchangValues.${panchangData.nakshatra}`) : ''}</span>
                     </div>
                     <div className="bg-elevations rounded-lg p-3">
                       <span className={`text-text-secondary text-sm block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.yoga')}</span>
-                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.yoga}</span>
+                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.yoga ? t(`dailyGuidance.panchangValues.${panchangData.yoga}`) : ''}</span>
                     </div>
                     <div className="bg-elevations rounded-lg p-3">
                       <span className={`text-text-secondary text-sm block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.karana')}</span>
-                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.karana}</span>
+                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.karana ? t(`dailyGuidance.panchangValues.${panchangData.karana}`) : ''}</span>
                     </div>
                   </div>
 
@@ -707,7 +707,7 @@ export default function AstrologyVastuPage() {
                     <div className="bg-success/10 rounded-lg p-3 border border-success/30">
                       <div className="flex justify-between items-center">
                         <span className={`text-text-secondary text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.day')}</span>
-                        <span className={`text-success font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.day}</span>
+                        <span className={`text-success font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.day ? t(`dailyGuidance.panchangValues.${panchangData.day}`) : ''}</span>
                       </div>
                     </div>
 
@@ -733,14 +733,14 @@ export default function AstrologyVastuPage() {
                     <div className="bg-accent/10 rounded-lg p-3 border border-accent/30">
                       <div className="flex justify-between items-center">
                         <span className={`text-text-secondary text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.nakshatraLord')}</span>
-                        <span className={`text-accent font-medium text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.nakshatraLord}</span>
+                        <span className={`text-accent font-medium text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.nakshatraLord ? t(`dailyGuidance.panchangValues.${panchangData.nakshatraLord}`) : ''}</span>
                       </div>
                     </div>
 
                     <div className="bg-primary/10 rounded-lg p-3 border border-primary/30">
                       <div className="flex justify-between items-center">
                         <span className={`text-text-secondary text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.paksha')}</span>
-                        <span className={`text-primary font-medium text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.paksha}</span>
+                        <span className={`text-primary font-medium text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.paksha ? t(`dailyGuidance.panchangValues.${panchangData.paksha}`) : ''}</span>
                       </div>
                     </div>
 
