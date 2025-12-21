@@ -8,6 +8,8 @@ import BhagwadGeetaBanner from './BhagwadGeetaBanner';
 import HanumanKathaBanner from './HanumanKathaBanner';
 import AstrologicalConsultationBanner from './AstrologicalConsultationBanner';
 import MusicalInstrumentsBanner from './MusicalInstrumentsBanner';
+import OneQuestionOfferBanner from './OneQuestionOfferBanner';
+import QuestionOfferModal from './QuestionOfferModal';
 
 interface AnimatedBannerCarouselProps {
   className?: string;
@@ -22,8 +24,17 @@ const AnimatedBannerCarousel: React.FC<AnimatedBannerCarouselProps> = ({
 }) => {
   const [currentBanner, setCurrentBanner] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
+
+  const openOfferModal = () => setIsQuestionModalOpen(true);
+  const closeOfferModal = () => setIsQuestionModalOpen(false);
 
   const banners = [
+    {
+      component: <OneQuestionOfferBanner orientation="horizontal" onClaimOffer={openOfferModal} />,
+      name: 'One Question Offer',
+      color: 'from-amber-500 to-orange-500'
+    },
     { 
       component: <AstrologicalConsultationBanner orientation="horizontal" onLearnMore={onLearnMore} />, 
       name: 'Astrological Consultation',
@@ -118,6 +129,7 @@ const AnimatedBannerCarousel: React.FC<AnimatedBannerCarouselProps> = ({
           </button>
         ))}
       </div>
+      <QuestionOfferModal isOpen={isQuestionModalOpen} onClose={closeOfferModal} />
     </div>
   );
 };
