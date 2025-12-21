@@ -376,17 +376,17 @@ export default function AstrologyVastuPage() {
           {/* Hero Section */}
           <section className="text-center mb-16">
             <div className="max-w-4xl mx-auto">
-              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6`}>
                 {t('heroTitle')}
               </h1>
-              <p className={`text-xl md:text-2xl text-text-secondary leading-relaxed mb-8 ${locale === 'hi' ? 'body-hi' : ''}`}>
+              <p className={`text-xl md:text-2xl text-text-secondary leading-relaxed mb-8`}>
                 {t('heroSubtitle')}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a
                   href="#consultation-form"
-                  className={`btn-primary px-8 py-3 rounded-full text-lg font-medium inline-block ${locale === 'hi' ? 'body-hi' : ''}`}
+                  className={`btn-primary px-8 py-3 rounded-full text-lg font-medium inline-block`}
                 >
                   {tCommon('bookConsultation')}
                 </a>
@@ -397,7 +397,7 @@ export default function AstrologyVastuPage() {
                     : "https://wa.me/919340337323?text=Hello, I would like to know about astrology and vastu services."}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`border border-primary text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-primary hover:text-white transition-colors ${locale === 'hi' ? 'body-hi' : ''}`}
+                  className={`border border-primary text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-primary hover:text-white transition-colors`}
                 >
                   {tCommon('whatsappUs')}
                 </a>
@@ -415,7 +415,7 @@ export default function AstrologyVastuPage() {
                     activeTab === 'astrology'
                       ? 'bg-primary text-white shadow-lg'
                       : 'text-text-primary hover:bg-elevations'
-                  } ${locale === 'hi' ? 'body-hi' : ''}`}
+                  }`}
                 >
                   {t('tabs.astrology')}
                 </button>
@@ -425,7 +425,7 @@ export default function AstrologyVastuPage() {
                     activeTab === 'vastu'
                       ? 'bg-primary text-white shadow-lg'
                       : 'text-text-primary hover:bg-elevations'
-                  } ${locale === 'hi' ? 'body-hi' : ''}`}
+                  }`}
                 >
                   {t('tabs.vastu')}
                 </button>
@@ -436,10 +436,10 @@ export default function AstrologyVastuPage() {
             {activeTab === 'astrology' && (
               <div className="space-y-8">
                 <div className="text-center mb-12">
-                  <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+                  <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4`}>
                     {t('astrologyServices.title')}
                   </h2>
-                  <p className={`text-lg text-text-secondary max-w-3xl mx-auto ${locale === 'hi' ? 'body-hi' : ''}`}>
+                  <p className={`text-lg text-text-secondary max-w-3xl mx-auto`}>
                     {t('astrologyServices.subtitle')}
                   </p>
                 </div>
@@ -453,35 +453,35 @@ export default function AstrologyVastuPage() {
                     >
                       <div className="text-center mb-4">
                         <div className="text-4xl mb-3">{service.icon}</div>
-                        <h3 className={`text-xl font-bold text-primary mb-2 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+                        <h3 className={`text-xl font-bold text-primary mb-2`}>
                           {t.raw(service.titleKey)}
                         </h3>
-                        <p className={`text-text-secondary text-sm mb-4 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                        <p className={`text-text-secondary text-sm mb-4`}>
                           {t.raw(service.descriptionKey)}
                         </p>
 
                         <div className="flex justify-between items-center mb-4">
                           <span className="text-2xl font-bold text-primary">{t.raw(service.priceKey)}</span>
-                          <span className={`text-sm text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(service.durationKey)}</span>
+                          <span className={`text-sm text-text-secondary`}>{t.raw(service.durationKey)}</span>
                         </div>
                       </div>
 
                       {selectedService === service.id && (
                         <div className="border-t border-line pt-4 space-y-2">
-                          <h4 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('common.whatsIncluded')}</h4>
+                          <h4 className={`font-semibold text-text-primary mb-2`}>{t('common.whatsIncluded')}</h4>
                           {Array.isArray(t.raw(service.featuresKey)) && (t.raw(service.featuresKey) as string[]).map((feature, index) => (
                             <div key={index} className="flex items-start space-x-2">
                               <svg className="w-4 h-4 text-success mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                               </svg>
-                              <span className={`text-sm text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{feature}</span>
+                              <span className={`text-sm text-text-secondary`}>{feature}</span>
                             </div>
                           ))}
 
                           <div className="pt-4 space-y-2">
                             <a
                               href="#consultation-form"
-                              className={`block w-full btn-primary py-2 px-4 rounded-lg text-center text-sm font-medium ${locale === 'hi' ? 'body-hi' : ''}`}
+                              className={`block w-full btn-primary py-2 px-4 rounded-lg text-center text-sm font-medium`}
                             >
                               {t('common.bookThisService')}
                             </a>
@@ -489,7 +489,7 @@ export default function AstrologyVastuPage() {
                               href={`https://wa.me/919340337323?text=${locale === 'hi' ? 'नमस्ते' : 'Hello'}, I would like to book ${t.raw(service.titleKey)} consultation.`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className={`block w-full bg-success hover:bg-success/90 text-white py-2 px-4 rounded-lg text-center text-sm font-medium transition-colors ${locale === 'hi' ? 'body-hi' : ''}`}
+                              className={`block w-full bg-success hover:bg-success/90 text-white py-2 px-4 rounded-lg text-center text-sm font-medium transition-colors`}
                             >
                               {t('common.whatsappToBook')}
                             </a>
@@ -506,10 +506,10 @@ export default function AstrologyVastuPage() {
             {activeTab === 'vastu' && (
               <div className="space-y-8">
                 <div className="text-center mb-12">
-                  <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+                  <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4`}>
                     {t('vastuServices.title')}
                   </h2>
-                  <p className={`text-lg text-text-secondary max-w-3xl mx-auto ${locale === 'hi' ? 'body-hi' : ''}`}>
+                  <p className={`text-lg text-text-secondary max-w-3xl mx-auto`}>
                     {t('vastuServices.subtitle')}
                   </p>
                 </div>
@@ -523,35 +523,35 @@ export default function AstrologyVastuPage() {
                     >
                       <div className="text-center mb-4">
                         <div className="text-4xl mb-3">{service.icon}</div>
-                        <h3 className={`text-xl font-bold text-primary mb-2 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+                        <h3 className={`text-xl font-bold text-primary mb-2`}>
                           {t.raw(service.titleKey)}
                         </h3>
-                        <p className={`text-text-secondary text-sm mb-4 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                        <p className={`text-text-secondary text-sm mb-4`}>
                           {t.raw(service.descriptionKey)}
                         </p>
 
                         <div className="flex justify-between items-center mb-4">
                           <span className="text-2xl font-bold text-primary">{t.raw(service.priceKey)}</span>
-                          <span className={`text-sm text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(service.durationKey)}</span>
+                          <span className={`text-sm text-text-secondary`}>{t.raw(service.durationKey)}</span>
                         </div>
                       </div>
 
                       {selectedService === service.id && (
                         <div className="border-t border-line pt-4 space-y-2">
-                          <h4 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('common.whatsIncluded')}</h4>
+                          <h4 className={`font-semibold text-text-primary mb-2`}>{t('common.whatsIncluded')}</h4>
                           {Array.isArray(t.raw(service.featuresKey)) && (t.raw(service.featuresKey) as string[]).map((feature, index) => (
                             <div key={index} className="flex items-start space-x-2">
                               <svg className="w-4 h-4 text-success mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                               </svg>
-                              <span className={`text-sm text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{feature}</span>
+                              <span className={`text-sm text-text-secondary`}>{feature}</span>
                             </div>
                           ))}
 
                           <div className="pt-4 space-y-2">
                             <a
                               href="#consultation-form"
-                              className={`block w-full btn-primary py-2 px-4 rounded-lg text-center text-sm font-medium ${locale === 'hi' ? 'body-hi' : ''}`}
+                              className={`block w-full btn-primary py-2 px-4 rounded-lg text-center text-sm font-medium`}
                             >
                               {t('common.bookThisService')}
                             </a>
@@ -559,7 +559,7 @@ export default function AstrologyVastuPage() {
                               href={`https://wa.me/919340337323?text=${locale === 'hi' ? 'नमस्ते' : 'Hello'}, I would like to book ${t.raw(service.titleKey)} consultation.`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className={`block w-full bg-success hover:bg-success/90 text-white py-2 px-4 rounded-lg text-center text-sm font-medium transition-colors ${locale === 'hi' ? 'body-hi' : ''}`}
+                              className={`block w-full bg-success hover:bg-success/90 text-white py-2 px-4 rounded-lg text-center text-sm font-medium transition-colors`}
                             >
                               {t('common.whatsappToBook')}
                             </a>
@@ -576,10 +576,10 @@ export default function AstrologyVastuPage() {
           {/* Consultation Modes */}
           <section className="mb-16">
             <div className="text-center mb-12">
-              <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+              <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4`}>
                 {t('consultationModes.title')}
               </h2>
-              <p className={`text-lg text-text-secondary max-w-3xl mx-auto ${locale === 'hi' ? 'body-hi' : ''}`}>
+              <p className={`text-lg text-text-secondary max-w-3xl mx-auto`}>
                 {t('consultationModes.subtitle')}
               </p>
             </div>
@@ -588,8 +588,8 @@ export default function AstrologyVastuPage() {
               {consultationModes.map((mode) => (
                 <div key={mode.id} className="bg-elevations rounded-xl p-6 border border-line text-center">
                   <div className="text-3xl mb-4">{mode.icon}</div>
-                  <h3 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(mode.titleKey)}</h3>
-                  <p className={`text-text-secondary text-sm mb-4 ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(mode.descriptionKey)}</p>
+                  <h3 className={`font-semibold text-text-primary mb-2`}>{t.raw(mode.titleKey)}</h3>
+                  <p className={`text-text-secondary text-sm mb-4`}>{t.raw(mode.descriptionKey)}</p>
 
                   <div className="space-y-2 mb-4">
                     {Array.isArray(t.raw(mode.featuresKey)) && (t.raw(mode.featuresKey) as string[]).map((feature, index) => (
@@ -597,12 +597,12 @@ export default function AstrologyVastuPage() {
                         <svg className="w-3 h-3 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className={`text-xs text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{feature}</span>
+                        <span className={`text-xs text-text-secondary`}>{feature}</span>
                       </div>
                     ))}
                   </div>
 
-                  <div className={`text-sm font-medium text-primary ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(mode.costKey)}</div>
+                  <div className={`text-sm font-medium text-primary`}>{t.raw(mode.costKey)}</div>
                 </div>
               ))}
             </div>
@@ -612,10 +612,10 @@ export default function AstrologyVastuPage() {
           <section className="mb-16">
             <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-8 md:p-12 border border-line">
               <div className="text-center mb-12">
-                <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+                <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4`}>
                   {t('whyChoose.title')}
                 </h2>
-                <p className={`text-lg text-text-secondary max-w-3xl mx-auto ${locale === 'hi' ? 'body-hi' : ''}`}>
+                <p className={`text-lg text-text-secondary max-w-3xl mx-auto`}>
                   {t('whyChoose.subtitle')}
                 </p>
               </div>
@@ -625,32 +625,32 @@ export default function AstrologyVastuPage() {
                   <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
                     📜
                   </div>
-                  <h3 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('whyChoose.reasons.authentic.title')}</h3>
-                  <p className={`text-text-secondary text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{t('whyChoose.reasons.authentic.description')}</p>
+                  <h3 className={`font-semibold text-text-primary mb-2`}>{t('whyChoose.reasons.authentic.title')}</h3>
+                  <p className={`text-text-secondary text-sm`}>{t('whyChoose.reasons.authentic.description')}</p>
                 </div>
 
                 <div className="text-center">
                   <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
                     🎓
                   </div>
-                  <h3 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('whyChoose.reasons.expert.title')}</h3>
-                  <p className={`text-text-secondary text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{t('whyChoose.reasons.expert.description')}</p>
+                  <h3 className={`font-semibold text-text-primary mb-2`}>{t('whyChoose.reasons.expert.title')}</h3>
+                  <p className={`text-text-secondary text-sm`}>{t('whyChoose.reasons.expert.description')}</p>
                 </div>
 
                 <div className="text-center">
                   <div className="w-16 h-16 bg-success rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
                     💯
                   </div>
-                  <h3 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('whyChoose.reasons.accurate.title')}</h3>
-                  <p className={`text-text-secondary text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{t('whyChoose.reasons.accurate.description')}</p>
+                  <h3 className={`font-semibold text-text-primary mb-2`}>{t('whyChoose.reasons.accurate.title')}</h3>
+                  <p className={`text-text-secondary text-sm`}>{t('whyChoose.reasons.accurate.description')}</p>
                 </div>
 
                 <div className="text-center">
                   <div className="w-16 h-16 bg-deep-accent rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
                     🤝
                   </div>
-                  <h3 className={`font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('whyChoose.reasons.support.title')}</h3>
-                  <p className={`text-text-secondary text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{t('whyChoose.reasons.support.description')}</p>
+                  <h3 className={`font-semibold text-text-primary mb-2`}>{t('whyChoose.reasons.support.title')}</h3>
+                  <p className={`text-text-secondary text-sm`}>{t('whyChoose.reasons.support.description')}</p>
                 </div>
               </div>
             </div>
@@ -659,10 +659,10 @@ export default function AstrologyVastuPage() {
           {/* Daily Guidance - Panchang & Kundli Generator */}
           <section className="mb-16">
             <div className="text-center mb-12">
-              <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+              <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4`}>
                 {t('dailyGuidance.title')}
               </h2>
-              <p className={`text-lg text-text-secondary max-w-3xl mx-auto ${locale === 'hi' ? 'body-hi' : ''}`}>
+              <p className={`text-lg text-text-secondary max-w-3xl mx-auto`}>
                 {t('dailyGuidance.subtitle')}
               </p>
             </div>
@@ -672,105 +672,105 @@ export default function AstrologyVastuPage() {
               <div className="bg-surface rounded-2xl p-6 border border-line">
                 <div className="text-center mb-6">
                   <div className="text-4xl mb-3">📅</div>
-                  <h3 className={`text-2xl font-bold text-primary mb-2 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>{t('dailyGuidance.panchang.title')}</h3>
-                  <p className={`text-text-secondary text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.subtitle')}</p>
-                  <p className={`text-text-secondary text-xs mt-1 ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.date}</p>
+                  <h3 className={`text-2xl font-bold text-primary mb-2`}>{t('dailyGuidance.panchang.title')}</h3>
+                  <p className={`text-text-secondary text-sm`}>{t('dailyGuidance.panchang.subtitle')}</p>
+                  <p className={`text-text-secondary text-xs mt-1`}>{panchangData.date}</p>
                   {panchangData.isLoading && (
                     <div className="inline-flex items-center mt-2">
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary mr-2"></div>
-                      <span className={`text-xs text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.updating')}</span>
+                      <span className={`text-xs text-text-secondary`}>{t('dailyGuidance.panchang.updating')}</span>
                     </div>
                   )}
                 </div>
 
                 <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  {panchangData && <div className="grid grid-cols-2 gap-4">
                     <div className="bg-elevations rounded-lg p-3">
-                      <span className={`text-text-secondary text-sm block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.tithi')}</span>
-                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.tithi ? t(`dailyGuidance.panchangValues.${panchangData.tithi}`) : ''}</span>
+                      <span className={`text-text-secondary text-sm block`}>{t('dailyGuidance.panchang.tithi')}</span>
+                      <span className={`text-text-primary font-semibold`}>{panchangData.tithi ? t(`dailyGuidance.panchangValues.${panchangData.tithi}`) : ''}</span>
                     </div>
                     <div className="bg-elevations rounded-lg p-3">
-                      <span className={`text-text-secondary text-sm block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.nakshatra')}</span>
-                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.nakshatra ? t(`dailyGuidance.panchangValues.${panchangData.nakshatra}`) : ''}</span>
+                      <span className={`text-text-secondary text-sm block`}>{t('dailyGuidance.panchang.nakshatra')}</span>
+                      <span className={`text-text-primary font-semibold`}>{panchangData.nakshatra ? t(`dailyGuidance.panchangValues.${panchangData.nakshatra}`) : ''}</span>
                     </div>
                     <div className="bg-elevations rounded-lg p-3">
-                      <span className={`text-text-secondary text-sm block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.yoga')}</span>
-                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.yoga ? t(`dailyGuidance.panchangValues.${panchangData.yoga}`) : ''}</span>
+                      <span className={`text-text-secondary text-sm block`}>{t('dailyGuidance.panchang.yoga')}</span>
+                      <span className={`text-text-primary font-semibold`}>{panchangData.yoga ? t(`dailyGuidance.panchangValues.${panchangData.yoga}`) : ''}</span>
                     </div>
                     <div className="bg-elevations rounded-lg p-3">
-                      <span className={`text-text-secondary text-sm block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.karana')}</span>
-                      <span className={`text-text-primary font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.karana ? t(`dailyGuidance.panchangValues.${panchangData.karana}`) : ''}</span>
+                      <span className={`text-text-secondary text-sm block`}>{t('dailyGuidance.panchang.karana')}</span>
+                      <span className={`text-text-primary font-semibold`}>{panchangData.karana ? t(`dailyGuidance.panchangValues.${panchangData.karana}`) : ''}</span>
                     </div>
-                  </div>
+                  </div>}
 
-                  <div className="border-t border-line pt-4 space-y-3">
+                  {panchangData && <div className="border-t border-line pt-4 space-y-3">
                     <div className="bg-success/10 rounded-lg p-3 border border-success/30">
                       <div className="flex justify-between items-center">
-                        <span className={`text-text-secondary text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.day')}</span>
-                        <span className={`text-success font-semibold ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.day ? t(`dailyGuidance.panchangValues.${panchangData.day}`) : ''}</span>
+                        <span className={`text-text-secondary text-sm`}>{t('dailyGuidance.panchang.day')}</span>
+                        <span className={`text-success font-semibold`}>{panchangData.day ? t(`dailyGuidance.panchangValues.${panchangData.day}`) : ''}</span>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
                       <div className="bg-elevations rounded-lg p-3">
-                        <span className={`text-text-secondary text-xs block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.sunrise')}</span>
-                        <span className={`text-text-primary font-medium text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.sunrise}</span>
+                        <span className={`text-text-secondary text-xs block`}>{t('dailyGuidance.panchang.sunrise')}</span>
+                        <span className={`text-text-primary font-medium text-sm`}>{panchangData.sunrise}</span>
                       </div>
                       <div className="bg-elevations rounded-lg p-3">
-                        <span className={`text-text-secondary text-xs block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.sunset')}</span>
-                        <span className={`text-text-primary font-medium text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.sunset}</span>
+                        <span className={`text-text-secondary text-xs block`}>{t('dailyGuidance.panchang.sunset')}</span>
+                        <span className={`text-text-primary font-medium text-sm`}>{panchangData.sunset}</span>
                       </div>
                       <div className="bg-elevations rounded-lg p-3">
-                        <span className={`text-text-secondary text-xs block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.moonrise')}</span>
-                        <span className={`text-text-primary font-medium text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.moonrise}</span>
+                        <span className={`text-text-secondary text-xs block`}>{t('dailyGuidance.panchang.moonrise')}</span>
+                        <span className={`text-text-primary font-medium text-sm`}>{panchangData.moonrise}</span>
                       </div>
                       <div className="bg-elevations rounded-lg p-3">
-                        <span className={`text-text-secondary text-xs block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.moonset')}</span>
-                        <span className={`text-text-primary font-medium text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.moonset}</span>
+                        <span className={`text-text-secondary text-xs block`}>{t('dailyGuidance.panchang.moonset')}</span>
+                        <span className={`text-text-primary font-medium text-sm`}>{panchangData.moonset}</span>
                       </div>
                     </div>
 
                     <div className="bg-accent/10 rounded-lg p-3 border border-accent/30">
                       <div className="flex justify-between items-center">
-                        <span className={`text-text-secondary text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.nakshatraLord')}</span>
-                        <span className={`text-accent font-medium text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.nakshatraLord ? t(`dailyGuidance.panchangValues.${panchangData.nakshatraLord}`) : ''}</span>
+                        <span className={`text-text-secondary text-xs`}>{t('dailyGuidance.panchang.nakshatraLord')}</span>
+                        <span className={`text-accent font-medium text-xs`}>{panchangData.nakshatraLord ? t(`dailyGuidance.panchangValues.${panchangData.nakshatraLord}`) : ''}</span>
                       </div>
                     </div>
 
                     <div className="bg-primary/10 rounded-lg p-3 border border-primary/30">
                       <div className="flex justify-between items-center">
-                        <span className={`text-text-secondary text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.paksha')}</span>
-                        <span className={`text-primary font-medium text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.paksha ? t(`dailyGuidance.panchangValues.${panchangData.paksha}`) : ''}</span>
+                        <span className={`text-text-secondary text-xs`}>{t('dailyGuidance.panchang.paksha')}</span>
+                        <span className={`text-primary font-medium text-xs`}>{panchangData.paksha ? t(`dailyGuidance.panchangValues.${panchangData.paksha}`) : ''}</span>
                       </div>
                     </div>
 
                     {panchangData.error && (
                       <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                        <p className={`text-red-600 text-xs text-center ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.error}</p>
+                        <p className={`text-red-600 text-xs text-center`}>{panchangData.error}</p>
                       </div>
                     )}
-                  </div>
+                  </div>}
                 </div>
 
                 {/* End Times */}
                 <div className="border-t border-line pt-4 mt-4 space-y-2">
-                  <h4 className={`text-sm font-semibold text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.endTimes')}</h4>
+                  <h4 className={`text-sm font-semibold text-text-primary mb-2`}>{t('dailyGuidance.panchang.endTimes')}</h4>
                   <div className="grid grid-cols-2 gap-2">
                     <div className="bg-elevations rounded-lg p-2">
-                      <span className={`text-text-secondary text-xs block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.tithiEnds')}</span>
-                      <span className={`text-text-primary font-medium text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.tithiEnd}</span>
+                      <span className={`text-text-secondary text-xs block`}>{t('dailyGuidance.panchang.tithiEnds')}</span>
+                      <span className={`text-text-primary font-medium text-xs`}>{panchangData.tithiEnd}</span>
                     </div>
                     <div className="bg-elevations rounded-lg p-2">
-                      <span className={`text-text-secondary text-xs block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.nakshatraEnds')}</span>
-                      <span className={`text-text-primary font-medium text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.nakshatraEnd}</span>
+                      <span className={`text-text-secondary text-xs block`}>{t('dailyGuidance.panchang.nakshatraEnds')}</span>
+                      <span className={`text-text-primary font-medium text-xs`}>{panchangData.nakshatraEnd}</span>
                     </div>
                     <div className="bg-elevations rounded-lg p-2">
-                      <span className={`text-text-secondary text-xs block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.yogaEnds')}</span>
-                      <span className={`text-text-primary font-medium text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.yogaEnd}</span>
+                      <span className={`text-text-secondary text-xs block`}>{t('dailyGuidance.panchang.yogaEnds')}</span>
+                      <span className={`text-text-primary font-medium text-xs`}>{panchangData.yogaEnd}</span>
                     </div>
                     <div className="bg-elevations rounded-lg p-2">
-                      <span className={`text-text-secondary text-xs block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.panchang.karanaEnds')}</span>
-                      <span className={`text-text-primary font-medium text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{panchangData.karanaEnd}</span>
+                      <span className={`text-text-secondary text-xs block`}>{t('dailyGuidance.panchang.karanaEnds')}</span>
+                      <span className={`text-text-primary font-medium text-xs`}>{panchangData.karanaEnd}</span>
                     </div>
                   </div>
                 </div>
@@ -778,20 +778,20 @@ export default function AstrologyVastuPage() {
                 <div className="flex gap-3 mt-6">
                   <button
                     onClick={refreshPanchang}
-                    className={`flex-1 border border-primary text-primary hover:bg-primary hover:text-white py-3 px-4 rounded-lg text-sm font-medium transition-colors ${locale === 'hi' ? 'body-hi' : ''}`}
+                    className={`flex-1 border border-primary text-primary hover:bg-primary hover:text-white py-3 px-4 rounded-lg text-sm font-medium transition-colors`}
                     disabled={panchangData.isLoading}
                   >
                     {panchangData.isLoading ? t('dailyGuidance.panchang.calculating') : t('dailyGuidance.panchang.refreshData')}
                   </button>
                   <button
                     onClick={() => setIsCalendarModalOpen(true)}
-                    className={`flex-1 btn-primary py-3 px-4 rounded-lg text-sm font-medium ${locale === 'hi' ? 'body-hi' : ''}`}
+                    className={`flex-1 btn-primary py-3 px-4 rounded-lg text-sm font-medium`}
                   >
                     {t('dailyGuidance.panchang.viewDetailed')}
                   </button>
                 </div>
 
-                <p className={`text-xs text-text-secondary text-center mt-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                <p className={`text-xs text-text-secondary text-center mt-2`}>
                   🔮 {t('dailyGuidance.panchang.poweredBy')} • {panchangData.error ? t('dailyGuidance.panchang.connectionError') : t('dailyGuidance.panchang.liveData')}
                 </p>
               </div>
@@ -802,8 +802,8 @@ export default function AstrologyVastuPage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <span className="text-white text-2xl">🔮</span>
                   </div>
-                  <h3 className={`text-2xl font-bold text-primary mb-2 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>{t('dailyGuidance.kundliGenerator.title')}</h3>
-                  <p className={`text-deep-accent text-sm font-medium ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.subtitle')}</p>
+                  <h3 className={`text-2xl font-bold text-primary mb-2`}>{t('dailyGuidance.kundliGenerator.title')}</h3>
+                  <p className={`text-deep-accent text-sm font-medium`}>{t('dailyGuidance.kundliGenerator.subtitle')}</p>
                 </div>
 
                 {!kundliResult ? (
@@ -811,7 +811,7 @@ export default function AstrologyVastuPage() {
                     <div className="space-y-4">
                       {/* Name Input */}
                       <div className="relative">
-                        <label className={`block text-primary text-sm font-medium mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                        <label className={`block text-primary text-sm font-medium mb-2`}>
                           {t('dailyGuidance.kundliGenerator.fullName')} *
                         </label>
                         <input
@@ -819,7 +819,7 @@ export default function AstrologyVastuPage() {
                           placeholder={locale === 'hi' ? 'अपना पूरा नाम दर्ज करें' : 'Enter your full name'}
                           value={kundliForm.name}
                           onChange={(e) => setKundliForm({...kundliForm, name: e.target.value})}
-                          className={`w-full px-4 py-3 bg-white border-2 border-red-200 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all shadow-sm ${locale === 'hi' ? 'body-hi' : ''}`}
+                          className={`w-full px-4 py-3 bg-white border-2 border-red-200 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all shadow-sm`}
                           required
                         />
                       </div>
@@ -827,7 +827,7 @@ export default function AstrologyVastuPage() {
                       {/* Date and Time */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="relative">
-                          <label className={`block text-primary text-sm font-medium mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                          <label className={`block text-primary text-sm font-medium mb-2`}>
                             {t('dailyGuidance.kundliGenerator.dateOfBirth')} *
                           </label>
                           <input
@@ -839,7 +839,7 @@ export default function AstrologyVastuPage() {
                           />
                         </div>
                         <div className="relative">
-                          <label className={`block text-primary text-sm font-medium mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                          <label className={`block text-primary text-sm font-medium mb-2`}>
                             {t('dailyGuidance.kundliGenerator.timeOfBirth')} *
                           </label>
                           <ClockTimePicker
@@ -851,7 +851,7 @@ export default function AstrologyVastuPage() {
 
                       {/* Location */}
                       <div className="relative">
-                        <label className={`block text-primary text-sm font-medium mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                        <label className={`block text-primary text-sm font-medium mb-2`}>
                           {t('dailyGuidance.kundliGenerator.placeOfBirth')} *
                         </label>
                         <LocationPicker
@@ -867,14 +867,14 @@ export default function AstrologyVastuPage() {
 
                       {/* Advanced Options */}
                       <details className="group">
-                        <summary className={`cursor-pointer text-xs text-text-secondary hover:text-primary transition-colors ${locale === 'hi' ? 'body-hi' : ''}`}>
+                        <summary className={`cursor-pointer text-xs text-text-secondary hover:text-primary transition-colors`}>
                           {t('dailyGuidance.kundliGenerator.advancedOptions')}
                         </summary>
                         <div className="mt-2 space-y-2 pl-4 border-l-2 border-line">
                           <select
                             value={kundliForm.ayanamsa}
                             onChange={(e) => setKundliForm({...kundliForm, ayanamsa: e.target.value})}
-                            className={`w-full px-2 py-1 border border-line rounded text-xs bg-background focus:ring-1 focus:ring-primary ${locale === 'hi' ? 'body-hi' : ''}`}
+                            className={`w-full px-2 py-1 border border-line rounded text-xs bg-background focus:ring-1 focus:ring-primary`}
                           >
                             <option value="1">{t('dailyGuidance.kundliGenerator.lahiriAyanamsa')}</option>
                             <option value="3">{t('dailyGuidance.kundliGenerator.kpAyanamsa')}</option>
@@ -884,7 +884,7 @@ export default function AstrologyVastuPage() {
                             <select
                               value={kundliForm.language}
                               onChange={(e) => setKundliForm({...kundliForm, language: e.target.value})}
-                              className={`w-full px-2 py-1 border border-line rounded text-xs bg-background focus:ring-1 focus:ring-primary ${locale === 'hi' ? 'body-hi' : ''}`}
+                              className={`w-full px-2 py-1 border border-line rounded text-xs bg-background focus:ring-1 focus:ring-primary`}
                             >
                               <option value="en">{t('dailyGuidance.kundliGenerator.english')}</option>
                               <option value="hi">{t('dailyGuidance.kundliGenerator.hindi')}</option>
@@ -892,7 +892,7 @@ export default function AstrologyVastuPage() {
                             <select
                               value={kundliForm.result_type}
                               onChange={(e) => setKundliForm({...kundliForm, result_type: e.target.value})}
-                              className={`w-full px-2 py-1 border border-line rounded text-xs bg-background focus:ring-1 focus:ring-primary ${locale === 'hi' ? 'body-hi' : ''}`}
+                              className={`w-full px-2 py-1 border border-line rounded text-xs bg-background focus:ring-1 focus:ring-primary`}
                             >
                               <option value="basic">{t('dailyGuidance.kundliGenerator.basicResult')}</option>
                               <option value="advanced">{t('dailyGuidance.kundliGenerator.advancedResult')}</option>
@@ -905,7 +905,7 @@ export default function AstrologyVastuPage() {
                     <button
                       onClick={generateKundli}
                       disabled={kundliLoading}
-                      className={`w-full mt-6 bg-gradient-to-r from-primary to-accent hover:from-primary-hover hover:to-deep-accent text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${locale === 'hi' ? 'body-hi' : ''}`}
+                      className={`w-full mt-6 bg-gradient-to-r from-primary to-accent hover:from-primary-hover hover:to-deep-accent text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
                     >
                       {kundliLoading ? (
                         <span className="flex items-center justify-center space-x-3">
@@ -923,11 +923,11 @@ export default function AstrologyVastuPage() {
 
                     <div className="mt-2 space-y-1">
                       {selectedLocation && (
-                        <p className={`text-xs text-success text-center ${locale === 'hi' ? 'body-hi' : ''}`}>
+                        <p className={`text-xs text-success text-center`}>
                           📍 {selectedLocation.name}, {selectedLocation.state}
                         </p>
                       )}
-                      <p className={`text-xs text-text-secondary text-center ${locale === 'hi' ? 'body-hi' : ''}`}>
+                      <p className={`text-xs text-text-secondary text-center`}>
                         {t('dailyGuidance.kundliGenerator.disclaimer')}
                       </p>
                     </div>
@@ -936,30 +936,30 @@ export default function AstrologyVastuPage() {
                   <div className="space-y-4">
                     <div className="text-center border-b border-line pb-3">
                       <h4 className={`font-semibold text-primary ${locale === 'hi' ? 'heading-hi' : ''}`}>{kundliResult.name || locale === 'hi' ? 'कुंडली तैयार' : 'Kundli Generated'}</h4>
-                      <p className={`text-xs text-text-secondary ${locale === 'hi' ? 'body-hi' : ''}`}>{locale === 'hi' ? 'मूल जन्म कुंडली सारांश' : 'Basic Birth Chart Summary'}</p>
+                      <p className={`text-xs text-text-secondary`}>{locale === 'hi' ? 'मूल जन्म कुंडली सारांश' : 'Basic Birth Chart Summary'}</p>
                     </div>
 
                     {/* Kundli Summary Display */}
                     <div className="space-y-3">
                       {/* Birth Information */}
                       <div className="bg-elevations rounded-lg p-3">
-                        <h5 className={`text-sm font-medium text-text-primary mb-2 text-center ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.birthInfo')}</h5>
+                        <h5 className={`text-sm font-medium text-text-primary mb-2 text-center`}>{t('dailyGuidance.kundliGenerator.birthInfo')}</h5>
                         <div className="grid grid-cols-2 gap-2 text-xs">
                           <div className="text-center">
-                            <span className={`text-text-secondary block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.name')}</span>
-                            <span className={`text-primary font-medium ${locale === 'hi' ? 'body-hi' : ''}`}>{kundliResult.name || kundliForm.name}</span>
+                            <span className={`text-text-secondary block`}>{t('dailyGuidance.kundliGenerator.name')}</span>
+                            <span className={`text-primary font-medium`}>{kundliResult.name || kundliForm.name}</span>
                           </div>
                           <div className="text-center">
-                            <span className={`text-text-secondary block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.date')}</span>
+                            <span className={`text-text-secondary block`}>{t('dailyGuidance.kundliGenerator.date')}</span>
                             <span className="text-text-primary font-medium">{kundliForm.dateOfBirth}</span>
                           </div>
                           <div className="text-center">
-                            <span className={`text-text-secondary block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.time')}</span>
+                            <span className={`text-text-secondary block`}>{t('dailyGuidance.kundliGenerator.time')}</span>
                             <span className="text-text-primary font-medium">{kundliForm.timeOfBirth}</span>
                           </div>
                           <div className="text-center">
-                            <span className={`text-text-secondary block ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.place')}</span>
-                            <span className={`text-text-primary font-medium ${locale === 'hi' ? 'body-hi' : ''}`}>{selectedLocation?.name}</span>
+                            <span className={`text-text-secondary block`}>{t('dailyGuidance.kundliGenerator.place')}</span>
+                            <span className={`text-text-primary font-medium`}>{selectedLocation?.name}</span>
                           </div>
                         </div>
                       </div>
@@ -1022,17 +1022,17 @@ export default function AstrologyVastuPage() {
                           <>
                             {/* Key Astrological Details */}
                             <div className="bg-elevations rounded-lg p-3">
-                              <h5 className={`text-sm font-medium text-text-primary mb-3 text-center ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.birthChartHighlights')}</h5>
+                              <h5 className={`text-sm font-medium text-text-primary mb-3 text-center`}>{t('dailyGuidance.kundliGenerator.birthChartHighlights')}</h5>
                               <div className="space-y-2">
                                 <div className="flex justify-between items-center">
-                                  <span className={`text-text-secondary text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.birthStar')}</span>
-                                  <span className={`text-primary font-semibold text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>
+                                  <span className={`text-text-secondary text-xs`}>{t('dailyGuidance.kundliGenerator.birthStar')}</span>
+                                  <span className={`text-primary font-semibold text-sm`}>
                                     {astroData.nakshatra || t('dailyGuidance.kundliGenerator.loading')}
                                   </span>
                                 </div>
                                 <div className="flex justify-between items-center">
-                                  <span className={`text-text-secondary text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.moonSign')}</span>
-                                  <span className={`text-accent font-semibold text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>
+                                  <span className={`text-text-secondary text-xs`}>{t('dailyGuidance.kundliGenerator.moonSign')}</span>
+                                  <span className={`text-accent font-semibold text-sm`}>
                                     {astroData.moonSign || t('dailyGuidance.kundliGenerator.loading')}
                                   </span>
                                 </div>
@@ -1053,8 +1053,8 @@ export default function AstrologyVastuPage() {
                                 return (
                                   <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-3">
                                     <div className="flex justify-between items-center mb-2">
-                                      <h5 className={`text-sm font-medium text-purple-800 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.yogaAnalysis')}</h5>
-                                      <span className={`text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded-full ${locale === 'hi' ? 'body-hi' : ''}`}>
+                                      <h5 className={`text-sm font-medium text-purple-800`}>{t('dailyGuidance.kundliGenerator.yogaAnalysis')}</h5>
+                                      <span className={`text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded-full`}>
                                         {allYogas.length} {t('dailyGuidance.kundliGenerator.yogasFound')}
                                       </span>
                                     </div>
@@ -1063,7 +1063,7 @@ export default function AstrologyVastuPage() {
                                       {beneficYogas.length > 0 && (
                                         <div>
                                           <div className="flex justify-between items-center mb-1">
-                                            <span className={`text-purple-700 text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.positiveYogas')}</span>
+                                            <span className={`text-purple-700 text-xs`}>{t('dailyGuidance.kundliGenerator.positiveYogas')}</span>
                                             <span className="text-green-700 font-semibold text-sm bg-green-100 px-2 py-1 rounded">
                                               {beneficYogas.length}
                                             </span>
@@ -1071,17 +1071,17 @@ export default function AstrologyVastuPage() {
                                           <div className="space-y-1">
                                             {beneficYogas.slice(0, 2).map((yoga, index) => (
                                               <div key={index} className="bg-green-50 rounded p-2">
-                                                <p className={`text-xs font-medium text-green-800 ${locale === 'hi' ? 'body-hi' : ''}`}>{yoga.name}</p>
-                                                <p className={`text-xs text-green-600 ${locale === 'hi' ? 'body-hi' : ''}`}>{yoga.description}</p>
+                                                <p className={`text-xs font-medium text-green-800`}>{yoga.name}</p>
+                                                <p className={`text-xs text-green-600`}>{yoga.description}</p>
                                                 {yoga.planets_involved && (
-                                                  <p className={`text-xs text-green-500 mt-1 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                                                  <p className={`text-xs text-green-500 mt-1`}>
                                                     {t('dailyGuidance.kundliGenerator.planets')} {yoga.planets_involved.join(', ')}
                                                   </p>
                                                 )}
                                               </div>
                                             ))}
                                             {beneficYogas.length > 2 && (
-                                              <p className={`text-xs text-green-700 text-center ${locale === 'hi' ? 'body-hi' : ''}`}>
+                                              <p className={`text-xs text-green-700 text-center`}>
                                                 +{beneficYogas.length - 2} {t('dailyGuidance.kundliGenerator.morePositive')}
                                               </p>
                                             )}
@@ -1092,7 +1092,7 @@ export default function AstrologyVastuPage() {
                                       {challengingYogas.length > 0 && (
                                         <div>
                                           <div className="flex justify-between items-center mb-1">
-                                            <span className={`text-purple-700 text-xs ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.areasToFocus')}</span>
+                                            <span className={`text-purple-700 text-xs`}>{t('dailyGuidance.kundliGenerator.areasToFocus')}</span>
                                             <span className="text-orange-700 font-semibold text-sm bg-orange-100 px-2 py-1 rounded">
                                               {challengingYogas.length}
                                             </span>
@@ -1100,17 +1100,17 @@ export default function AstrologyVastuPage() {
                                           <div className="space-y-1">
                                             {challengingYogas.slice(0, 1).map((yoga, index) => (
                                               <div key={index} className="bg-orange-50 rounded p-2">
-                                                <p className={`text-xs font-medium text-orange-800 ${locale === 'hi' ? 'body-hi' : ''}`}>{yoga.name}</p>
-                                                <p className={`text-xs text-orange-600 ${locale === 'hi' ? 'body-hi' : ''}`}>{yoga.description}</p>
+                                                <p className={`text-xs font-medium text-orange-800`}>{yoga.name}</p>
+                                                <p className={`text-xs text-orange-600`}>{yoga.description}</p>
                                                 {yoga.planets_involved && (
-                                                  <p className={`text-xs text-orange-500 mt-1 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                                                  <p className={`text-xs text-orange-500 mt-1`}>
                                                     {t('dailyGuidance.kundliGenerator.planets')} {yoga.planets_involved.join(', ')}
                                                   </p>
                                                 )}
                                               </div>
                                             ))}
                                             {challengingYogas.length > 1 && (
-                                              <p className={`text-xs text-orange-700 text-center ${locale === 'hi' ? 'body-hi' : ''}`}>
+                                              <p className={`text-xs text-orange-700 text-center`}>
                                                 +{challengingYogas.length - 1} {t('dailyGuidance.kundliGenerator.moreToReview')}
                                               </p>
                                             )}
@@ -1126,13 +1126,13 @@ export default function AstrologyVastuPage() {
                               return (
                                 <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-3">
                                   <div className="flex justify-between items-center mb-2">
-                                    <h5 className={`text-sm font-medium text-purple-800 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.yogaAnalysis')}</h5>
-                                    <span className={`text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded-full ${locale === 'hi' ? 'body-hi' : ''}`}>
+                                    <h5 className={`text-sm font-medium text-purple-800`}>{t('dailyGuidance.kundliGenerator.yogaAnalysis')}</h5>
+                                    <span className={`text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded-full`}>
                                       {t('dailyGuidance.kundliGenerator.calculating')}
                                     </span>
                                   </div>
                                   <div className="bg-white rounded p-2">
-                                    <p className={`text-xs text-purple-700 text-center ${locale === 'hi' ? 'body-hi' : ''}`}>
+                                    <p className={`text-xs text-purple-700 text-center`}>
                                       <span className="font-medium">{t('dailyGuidance.kundliGenerator.calculatingYogas')}</span>
                                       <br />
                                       <span className="text-purple-600">{t('dailyGuidance.kundliGenerator.detailsWillAppear')}</span>
@@ -1148,8 +1148,8 @@ export default function AstrologyVastuPage() {
 
                       {/* Call to Action */}
                       <div className="bg-gradient-to-r from-primary/10 to-success/10 rounded-lg p-3 border border-primary/30 text-center">
-                        <p className={`text-primary font-medium text-sm mb-1 ${locale === 'hi' ? 'body-hi' : ''}`}>{t('dailyGuidance.kundliGenerator.viewCompleteAnalysis')}</p>
-                        <p className={`text-text-secondary text-xs mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                        <p className={`text-primary font-medium text-sm mb-1`}>{t('dailyGuidance.kundliGenerator.viewCompleteAnalysis')}</p>
+                        <p className={`text-text-secondary text-xs mb-2`}>
                           {t('dailyGuidance.kundliGenerator.completeAnalysisDesc')}
                         </p>
                       </div>
@@ -1170,7 +1170,7 @@ export default function AstrologyVastuPage() {
                           });
                           setSelectedLocation(null);
                         }}
-                        className={`flex-1 border border-primary text-primary hover:bg-primary hover:text-white py-2 px-3 rounded-lg text-xs font-medium transition-colors ${locale === 'hi' ? 'body-hi' : ''}`}
+                        className={`flex-1 border border-primary text-primary hover:bg-primary hover:text-white py-2 px-3 rounded-lg text-xs font-medium transition-colors`}
                       >
                         {t('dailyGuidance.kundliGenerator.generateNew')}
                       </button>
@@ -1183,7 +1183,7 @@ export default function AstrologyVastuPage() {
                           }));
                           window.location.href = `/${locale}/kundli-analysis`;
                         }}
-                        className={`flex-1 btn-primary py-2 px-3 rounded-lg text-xs font-medium ${locale === 'hi' ? 'body-hi' : ''}`}
+                        className={`flex-1 btn-primary py-2 px-3 rounded-lg text-xs font-medium`}
                       >
                         {t('dailyGuidance.kundliGenerator.viewFullAnalysis')}
                       </button>
@@ -1198,10 +1198,10 @@ export default function AstrologyVastuPage() {
           <section id="consultation-form" className="mb-16">
             <div className="bg-surface rounded-2xl p-8 border border-line glow-border">
               <div className="text-center mb-8">
-                <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+                <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4`}>
                   {t('bookingForm.title')}
                 </h2>
-                <p className={`text-lg text-text-secondary max-w-2xl mx-auto ${locale === 'hi' ? 'body-hi' : ''}`}>
+                <p className={`text-lg text-text-secondary max-w-2xl mx-auto`}>
                   {t('bookingForm.subtitle')}
                 </p>
               </div>
@@ -1209,7 +1209,7 @@ export default function AstrologyVastuPage() {
               <form onSubmit={handleConsultationSubmit} className="max-w-2xl mx-auto space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className={`block text-sm font-medium text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                    <label className={`block text-sm font-medium text-text-primary mb-2`}>
                       {t('bookingForm.fullName')} {t('bookingForm.required')}
                     </label>
                     <input
@@ -1217,13 +1217,13 @@ export default function AstrologyVastuPage() {
                       required
                       value={consultationForm.fullName}
                       onChange={(e) => setConsultationForm({...consultationForm, fullName: e.target.value})}
-                      className={`w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background ${locale === 'hi' ? 'body-hi' : ''}`}
+                      className={`w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background`}
                       placeholder={t('bookingForm.fullNamePlaceholder')}
                     />
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-medium text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                    <label className={`block text-sm font-medium text-text-primary mb-2`}>
                       {t('bookingForm.phoneNumber')} {t('bookingForm.required')}
                     </label>
                     <input
@@ -1238,7 +1238,7 @@ export default function AstrologyVastuPage() {
                 </div>
 
                 <div>
-                  <label className={`block text-sm font-medium text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                  <label className={`block text-sm font-medium text-text-primary mb-2`}>
                     {t('bookingForm.emailAddress')} {t('bookingForm.required')}
                   </label>
                   <input
@@ -1253,14 +1253,14 @@ export default function AstrologyVastuPage() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className={`block text-sm font-medium text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                    <label className={`block text-sm font-medium text-text-primary mb-2`}>
                       {t('bookingForm.serviceType')} {t('bookingForm.required')}
                     </label>
                     <select
                       required
                       value={consultationForm.serviceType}
                       onChange={(e) => setConsultationForm({...consultationForm, serviceType: e.target.value})}
-                      className={`w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background ${locale === 'hi' ? 'body-hi' : ''}`}
+                      className={`w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background`}
                     >
                       <option value="">{t('bookingForm.selectService')}</option>
                       <optgroup label={t('bookingForm.serviceGroups.astrology')}>
@@ -1281,14 +1281,14 @@ export default function AstrologyVastuPage() {
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-medium text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                    <label className={`block text-sm font-medium text-text-primary mb-2`}>
                       {t('bookingForm.consultationMode')} {t('bookingForm.required')}
                     </label>
                     <select
                       required
                       value={consultationForm.consultationMode}
                       onChange={(e) => setConsultationForm({...consultationForm, consultationMode: e.target.value})}
-                      className={`w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background ${locale === 'hi' ? 'body-hi' : ''}`}
+                      className={`w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background`}
                     >
                       <option value="">{t('bookingForm.selectMode')}</option>
                       {consultationModes.map((mode) => (
@@ -1302,7 +1302,7 @@ export default function AstrologyVastuPage() {
 
                 <div className="grid md:grid-cols-3 gap-4">
                   <div>
-                    <label className={`block text-sm font-medium text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                    <label className={`block text-sm font-medium text-text-primary mb-2`}>
                       {t('bookingForm.dateOfBirth')}
                     </label>
                     <input
@@ -1314,7 +1314,7 @@ export default function AstrologyVastuPage() {
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-medium text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                    <label className={`block text-sm font-medium text-text-primary mb-2`}>
                       {t('bookingForm.timeOfBirth')}
                     </label>
                     <input
@@ -1326,7 +1326,7 @@ export default function AstrologyVastuPage() {
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-medium text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                    <label className={`block text-sm font-medium text-text-primary mb-2`}>
                       {t('bookingForm.placeOfBirth')}
                     </label>
                     <LocationPicker
@@ -1342,7 +1342,7 @@ export default function AstrologyVastuPage() {
                 </div>
 
                 <div>
-                  <label className={`block text-sm font-medium text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                  <label className={`block text-sm font-medium text-text-primary mb-2`}>
                     {t('bookingForm.preferredDateTime')}
                   </label>
                   <input
@@ -1354,14 +1354,14 @@ export default function AstrologyVastuPage() {
                 </div>
 
                 <div>
-                  <label className={`block text-sm font-medium text-text-primary mb-2 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                  <label className={`block text-sm font-medium text-text-primary mb-2`}>
                     {t('bookingForm.requirements')}
                   </label>
                   <textarea
                     rows={4}
                     value={consultationForm.requirements}
                     onChange={(e) => setConsultationForm({...consultationForm, requirements: e.target.value})}
-                    className={`w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background resize-vertical ${locale === 'hi' ? 'body-hi' : ''}`}
+                    className={`w-full px-4 py-3 border border-line rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-background resize-vertical`}
                     placeholder={t('bookingForm.requirementsPlaceholder')}
                   />
                 </div>
@@ -1369,13 +1369,13 @@ export default function AstrologyVastuPage() {
                 <div className="flex justify-center">
                   <button
                     type="submit"
-                    className={`btn-primary py-3 px-8 rounded-lg font-medium text-lg ${locale === 'hi' ? 'body-hi' : ''}`}
+                    className={`btn-primary py-3 px-8 rounded-lg font-medium text-lg`}
                   >
                     {t('bookingForm.submitButton')}
                   </button>
                 </div>
 
-                <p className={`text-sm text-text-secondary text-center ${locale === 'hi' ? 'body-hi' : ''}`}>
+                <p className={`text-sm text-text-secondary text-center`}>
                   {t('bookingForm.privacyNote')}
                 </p>
               </form>
@@ -1385,10 +1385,10 @@ export default function AstrologyVastuPage() {
           {/* Success Stories */}
           <section className="mb-16">
             <div className="text-center mb-12">
-              <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4 ${locale === 'hi' ? 'heading-hi' : 'heading-en'}`}>
+              <h2 className={`text-3xl md:text-4xl font-bold text-primary mb-4`}>
                 {t('successStories.title')}
               </h2>
-              <p className={`text-lg text-text-secondary max-w-3xl mx-auto ${locale === 'hi' ? 'body-hi' : ''}`}>
+              <p className={`text-lg text-text-secondary max-w-3xl mx-auto`}>
                 {t('successStories.subtitle')}
               </p>
             </div>
@@ -1401,11 +1401,11 @@ export default function AstrologyVastuPage() {
                       {t.raw(`successStories.stories.${key}.name`).split(' ').map((n: string) => n[0]).join('')}
                     </div>
                     <div className="ml-3">
-                      <h4 className={`font-semibold text-text-primary ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(`successStories.stories.${key}.name`)}</h4>
-                      <p className={`text-text-secondary text-sm ${locale === 'hi' ? 'body-hi' : ''}`}>{t.raw(`successStories.stories.${key}.location`)}</p>
+                      <h4 className={`font-semibold text-text-primary`}>{t.raw(`successStories.stories.${key}.name`)}</h4>
+                      <p className={`text-text-secondary text-sm`}>{t.raw(`successStories.stories.${key}.location`)}</p>
                     </div>
                   </div>
-                  <p className={`text-text-secondary text-sm mb-4 ${locale === 'hi' ? 'body-hi' : ''}`}>
+                  <p className={`text-text-secondary text-sm mb-4`}>
                     {t.raw(`successStories.stories.${key}.testimonial`)}
                   </p>
                   <div className="flex text-accent">

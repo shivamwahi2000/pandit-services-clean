@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Noto_Sans_Devanagari } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -21,6 +22,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const notoDevanagari = Noto_Sans_Devanagari({
+  variable: "--font-noto-devanagari",
+  subsets: ['devanagari'],
+  weight: ['400', '700'],
+  display: 'swap',
+});
+
 // Generate metadata dynamically based on locale
 export async function generateMetadata({
   params
@@ -35,7 +43,7 @@ export async function generateMetadata({
     metadataBase: new URL('https://kesarinakshatra.com'),
     title: {
       default: isHindi
-        ? "केसरी नक्षत्र - पूजा के लिए पंडित बुक करें | हिंदू अनुष्ठान और वैदिक ज्योतिष सेवाएं"
+        ? "केसरी नक्षत्र - पूजा के लिए पंडित बुक करें | हिंदू अनुष्ठان और वैदिक ज्योतिष सेवाएं"
         : "Kesari Nakshatra - Book Pandit for Puja | Hindu Rituals & Vedic Astrology Services",
       template: isHindi ? "%s | केसरी नक्षत्र" : "%s | Kesari Nakshatra"
     },
@@ -307,7 +315,7 @@ export default async function LocaleLayout({
                 "closes": "21:00"
               },
               "sameAs": [
-                "https://www.instagram.com/kesarinakshatra/"
+                "https.instagram.com/kesarinakshatra/"
               ],
               "aggregateRating": {
                 "@type": "AggregateRating",
@@ -319,7 +327,9 @@ export default async function LocaleLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased ${locale === 'hi' ? 'font-hindi' : ''}`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased ${
+          locale === 'hi' ? notoDevanagari.className : ''
+        }`}
       >
         <NextIntlClientProvider messages={messages}>
           {children}

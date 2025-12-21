@@ -153,25 +153,9 @@ const usePanchang = (autoFetch: boolean = false) => {
         }
       };
 
-      // Format tithi with paksha (e.g., "Shukla Saptami")
-      const formatTithi = (tithi: any): string => {
-        if (!tithi) return 'N/A';
-        
-        if (tithi.name === 'Saptami' && tithi.paksha === 'Shukla Paksha') {
-          return 'Shukla Saptami';
-        } else if (tithi.name === 'Saptami' && tithi.paksha === 'Krishna Paksha') {
-          return 'Krishna Saptami';
-        } else if (typeof tithi.paksha === 'string') {
-          const paksha = tithi.paksha.replace(' Paksha', '');
-          return `${paksha} ${tithi.name}`;
-        }
-        
-        return tithi.name || 'N/A';
-      };
-
       return {
         day: data.vara?.name || currentTime.toLocaleDateString('en-IN', { weekday: 'long' }),
-        tithi: formatTithi(currentTithi),
+        tithi: currentTithi?.name || 'N/A',
         nakshatra: currentNakshatra?.name || 'N/A',
         yoga: currentYoga?.name || 'N/A',
         karana: currentKarana?.name || 'N/A',
@@ -189,7 +173,7 @@ const usePanchang = (autoFetch: boolean = false) => {
         lastUpdated: currentTime,
         // Additional data from API
         nakshatraLord: currentNakshatra?.lord?.name || 'N/A',
-        paksha: currentTithi?.paksha || 'N/A',
+        paksha: currentTithi?.paksha?.replace(/\s+/g, ' ').trim() || 'N/A',
         tithiEnd: formatTime(currentTithi?.end) || 'N/A',
         nakshatraEnd: formatTime(currentNakshatra?.end) || 'N/A',
         yogaEnd: formatTime(currentYoga?.end) || 'N/A',
