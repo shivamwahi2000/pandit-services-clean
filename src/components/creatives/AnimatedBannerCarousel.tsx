@@ -72,24 +72,24 @@ const AnimatedBannerCarousel: React.FC<AnimatedBannerCarouselProps> = ({
     }
   ];
 
-  // Auto-play functionality
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextBanner();
-    }, autoPlayInterval);
-
-    return () => clearInterval(interval);
-  }, [currentBanner, autoPlayInterval]);
-
   const nextBanner = () => {
     if (isAnimating) return;
-    
+
     setIsAnimating(true);
     setTimeout(() => {
       setCurrentBanner((prev) => (prev + 1) % banners.length);
       setIsAnimating(false);
     }, 300);
   };
+
+  // Auto-play functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBanner((prev) => (prev + 1) % banners.length);
+    }, autoPlayInterval);
+
+    return () => clearInterval(interval);
+  }, [autoPlayInterval]);
 
   const goToBanner = (index: number) => {
     if (isAnimating || index === currentBanner) return;
